@@ -1,0 +1,11 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+.import/
+export/
+*.import
+*.mono/
+*.mono/temp/
+*.mono/obj/
+*.mono/bin/
