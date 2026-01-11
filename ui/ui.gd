@@ -21,13 +21,15 @@ func show_overlay(overlay: Control):
 	overlay.show()
 
 func close_overlay(overlay: Control):
+	# For clearing states without nuking the node
+	# Add "reset_state" method for each script
+	if overlay.has_method("reset_state"):
+		overlay.reset_state()
 	overlay.hide()
 
 func go_back():
 	if screen_stack.is_empty(): 
-		
 		return
-
 	current_screen.hide()
 	current_screen = screen_stack.pop_back()
 	current_screen.show()
