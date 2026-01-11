@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://3y85bprkxhm5"]
+[gd_scene load_steps=7 format=3 uid="uid://3y85bprkxhm5"]
 
 [ext_resource type="Script" uid="uid://c0y55hhnbkv77" path="res://ui/main_menu/main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://c3nf1imvusdls" path="res://assets/menu'/placeholder-background.png" id="2_fu7sn"]
 [ext_resource type="Texture2D" uid="uid://818kxioeocif" path="res://assets/menu'/placeholder-title.png" id="3_fu7sn"]
 [ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="4_glbon"]
 [ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/menu'/pressed.png" id="5_nlkkf"]
+[ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="6_joh67"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -32,9 +33,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 368.0
+offset_left = 344.0
 offset_top = 80.0
-offset_right = 608.0
+offset_right = 584.0
 offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -47,9 +48,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 576.0
+offset_left = 536.0
 offset_top = 376.0
-offset_right = -504.0
+offset_right = -536.0
 offset_bottom = -288.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -63,7 +64,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 1.5258789e-05
 offset_top = -1.478195e-05
-offset_right = 1799.0
+offset_right = 1872.0
 offset_bottom = 503.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -80,7 +81,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("6_joh67")
+theme_override_font_sizes/font_size = 40
 text = "PLAY"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
@@ -90,9 +92,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 576.0
+offset_left = 536.0
 offset_top = 456.0
-offset_right = -504.0
+offset_right = -536.0
 offset_bottom = -208.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -102,7 +104,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1799.9998
+offset_right = 1872.0
 offset_bottom = 504.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -119,7 +121,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("6_joh67")
+theme_override_font_sizes/font_size = 40
 text = "SETTINGS"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
@@ -129,9 +132,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 576.0
+offset_left = 536.0
 offset_top = 536.0
-offset_right = -504.0
+offset_right = -536.0
 offset_bottom = -128.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -144,7 +147,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 1.5258789e-05
-offset_right = 1800.0
+offset_right = 1872.0
 offset_bottom = 504.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -159,12 +162,15 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 40.0
+offset_right = -43.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("6_joh67")
+theme_override_font_sizes/font_size = 40
 text = "QUIT"
 horizontal_alignment = 1
-metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="PlayButton/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="SettingsButton/Settings" to="." method="_on_settings_pressed"]

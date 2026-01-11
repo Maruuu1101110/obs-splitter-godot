@@ -13,9 +13,10 @@ func _process(delta: float) -> void:
 func _on_play_pressed():
 	# Placeholder for now
 	print("Play Button Pressed")
+	get_parent().show_overlay($/root/Main/UI/Levels)
 	
 func _on_settings_pressed():
-	get_parent().show_screen($/root/Main/UI/Settings)
+	get_parent().show_overlay($/root/Main/UI/Settings)
 	
 func _on_quit_pressed():
 	get_tree().quit()

@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhf166x15oid0"]
+[gd_scene load_steps=6 format=3 uid="uid://bhf166x15oid0"]
 
 [ext_resource type="Script" uid="uid://i5vakx30utlt" path="res://ui/settings/settings.gd" id="1_71mqq"]
-[ext_resource type="Texture2D" uid="uid://c3nf1imvusdls" path="res://assets/menu'/placeholder-background.png" id="1_x2hje"]
 [ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/menu'/window.png" id="2_nkug2"]
 [ext_resource type="Texture2D" uid="uid://oko7h1y35mws" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Left-Arrow.svg" id="3_cj1lu"]
 [ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="4_71mqq"]
@@ -15,17 +14,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_71mqq")
-metadata/_edit_lock_ = true
-
-[node name="Background" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_x2hje")
-expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
