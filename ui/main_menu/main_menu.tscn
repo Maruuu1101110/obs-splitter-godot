@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://3y85bprkxhm5"]
 
 [ext_resource type="Script" uid="uid://c0y55hhnbkv77" path="res://ui/main_menu/main_menu.gd" id="1_7vrkn"]
-[ext_resource type="Texture2D" uid="uid://c3nf1imvusdls" path="res://assets/menu'/placeholder-background.png" id="2_fu7sn"]
+[ext_resource type="Texture2D" uid="uid://dd2d5kmt2ldb6" path="res://assets/menu'/placeholder-background.png" id="2_fu7sn"]
 [ext_resource type="Texture2D" uid="uid://818kxioeocif" path="res://assets/menu'/placeholder-title.png" id="3_fu7sn"]
 [ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="4_glbon"]
 [ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/menu'/pressed.png" id="5_nlkkf"]
@@ -26,6 +26,16 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_fu7sn")
 expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="BackgroundOverlay" type="ColorRect" parent="."]
+self_modulate = Color(0, 0, 0, 0.22352941)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="Title" type="TextureRect" parent="."]
@@ -56,6 +66,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Play
 "
+flat = true
 
 [node name="Play" type="TextureButton" parent="PlayButton"]
 layout_mode = 1
@@ -81,6 +92,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_joh67")
 theme_override_font_sizes/font_size = 40
 text = "PLAY"
@@ -98,6 +111,7 @@ offset_right = -536.0
 offset_bottom = -208.0
 grow_horizontal = 2
 grow_vertical = 2
+flat = true
 
 [node name="Settings" type="TextureButton" parent="SettingsButton"]
 layout_mode = 1
@@ -140,6 +154,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Play
 "
+flat = true
 
 [node name="Quit" type="TextureButton" parent="QuitButton"]
 layout_mode = 1
