@@ -21,7 +21,7 @@ visible = false
 [node name="Settings" parent="UI" instance=ExtResource("3_h2yge")]
 visible = false
 
-[node name="Levels" parent="UI" instance=ExtResource("5_lquwl")]
+[node name="LevelSelection" parent="UI" instance=ExtResource("5_lquwl")]
 visible = false
 
 [node name="lvl0" parent="." instance=ExtResource("6_272bh")]
