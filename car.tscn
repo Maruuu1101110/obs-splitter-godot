@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4110ugeebjfc"]
+
+[ext_resource type="Script" uid="uid://b03ny4kghpag1" path="res://character_body_2d.gd" id="1_uoj53"]
+[ext_resource type="Texture2D" uid="uid://bqtmqkwqmoktu" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/blue_cars_sprites.png" id="2_k61xc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_272bh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06lh1"]
+atlas = ExtResource("2_k61xc")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_td361"]
+atlas = ExtResource("2_k61xc")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_72krn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06lh1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_td361")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Car" type="CharacterBody2D"]
+rotation = -1.5708
+script = ExtResource("1_uoj53")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(249, 168)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_272bh")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(249, 168)
+zoom = Vector2(2, 2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(250, 168)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_72krn")
+frame_progress = 0.256951

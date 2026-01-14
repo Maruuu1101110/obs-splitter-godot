@@ -11,9 +11,11 @@
 script = ExtResource("1_0xm2m")
 
 [node name="UI" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("2_1bvp3")
 
 [node name="MainMenu" parent="UI" instance=ExtResource("2_0xm2m")]
+visible = false
 
 [node name="Settings" parent="UI" instance=ExtResource("3_h2yge")]
 visible = false
