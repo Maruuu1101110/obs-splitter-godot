@@ -1,22 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://ce73k1btl3tp"]
+[gd_scene load_steps=8 format=3 uid="uid://ce73k1btl3tp"]
 
 [ext_resource type="Script" uid="uid://buc3mrinfhx4h" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://3y85bprkxhm5" path="res://ui/main_menu/main_menu.tscn" id="2_0xm2m"]
 [ext_resource type="Script" uid="uid://bvg2j3q6jlvbo" path="res://ui/ui.gd" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bhf166x15oid0" path="res://ui/settings/settings.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://hg27d5ann3sa" path="res://ui/levels/levels.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://b4110ugeebjfc" path="res://car.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://ki0y01mvvja1" path="res://tile_map.tscn" id="6_272bh"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0xm2m")
 
 [node name="UI" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("2_1bvp3")
 
 [node name="MainMenu" parent="UI" instance=ExtResource("2_0xm2m")]
+visible = false
 
 [node name="Settings" parent="UI" instance=ExtResource("3_h2yge")]
 visible = false
 
 [node name="Levels" parent="UI" instance=ExtResource("5_lquwl")]
 visible = false
-metadata/_edit_lock_ = true
+
+[node name="lvl0" parent="." instance=ExtResource("6_272bh")]
+
+[node name="Car" parent="lvl0" instance=ExtResource("6_7mycd")]
+position = Vector2(91, 395)

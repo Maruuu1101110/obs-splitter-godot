@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://hg27d5ann3sa"]
 
 [ext_resource type="Script" uid="uid://diomsq2554omf" path="res://ui/levels/levels.gd" id="1_2tyw7"]
-[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/menu'/window.png" id="1_a7te6"]
-[ext_resource type="Texture2D" uid="uid://dtftgtgs8wjxo" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="2_2tyw7"]
-[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/menu'/pressed.png" id="3_4wel7"]
-[ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="4_4wel7"]
+[ext_resource type="Texture2D" uid="uid://c1v53fy1vrr4g" path="res://assets/menu'/window.png" id="1_a7te6"]
+[ext_resource type="Texture2D" uid="uid://beyftb42t8e6y" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="2_2tyw7"]
+[ext_resource type="Texture2D" uid="uid://d4hc48bskdhn3" path="res://assets/menu'/pressed.png" id="3_4wel7"]
+[ext_resource type="FontFile" uid="uid://dsy341h7sdhjm" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="4_4wel7"]
 
 [node name="Levels" type="Control"]
 layout_mode = 3
@@ -28,8 +28,8 @@ expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="WindowTitle" type="Sprite2D" parent="Window"]
-position = Vector2(646.00006, 128)
-scale = Vector2(0.3236994, 0.2128514)
+position = Vector2(646, 128)
+scale = Vector2(0.323699, 0.212851)
 texture = ExtResource("3_4wel7")
 metadata/_edit_lock_ = true
 
@@ -53,10 +53,10 @@ metadata/_edit_lock_ = true
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.11953125
-anchor_top = 0.15138888
-anchor_right = 0.1640625
-anchor_bottom = 0.24027778
+anchor_left = 0.119531
+anchor_top = 0.151389
+anchor_right = 0.164063
+anchor_bottom = 0.240278
 grow_horizontal = 2
 grow_vertical = 2
 icon = ExtResource("2_2tyw7")
@@ -68,14 +68,14 @@ metadata/_edit_lock_ = true
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.109000005
+anchor_left = 0.109
 anchor_top = 0.143
-anchor_right = 0.88400006
-anchor_bottom = 0.85200006
-offset_left = 15.479996
-offset_top = 98.03999
+anchor_right = 0.884
+anchor_bottom = 0.852
+offset_left = 15.48
+offset_top = 98.04
 offset_right = -9.52002
-offset_bottom = -12.440063
+offset_bottom = -12.4401
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
