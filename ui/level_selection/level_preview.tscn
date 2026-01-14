@@ -1,0 +1,207 @@
+[gd_scene load_steps=9 format=3 uid="uid://8wpn4o507iat"]
+
+[ext_resource type="Script" uid="uid://cw8d0j7rp700l" path="res://ui/level_selection/level_preview.gd" id="1_t6haa"]
+[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/menu'/window.png" id="2_ix8or"]
+[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/menu'/pressed.png" id="3_t6haa"]
+[ext_resource type="Texture2D" uid="uid://b0mgkfk5ssyru" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Play.svg" id="4_ix8or"]
+[ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="4_tboke"]
+[ext_resource type="Texture2D" uid="uid://dtftgtgs8wjxo" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="5_6a1xn"]
+[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="6_h0dym"]
+[ext_resource type="Texture2D" uid="uid://d2f1wgxbpyj7x" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Gear.svg" id="6_t6haa"]
+
+[node name="LevelPreview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t6haa")
+metadata/_edit_lock_ = true
+
+[node name="BackgroundOverlay" type="ColorRect" parent="."]
+self_modulate = Color(0, 0, 0, 0.39215687)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Window" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 480.0
+offset_top = 200.0
+offset_right = 480.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ix8or")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="WindowTitle" type="Sprite2D" parent="Window"]
+position = Vector2(960, 16.000008)
+scale = Vector2(0.3236994, 0.2128514)
+texture = ExtResource("3_t6haa")
+
+[node name="Label" type="Label" parent="Window/WindowTitle"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -512.82184
+offset_top = -279.20215
+offset_right = -512.82184
+offset_bottom = -279.20215
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_tboke")
+theme_override_font_sizes/font_size = 300
+text = "LEVEL #"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1176.0
+offset_top = 832.0
+offset_right = -594.66675
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+text = "Select"
+icon = ExtResource("4_ix8or")
+flat = true
+
+[node name="TextureButton" type="TextureButton" parent="StartButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.5258789e-05
+offset_top = -1.4781952e-05
+offset_right = 1344.0002
+offset_bottom = 792.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("6_h0dym")
+texture_pressed = ExtResource("3_t6haa")
+stretch_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="StartButton"]
+position = Vector2(74.66665, 37.33334)
+scale = Vector2(1.0833321, 0.74999976)
+texture = ExtResource("4_ix8or")
+
+[node name="GarageButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 848.00006
+offset_top = 832.0
+offset_right = -922.6666
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+text = "Select"
+icon = ExtResource("4_ix8or")
+flat = true
+
+[node name="TextureButton" type="TextureButton" parent="GarageButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.5258789e-05
+offset_top = -1.4781952e-05
+offset_right = 1344.0002
+offset_bottom = 792.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("6_h0dym")
+texture_pressed = ExtResource("3_t6haa")
+stretch_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="GarageButton"]
+position = Vector2(72, 40.000008)
+texture = ExtResource("6_t6haa")
+metadata/_edit_lock_ = true
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 520.0
+offset_top = 832.00006
+offset_right = -1250.6667
+offset_bottom = -159.99994
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+text = "Select"
+icon = ExtResource("4_ix8or")
+flat = true
+
+[node name="TextureButton" type="TextureButton" parent="BackButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.5258789e-05
+offset_top = -1.4781952e-05
+offset_right = 1344.0002
+offset_bottom = 792.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("6_h0dym")
+texture_pressed = ExtResource("3_t6haa")
+stretch_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="BackButton"]
+position = Vector2(74.666664, 37.333344)
+scale = Vector2(1, 0.74999976)
+texture = ExtResource("5_6a1xn")
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 416.0
+offset_top = 232.0
+offset_right = -408.0
+offset_bottom = -320.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_tboke")
+theme_override_font_sizes/font_size = 50
+text = "Preview of the Level
+goes here"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="StartButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="StartButton/TextureButton" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="StartButton/TextureButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="GarageButton" to="." method="_on_garage_pressed"]
+[connection signal="pressed" from="GarageButton/TextureButton" to="." method="_on_garage_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="BackButton/TextureButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="BackButton/TextureButton" to="." method="_on_play_pressed"]

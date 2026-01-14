@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://hg27d5ann3sa"]
+[gd_scene load_steps=8 format=3 uid="uid://hg27d5ann3sa"]
 
-[ext_resource type="Script" uid="uid://diomsq2554omf" path="res://ui/levels/levels.gd" id="1_2tyw7"]
+[ext_resource type="Script" uid="uid://diomsq2554omf" path="res://ui/level_selection/level_selection.gd" id="1_2tyw7"]
 [ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/menu'/window.png" id="1_a7te6"]
 [ext_resource type="Texture2D" uid="uid://dtftgtgs8wjxo" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="2_2tyw7"]
 [ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/menu'/pressed.png" id="3_4wel7"]
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="4_4wel7"]
 [ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="6_b5hqg"]
+[ext_resource type="PackedScene" uid="uid://8wpn4o507iat" path="res://ui/level_selection/level_preview.tscn" id="7_48mtt"]
 
 [node name="LevelSelection" type="Control"]
 layout_mode = 3
@@ -37,10 +38,9 @@ expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="WindowTitle" type="Sprite2D" parent="Window"]
-position = Vector2(646, 128)
-scale = Vector2(0.323699, 0.212851)
+position = Vector2(960, 128)
+scale = Vector2(0.3236994, 0.2128514)
 texture = ExtResource("3_4wel7")
-metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="Window/WindowTitle"]
 anchors_preset = 15
@@ -79,42 +79,43 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.109
 anchor_top = 0.143
-anchor_right = 0.884
-anchor_bottom = 0.852
-offset_left = 15.48
-offset_top = 98.04
-offset_right = -9.52002
-offset_bottom = -12.4401
+anchor_right = 0.88400006
+anchor_bottom = 0.85200006
+offset_left = 14.719986
+offset_top = 93.56001
+offset_right = -491.9469
+offset_bottom = -224.15997
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.5, 1.5)
 horizontal_scroll_mode = 0
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
 texture_filter = 1
-clip_contents = true
+custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 theme_override_constants/h_separation = 25
 theme_override_constants/v_separation = 12
-columns = 6
+columns = 5
 
-[node name="PlayButton" type="Button" parent="."]
+[node name="SelectButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 536.0
-offset_top = 608.0
-offset_right = -536.0
-offset_bottom = -56.0
+offset_left = 752.0
+offset_top = 840.0
+offset_right = -960.0
+offset_bottom = -184.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Play
-"
+scale = Vector2(2, 2)
+text = "Select"
 flat = true
 
-[node name="Play" type="TextureButton" parent="PlayButton"]
+[node name="Select" type="TextureButton" parent="SelectButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,7 +132,7 @@ texture_pressed = ExtResource("3_4wel7")
 stretch_mode = 0
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="PlayButton"]
+[node name="Label" type="Label" parent="SelectButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -142,10 +143,14 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_4wel7")
 theme_override_font_sizes/font_size = 40
-text = "PLAY"
+text = "SELECT"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
+[node name="LevelPreview" parent="." instance=ExtResource("7_48mtt")]
+visible = false
+layout_mode = 1
+
 [connection signal="pressed" from="BackButton" to="." method="_on_goback_pressed"]
-[connection signal="pressed" from="PlayButton" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="PlayButton/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="SelectButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="SelectButton/Select" to="." method="_on_play_pressed"]
