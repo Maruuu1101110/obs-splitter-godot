@@ -37,8 +37,8 @@ expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="WindowTitle" type="Sprite2D" parent="Window"]
-position = Vector2(646.00006, 128)
-scale = Vector2(0.3236994, 0.2128514)
+position = Vector2(646, 128)
+scale = Vector2(0.323699, 0.212851)
 texture = ExtResource("3_4wel7")
 metadata/_edit_lock_ = true
 
@@ -62,10 +62,10 @@ metadata/_edit_lock_ = true
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.11953125
-anchor_top = 0.15138888
-anchor_right = 0.1640625
-anchor_bottom = 0.24027778
+anchor_left = 0.119531
+anchor_top = 0.151389
+anchor_right = 0.164063
+anchor_bottom = 0.240278
 grow_horizontal = 2
 grow_vertical = 2
 icon = ExtResource("2_2tyw7")
@@ -77,14 +77,14 @@ metadata/_edit_lock_ = true
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.109000005
+anchor_left = 0.109
 anchor_top = 0.143
-anchor_right = 0.88400006
-anchor_bottom = 0.85200006
-offset_left = 15.479996
-offset_top = 98.03999
+anchor_right = 0.884
+anchor_bottom = 0.852
+offset_left = 15.48
+offset_top = 98.04
 offset_right = -9.52002
-offset_bottom = -12.440063
+offset_bottom = -12.4401
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
