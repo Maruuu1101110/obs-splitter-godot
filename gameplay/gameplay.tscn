@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://7i7w57c1jj6k"]
+
+[ext_resource type="Script" uid="uid://b6nv8f8ret37f" path="res://gameplay/gameplay.gd" id="1_oe8ih"]
+[ext_resource type="PackedScene" uid="uid://bv8a8pxgp468q" path="res://ui/loading_screen.tscn" id="2_41n4r"]
+
+[node name="Gameplay" type="Node2D"]
+script = ExtResource("1_oe8ih")
+
+[node name="LevelContainer" type="Node2D" parent="."]
+
+[node name="PlayerContainer" type="Node2D" parent="."]
+
+[node name="LoadingScreen" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="LoadingScreen2" parent="LoadingScreen" instance=ExtResource("2_41n4r")]

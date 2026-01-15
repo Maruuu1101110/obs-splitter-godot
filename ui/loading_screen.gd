@@ -1,9 +1,11 @@
-extends Node2D
+extends Control
 
+@onready var progress_bar = $VBoxContainer/ProgressBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GameState.load_game()
+	pass # Replace with function body.
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
