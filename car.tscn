@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b4110ugeebjfc"]
 
 [ext_resource type="Script" uid="uid://b03ny4kghpag1" path="res://character_body_2d.gd" id="1_uoj53"]
-[ext_resource type="Texture2D" uid="uid://bqtmqkwqmoktu" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/blue_cars_sprites.png" id="2_k61xc"]
+[ext_resource type="Texture2D" uid="uid://cb71i7mj6rnc6" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/blue_cars_sprites.png" id="2_k61xc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_272bh"]
 
