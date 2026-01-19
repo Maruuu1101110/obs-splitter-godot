@@ -1,0 +1,61 @@
+[gd_scene load_steps=11 format=3 uid="uid://bgh8h47b62g5f"]
+
+[ext_resource type="Script" uid="uid://c4wbiiowq554g" path="res://gameplay/mobile_controls.gd" id="1_rgiws"]
+[ext_resource type="Texture2D" uid="uid://cqecw83fbj215" path="res://icon.svg" id="2_aq63k"]
+[ext_resource type="Texture2D" uid="uid://ceuitrdk30frk" path="res://gameplay/mobile-controls/untitled_0003.png" id="2_bhmwq"]
+[ext_resource type="Texture2D" uid="uid://dqx2p3qgcij54" path="res://gameplay/mobile-controls/untitled_0004.png" id="3_t1u3n"]
+[ext_resource type="Texture2D" uid="uid://bknk4mpu4mrq2" path="res://gameplay/mobile-controls/untitled_0001.png" id="4_7uj1h"]
+[ext_resource type="Texture2D" uid="uid://ji5vg838x5y0" path="res://gameplay/mobile-controls/untitled_0002.png" id="5_k3am5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aq63k"]
+size = Vector2(15, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xccx"]
+size = Vector2(15, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hda62"]
+size = Vector2(15, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pq8d4"]
+size = Vector2(200, 200)
+
+[node name="MobileControls" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rgiws")
+metadata/_edit_lock_ = true
+
+[node name="SteerLeft" type="TouchScreenButton" parent="."]
+position = Vector2(136, 752)
+scale = Vector2(15, 15)
+texture_normal = ExtResource("2_bhmwq")
+shape = SubResource("RectangleShape2D_aq63k")
+visibility_mode = 1
+
+[node name="SteerRight" type="TouchScreenButton" parent="."]
+position = Vector2(432, 752.00006)
+scale = Vector2(15, 15)
+texture_normal = ExtResource("3_t1u3n")
+shape = SubResource("RectangleShape2D_aq63k")
+
+[node name="Gas" type="TouchScreenButton" parent="."]
+position = Vector2(1512, 720)
+scale = Vector2(15, 16)
+texture_normal = ExtResource("4_7uj1h")
+shape = SubResource("RectangleShape2D_0xccx")
+
+[node name="Brake" type="TouchScreenButton" parent="."]
+position = Vector2(1232.0001, 744.00006)
+scale = Vector2(15, 15)
+texture_normal = ExtResource("5_k3am5")
+shape = SubResource("RectangleShape2D_hda62")
+
+[node name="Handbrake" type="TouchScreenButton" parent="."]
+position = Vector2(1496, 416)
+texture_normal = ExtResource("2_aq63k")
+shape = SubResource("RectangleShape2D_pq8d4")

@@ -1,0 +1,209 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvqxmwifpyd4a"]
+
+[ext_resource type="Script" uid="uid://ccisaxpr4xtjb" path="res://gameplay/pause_overlay.gd" id="1_bnrle"]
+[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/menu'/window.png" id="2_i5ptk"]
+[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="3_n63o2"]
+[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/menu'/pressed.png" id="4_d58qc"]
+[ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="5_7rmys"]
+[ext_resource type="PackedScene" uid="uid://bhf166x15oid0" path="res://ui/settings/settings.tscn" id="6_i5ptk"]
+
+[node name="PauseOverlay" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bnrle")
+metadata/_edit_lock_ = true
+
+[node name="BackgroundOverlay" type="ColorRect" parent="."]
+self_modulate = Color(0, 0, 0, 0.39215687)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 424.0
+offset_top = 48.0
+offset_right = 1504.0
+offset_bottom = 1048.0
+texture = ExtResource("2_i5ptk")
+expand_mode = 2
+
+[node name="Pressed" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 304)
+scale = Vector2(0.7466281, 0.5160643)
+texture = ExtResource("4_d58qc")
+
+[node name="PAUSE" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 704.0
+offset_top = 160.0
+offset_right = -691.0
+offset_bottom = -694.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_7rmys")
+theme_override_font_sizes/font_size = 200
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 792.0
+offset_top = 480.00003
+offset_right = -920.0
+offset_bottom = -544.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.7000983, 1.6447368)
+flat = true
+
+[node name="Resume" type="TextureButton" parent="ResumeButton"]
+self_modulate = Color(0.40443814, 1, 1, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.5258789e-05
+offset_right = 1872.0
+offset_bottom = 504.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("3_n63o2")
+texture_pressed = ExtResource("4_d58qc")
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="ResumeButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_right = -43.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_7rmys")
+theme_override_font_sizes/font_size = 40
+text = "RESUME"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="SettingsButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 792.0
+offset_top = 616.0
+offset_right = -920.0
+offset_bottom = -408.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.7000983, 1.6447368)
+flat = true
+
+[node name="Settings" type="TextureButton" parent="SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.5258789e-05
+offset_right = 1872.0
+offset_bottom = 504.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("3_n63o2")
+texture_pressed = ExtResource("4_d58qc")
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 35.0
+offset_right = -38.0
+offset_bottom = -9.999939
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_7rmys")
+theme_override_font_sizes/font_size = 40
+text = "SETTINGS"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="QuitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 792.0
+offset_top = 752.0
+offset_right = -920.0
+offset_bottom = -272.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.7000983, 1.6447368)
+flat = true
+
+[node name="Quit" type="TextureButton" parent="QuitButton"]
+self_modulate = Color(1, 0.39215687, 1, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.5258789e-05
+offset_right = 1872.0
+offset_bottom = 504.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("3_n63o2")
+texture_pressed = ExtResource("4_d58qc")
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="QuitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_right = -43.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_7rmys")
+theme_override_font_sizes/font_size = 40
+text = "QUIT"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Settings" parent="." instance=ExtResource("6_i5ptk")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="ResumeButton/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="SettingsButton/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="QuitButton/Quit" to="." method="_on_quit_pressed"]

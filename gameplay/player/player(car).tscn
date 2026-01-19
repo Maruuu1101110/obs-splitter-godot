@@ -298,6 +298,7 @@ radius = 6.0
 height = 22.0
 
 [node name="PlayerCar" type="CharacterBody2D"]
+rotation = -1.5707964
 script = ExtResource("1_lokse")
 
 [node name="TrailAnimation" type="Node2D" parent="."]
@@ -308,19 +309,49 @@ texture_filter = 1
 position = Vector2(0, 1)
 rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_qs6fy")
+animation = &"track_def"
 
 [node name="CarAnimation" type="Node2D" parent="."]
+texture_filter = 1
+
+[node name="TireLayout" type="Node2D" parent="CarAnimation"]
+
+[node name="FrontLeft" type="AnimatedSprite2D" parent="CarAnimation/TireLayout"]
+position = Vector2(8, -6.9999995)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+
+[node name="FrontRight" type="AnimatedSprite2D" parent="CarAnimation/TireLayout"]
+position = Vector2(8, 7.0000005)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+
+[node name="BackLeft" type="AnimatedSprite2D" parent="CarAnimation/TireLayout"]
+position = Vector2(-8, -7)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
+
+[node name="BackRight" type="AnimatedSprite2D" parent="CarAnimation/TireLayout"]
+position = Vector2(-8, 6.9999995)
+rotation = 1.5707964
+scale = Vector2(0.5, 0.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CarAnimation"]
+visible = false
 texture_filter = 1
 position = Vector2(0, 1)
 rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_qs6fy")
+frame_progress = 0.6876375
+
+[node name="Body" type="Sprite2D" parent="CarAnimation"]
+rotation = 1.5707964
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_lokse")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+rotation = 1.5707964
+zoom = Vector2(6, 6)
 rotation_smoothing_enabled = true

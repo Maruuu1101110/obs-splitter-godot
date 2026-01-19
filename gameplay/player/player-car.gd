@@ -1,44 +1,107 @@
 extends CharacterBody2D
 
-## ===== TUNED FOR 32x32 =====
-#@export var acceleration_force := 880.0
-#@export var brake_force := 420.0
-#@export var max_speed := 3400.0
-#@export var reverse_speed := 100.0
-#
-#@export var steering_speed := 50.2          # radians/sec
-#@export var lateral_friction := 14.0        # kills sideways sliding
-#@export var rolling_friction := 6.0
+# !!! READ !!!
+# GIN FEED KO NI SA AI, 
+# SYA NA NI NAG TIMPLA SANG PARAMS
 
-## ===== DRIFT TUNING =====
-#@export var acceleration_force := 500.0
-#@export var brake_force := 400.0
-#@export var max_speed := 180.0
-#@export var reverse_speed := 120.0
-#
-#@export var steering_speed := 2.5          # Snappy steering to initiate drifts
-#@export var lateral_friction := 1.5        # LOW value lets you slide sideways
-#@export var rolling_friction := 1.5        # Long coasting distance
+# ----- Game Mechanics Related -----
+var health := 100.0
 
-# ===== BALANCED ARCADE =====
-## Alter ang mga params if needed, mga preset ni sang AI ang default
-@export var acceleration_force := 1000.0   # Boosted to fight friction
-@export var brake_force := 300.0
-@export var max_speed := 240.0             # A realistic cap for 32x32
-@export var reverse_speed := 10.0
+# ===== CAR STATS (loaded from config) =====
+var acceleration_force := 1000.0
+var brake_force := 600.0
+var max_speed := 280.0
+var reverse_speed := 140.0
+var weight := 1.0
 
-@export var steering_speed := 3.5          # ~200 degrees/sec (Normal turning)
-@export var lateral_friction := 16.0        # Grippy tires
-@export var rolling_friction := 3.0        # Lower friction so it coasts a bit 
+# ===== TIRE STATS (loaded from config) =====
+var steering_speed := 2.2
+var lateral_friction := 16.0
+var rolling_friction := 2.5
+var drift_lateral_friction := 2.0
+var drift_steering_speed := 4.0
 
+var base_lateral_friction := 16.0
+var base_steering_speed := 2.2
+
+const DRIFT_EASE := 0.15
+const RETURN_EASE := 0.01
+
+# ------ STATE ------
 var accel_input := 0.0
 var steer_input := 0.0
+var is_drifting := false
+var is_moving_backward := false
 
-@onready var car_sprite = $CarAnimation/AnimatedSprite2D
+# CAR BODY
+@onready var car_sprite = $CarAnimation/Body
+
+# CAR TIRES
+@onready var tire_front_left = $CarAnimation/TireLayout/FrontLeft
+@onready var tire_front_right = $CarAnimation/TireLayout/FrontRight
+@onready var tire_back_left = $CarAnimation/TireLayout/BackLeft
+@onready var tire_back_right = $CarAnimation/TireLayout/BackRight
+
+# CAR TRACKS
 @onready var animated_tracks = $TrailAnimation/AnimatedTrack
+
+func _ready():
+	_load_car_visuals()
+	_apply_car_stats()
+	_apply_tire_stats()
+	
+	base_lateral_friction = lateral_friction
+	base_steering_speed = steering_speed
+
+func _load_car_visuals():
+	# Load textures from config
+	car_sprite.texture = load(GameState.player_configuration["body-type"])
+	
+	var tire_texture = load(GameState.player_configuration["tire-type"])
+	tire_back_left.sprite_frames = tire_texture
+	tire_back_right.sprite_frames = tire_texture
+	tire_front_left.sprite_frames = tire_texture
+	tire_front_right.sprite_frames = tire_texture
+
+func _apply_car_stats():
+	var body_id = GameState.player_configuration. get("body-id", "street-1")
+	var body_data = GameState.get_body_data(body_id)
+	
+	if body_data. is_empty():
+		print("Warning: No body data found for '%s', using defaults" % body_id)
+		return
+	
+	max_speed = body_data.get("max_speed", max_speed)
+	acceleration_force = body_data.get("acceleration", acceleration_force)
+	health = body_data. get("health", health)
+	weight = body_data.get("weight", weight)
+	
+	# Derived stats
+	reverse_speed = max_speed * 0.5
+	brake_force = acceleration_force * 0.6
+	
+	print("Body stats loaded: %s (Speed: %s, Accel:  %s, HP: %s)" % [body_id, max_speed, acceleration_force, health])
+
+func _apply_tire_stats():
+	var tire_id = GameState. player_configuration.get("tire-id", "street_tire")
+	var tire_data = GameState.get_tire_data(tire_id)
+	
+	if tire_data. is_empty():
+		print("Warning:  No tire data found for '%s', using defaults" % tire_id)
+		return
+	
+	lateral_friction = tire_data.get("grip", lateral_friction)
+	drift_lateral_friction = tire_data.get("drift_friction", drift_lateral_friction)
+	
+	# Apply speed bonus from tires
+	var speed_bonus = tire_data.get("max_speed_bonus", 0.0)
+	max_speed += speed_bonus
+	
+	print("Tire stats loaded: %s (Grip: %s, Drift: %s, Speed Bonus: %s)" % [tire_id, lateral_friction, drift_lateral_friction, speed_bonus])
 
 func _physics_process(delta):
 	read_input()
+	apply_drift()
 	apply_engine(delta)
 	apply_friction(delta)
 	apply_steering(delta)
@@ -47,126 +110,159 @@ func _physics_process(delta):
 # --------------------------------------------------
 
 func read_input():
-	accel_input = Input.get_axis("brake", "accelerate")
-	if accel_input > 0:
-		steer_input = Input.get_axis("steer_left", "steer_right")
-	elif accel_input < 0:
-		steer_input = Input.get_axis("steer_right", "steer_left")
+	accel_input = Input. get_axis("brake", "accelerate")
+	var raw_steer = Input.get_axis("steer_left", "steer_right")
 	
+	var forward_velocity = velocity.dot(transform.x)
+	is_moving_backward = forward_velocity < -5.0
+	
+	if is_moving_backward: 
+		steer_input = -raw_steer
+	else:
+		steer_input = raw_steer
+	
+	is_drifting = Input.is_action_pressed("handbrake")
+	
+	update_animations()
+
+func update_animations():
 	if Input.is_action_pressed("steer_left"):
-		car_sprite.animation = "steering_left"
+		tire_front_right.rotation_degrees = 75.0
+		tire_front_left. rotation_degrees = 75.0
 		animated_tracks.animation = "track_left"
 	elif Input.is_action_pressed("steer_right"):
-		car_sprite.animation = "steering_right"
+		tire_front_left.rotation_degrees = 105.0
+		tire_front_right. rotation_degrees = 105.0
 		animated_tracks.animation = "track_right"
-	else:
-		car_sprite.animation = "default"
+	else: 
+		tire_front_left.rotation_degrees = 90.0
+		tire_front_right. rotation_degrees = 90.0
 		animated_tracks.animation = "track_def"
+
+# --------------------------------------------------
+
+func apply_drift():
+	var target_friction:  float
+	var target_steer: float
+	var ease_amount: float
+	
+	if is_drifting:
+		target_friction = drift_lateral_friction
+		target_steer = drift_steering_speed
+		ease_amount = DRIFT_EASE
+	else:
+		target_friction = base_lateral_friction
+		target_steer = base_steering_speed
+		ease_amount = RETURN_EASE
+	
+	lateral_friction = lerp(lateral_friction, target_friction, ease_amount)
+	steering_speed = lerp(steering_speed, target_steer, ease_amount)
+
 # --------------------------------------------------
 
 func apply_engine(delta):
 	var forward = transform.x
-	if accel_input > 0.0:
-		velocity += forward * acceleration_force * accel_input * delta
+	var current_speed = velocity. length()
+	
+	var speed_ratio = clamp(current_speed / max_speed, 0.0, 1.0)
+	var power_factor = pow(1.0 - speed_ratio, 1.5)
+	power_factor = clamp(power_factor, 0.1, 1.0)
+	
+	# Weight affects acceleration (heavier = slower accel)
+	var weight_modifier = 1.0 / weight
+	
+	if is_drifting:
+		if accel_input > 0.0:
+			velocity += forward * acceleration_force * power_factor * weight_modifier * 0.6 * accel_input * delta
+	elif accel_input > 0.0:
+		velocity += forward * acceleration_force * power_factor * weight_modifier * accel_input * delta
 	elif accel_input < 0.0:
-		velocity += forward * brake_force * accel_input * delta
-		
+		var forward_speed = velocity.dot(forward)
+		if forward_speed > 10.0:
+			velocity += forward * brake_force * accel_input * delta
+		else: 
+			var reverse_ratio = clamp(current_speed / reverse_speed, 0.0, 1.0)
+			var reverse_power = pow(1.0 - reverse_ratio, 1.5)
+			velocity += forward * reverse_speed * reverse_power * accel_input * delta
+	
 	velocity = velocity.limit_length(max_speed)
-	print(velocity)
-	# Animation related
+	
+	update_speed_animations()
+
+func update_speed_animations():
 	var speed = velocity.length()
-	print(speed)
+	
 	if speed > 1.0:
-		car_sprite.play()
-		car_sprite.speed_scale = clamp(speed / max_speed, 0.1, 3.0)
+		var anim_speed_scale = clamp(speed / max_speed, 0.3, 2.5)
 		
-		if speed > 50.0 and Input.is_action_pressed("accelerate"):
-			animated_tracks.play()
-			animated_tracks.show()
-			animated_tracks.speed_scale = clamp(speed / max_speed, 0.1, 3.0)
-		else:
+		if is_moving_backward:
+			_play_all_sprites_backward(anim_speed_scale)
 			animated_tracks.hide()
 			animated_tracks.stop()
+		else:
+			_play_all_sprites_forward(anim_speed_scale)
+			
+			if (speed > 130.0 and accel_input > 0) or (is_drifting and speed > 50.0):
+				animated_tracks.play()
+				animated_tracks. show()
+				animated_tracks.speed_scale = anim_speed_scale
+			else: 
+				animated_tracks.hide()
+				animated_tracks.stop()
 	else:
-		car_sprite.stop()
-		
+		_stop_all_sprites()
 
+func _play_all_sprites_forward(speed_scale:  float):
+	tire_back_left. play()
+	tire_back_right.play()
+	tire_front_left.play()
+	tire_front_right.play()
+	_set_all_speed_scales(speed_scale)
+
+func _play_all_sprites_backward(speed_scale:  float):
+	tire_back_left. play_backwards()
+	tire_back_right.play_backwards()
+	tire_front_left.play_backwards()
+	tire_front_right.play_backwards()
+	_set_all_speed_scales(speed_scale)
+
+func _set_all_speed_scales(speed_scale:  float):
+	tire_back_left. speed_scale = speed_scale
+	tire_back_right. speed_scale = speed_scale
+	tire_front_left. speed_scale = speed_scale
+	tire_front_right. speed_scale = speed_scale
+
+func _stop_all_sprites():
+	tire_back_left. stop()
+	tire_back_right. stop()
+	tire_front_left. stop()
+	tire_front_right. stop()
+	animated_tracks.hide()
+	animated_tracks.stop()
+
+# --------------------------------------------------
 
 func apply_friction(delta):
 	var forward = transform.x
-	var right = transform.y
+	var right = transform. y
 
-	var forward_speed = velocity.dot(forward)
+	var forward_speed = velocity. dot(forward)
 	var lateral_speed = velocity.dot(right)
 
-	# Kill sideways velocity (KEY FIX)
 	lateral_speed = lerp(lateral_speed, 0.0, lateral_friction * delta)
 
-	# Rolling resistance
-	forward_speed = lerp(forward_speed, 0.0, rolling_friction * delta)
+	var speed_factor = clamp(velocity.length() / max_speed, 0.2, 1.0)
+	forward_speed = lerp(forward_speed, 0.0, rolling_friction * speed_factor * delta)
 
 	velocity = forward * forward_speed + right * lateral_speed
 
 # --------------------------------------------------
 
 func apply_steering(delta):
-	var speed_factor = clamp(velocity.length() / max_speed, 0.0, 1.0)
-	var steer_amount = steer_input * steering_speed * speed_factor
+	var speed = velocity.length()
+	if speed < 5.0:
+		return
+	var speed_factor = clamp(speed / max_speed, 0.3, 1.0)
+	var steer_modifier = 1.0 - (speed_factor * 0.4)
+	var steer_amount = steer_input * steering_speed * steer_modifier
 	rotation += steer_amount * delta
-	
-
-
-
-#var wheel_base = 16
-#var steering_angle = 30
-#var engine_power = 220
-#var friction = -120
-#var drag = -0.18
-#var braking = -300
-#var max_speed_reverse = 120
-#var slip_speed = 140
-#var traction_fast = 6
-#var traction_slow = 14
-#
-#var acceleration = Vector2.ZERO
-#var steer_direction = 0
-#
-#func _physics_process(delta):
-	#acceleration = Vector2.ZERO
-	#get_input()
-	#apply_friction(delta)
-	#calculate_steering(delta)
-	#velocity += acceleration * delta
-	#move_and_slide()
-	#
-#func apply_friction(delta):
-	#if acceleration == Vector2.ZERO and velocity.length() < 10:
-		#velocity = Vector2.ZERO
-	#var friction_force = velocity * friction * delta
-	#var drag_force = velocity * velocity.length() * drag * delta
-	#acceleration += drag_force + friction_force
-	#
-#func get_input():
-	#var turn = Input.get_axis("steer_left", "steer_right")
-	#steer_direction = turn * deg_to_rad(steering_angle)
-	#if Input.is_action_pressed("accelerate"):
-		#acceleration = transform.x * engine_power
-	#if Input.is_action_pressed("brake"):
-		#acceleration = transform.x * braking
-	#
-#func calculate_steering(delta):
-	#var rear_wheel = position - transform.x * wheel_base / 2.0
-	#var front_wheel = position + transform.x * wheel_base / 2.0
-	#rear_wheel += velocity * delta
-	#front_wheel += velocity.rotated(steer_direction) * delta
-	#var new_heading = rear_wheel.direction_to(front_wheel)
-	#var traction = traction_slow
-	#if velocity.length() > slip_speed:
-		#traction = traction_fast
-	#var d = new_heading.dot(velocity.normalized())
-	#if d > 0:
-		#velocity = lerp(velocity, new_heading * velocity.length(), traction * delta)
-	#if d < 0:
-		#velocity = -new_heading * min(velocity.length(), max_speed_reverse)
-##	velocity = new_heading * velocity.length()
-	#rotation = new_heading.angle()
