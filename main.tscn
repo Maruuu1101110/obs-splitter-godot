@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ce73k1btl3tp"]
+[gd_scene load_steps=8 format=3 uid="uid://ce73k1btl3tp"]
 
 [ext_resource type="Script" uid="uid://buc3mrinfhx4h" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://3y85bprkxhm5" path="res://ui/main_menu/main_menu.tscn" id="2_0xm2m"]
@@ -6,14 +6,17 @@
 [ext_resource type="PackedScene" uid="uid://bhf166x15oid0" path="res://ui/settings/settings.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://hg27d5ann3sa" path="res://ui/level_selection/levels.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://7i7w57c1jj6k" path="res://gameplay/gameplay.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://con1hjx6a4meh" path="res://ui/garage/garage.tscn" id="6_272bh"]
 
 [node name="Main" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_0xm2m")
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("2_1bvp3")
 
 [node name="MainMenu" parent="UI" instance=ExtResource("2_0xm2m")]
+texture_filter = 1
 
 [node name="Settings" parent="UI" instance=ExtResource("3_h2yge")]
 visible = false
@@ -21,5 +24,8 @@ visible = false
 [node name="LevelSelection" parent="UI" instance=ExtResource("5_lquwl")]
 visible = false
 metadata/_edit_lock_ = true
+
+[node name="Garage" parent="UI" instance=ExtResource("6_272bh")]
+visible = false
 
 [node name="Gameplay" parent="." instance=ExtResource("6_7mycd")]

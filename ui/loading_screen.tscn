@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv8a8pxgp468q"]
+[gd_scene load_steps=5 format=3 uid="uid://bv8a8pxgp468q"]
 
 [ext_resource type="Texture2D" uid="uid://dd2d5kmt2ldb6" path="res://assets/menu'/placeholder-background.png" id="1_1kfex"]
 [ext_resource type="Script" uid="uid://dkrw6rlps0rpp" path="res://ui/loading_screen.gd" id="1_e66os"]
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="2_e66os"]
+[ext_resource type="Script" uid="uid://72f5mjmlvkci" path="res://ui/progress_bar.gd" id="4_to6u5"]
 
 [node name="LoadingScreen" type="Control"]
 layout_mode = 3
@@ -46,3 +47,4 @@ vertical_alignment = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
 layout_mode = 2
+script = ExtResource("4_to6u5")
