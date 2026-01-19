@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://7i7w57c1jj6k"]
+[gd_scene load_steps=7 format=3 uid="uid://7i7w57c1jj6k"]
 
 [ext_resource type="Script" uid="uid://b6nv8f8ret37f" path="res://gameplay/gameplay.gd" id="1_oe8ih"]
 [ext_resource type="PackedScene" uid="uid://bv8a8pxgp468q" path="res://ui/loading_screen.tscn" id="2_41n4r"]
+[ext_resource type="Texture2D" uid="uid://dv5msdyujaqbq" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Pause.svg" id="3_ktb3l"]
+[ext_resource type="PackedScene" uid="uid://bgh8h47b62g5f" path="res://gameplay/mobile_controls.tscn" id="3_ueusv"]
+[ext_resource type="PackedScene" uid="uid://cvqxmwifpyd4a" path="res://ui/garage/car_previews/sport/pause_overlay.tscn" id="5_gvicd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvicd"]
+size = Vector2(60, 60)
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource("1_oe8ih")
@@ -14,3 +20,60 @@ script = ExtResource("1_oe8ih")
 visible = false
 
 [node name="LoadingScreen2" parent="LoadingScreen" instance=ExtResource("2_41n4r")]
+
+[node name="GameHud" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="GameHud"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameHud/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 789.0
+offset_top = 956.0
+offset_right = -777.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 50
+text = "Test Display"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="PauseMobile" type="TouchScreenButton" parent="GameHud/HUD"]
+position = Vector2(1809, 59)
+texture_normal = ExtResource("3_ktb3l")
+shape = SubResource("RectangleShape2D_gvicd")
+visibility_mode = 1
+
+[node name="PauseDesktop" type="Button" parent="GameHud/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1796.0
+offset_top = 44.0
+offset_right = -45.0
+offset_bottom = -950.0
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("3_ktb3l")
+icon_alignment = 1
+
+[node name="MobileControls" parent="GameHud" instance=ExtResource("3_ueusv")]
+visible = false
+
+[node name="PauseOverlay" parent="GameHud" instance=ExtResource("5_gvicd")]
+visible = false
+
+[connection signal="released" from="GameHud/HUD/PauseMobile" to="." method="_on_pause_btn_pressed"]
+[connection signal="pressed" from="GameHud/HUD/PauseDesktop" to="." method="_on_pause_btn_pressed"]

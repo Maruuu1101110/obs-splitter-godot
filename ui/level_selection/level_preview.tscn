@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://d2f1wgxbpyj7x" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Gear.svg" id="6_t6haa"]
 
 [node name="LevelPreview" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,6 +69,7 @@ vertical_alignment = 1
 metadata/_edit_lock_ = true
 
 [node name="StartButton" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -105,6 +107,7 @@ scale = Vector2(1.0833321, 0.74999976)
 texture = ExtResource("4_ix8or")
 
 [node name="GarageButton" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -142,6 +145,7 @@ texture = ExtResource("6_t6haa")
 metadata/_edit_lock_ = true
 
 [node name="BackButton" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
