@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://3y85bprkxhm5"]
+[gd_scene load_steps=8 format=3 uid="uid://3y85bprkxhm5"]
 
 [ext_resource type="Script" uid="uid://c0y55hhnbkv77" path="res://ui/main_menu/main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://dd2d5kmt2ldb6" path="res://assets/menu'/placeholder-background.png" id="2_fu7sn"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="4_glbon"]
 [ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/menu'/pressed.png" id="5_nlkkf"]
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="6_joh67"]
+[ext_resource type="Texture2D" uid="uid://d2f1wgxbpyj7x" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Gear.svg" id="7_u184e"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -43,29 +44,27 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 344.0
-offset_top = 80.0
-offset_right = 584.0
-offset_bottom = 21.0
+offset_left = 560.0
+offset_top = 96.0
+offset_right = 800.0
+offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)
 texture = ExtResource("3_fu7sn")
-metadata/_edit_lock_ = true
 
 [node name="PlayButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 536.0
-offset_top = 376.0
-offset_right = -536.0
-offset_bottom = -288.0
+offset_left = 816.0
+offset_top = 560.0
+offset_right = -896.0
+offset_bottom = -464.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Play
-"
+scale = Vector2(1.6880059, 1.5869281)
 flat = true
 
 [node name="Play" type="TextureButton" parent="PlayButton"]
@@ -100,18 +99,18 @@ text = "PLAY"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="SettingsButton" type="Button" parent="."]
+[node name="SettingsButton" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 536.0
-offset_top = 456.0
-offset_right = -536.0
-offset_bottom = -208.0
+offset_left = 1791.9999
+offset_top = 32.0
+offset_right = 79.99988
+offset_bottom = -984.0
 grow_horizontal = 2
 grow_vertical = 2
-flat = true
+scale = Vector2(0.45624945, 1.7070572)
 
 [node name="Settings" type="TextureButton" parent="SettingsButton"]
 layout_mode = 1
@@ -128,32 +127,23 @@ texture_pressed = ExtResource("5_nlkkf")
 stretch_mode = 0
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="SettingsButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("6_joh67")
-theme_override_font_sizes/font_size = 40
-text = "SETTINGS"
-horizontal_alignment = 1
-metadata/_edit_lock_ = true
+[node name="Sprite2D" type="Sprite2D" parent="SettingsButton"]
+position = Vector2(105.20548, 23.432137)
+scale = Vector2(1.7026709, 0.46771097)
+texture = ExtResource("7_u184e")
 
 [node name="QuitButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 536.0
-offset_top = 536.0
-offset_right = -536.0
-offset_bottom = -128.0
+offset_left = 816.0
+offset_top = 816.0
+offset_right = -896.0
+offset_bottom = -208.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Play
-"
+scale = Vector2(1.7000983, 1.6447368)
 flat = true
 
 [node name="Quit" type="TextureButton" parent="QuitButton"]
@@ -186,7 +176,55 @@ theme_override_fonts/font = ExtResource("6_joh67")
 theme_override_font_sizes/font_size = 40
 text = "QUIT"
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="GarageButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 816.0
+offset_top = 688.0
+offset_right = -896.00006
+offset_bottom = -336.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.7000983, 1.6447368)
+flat = true
+
+[node name="Garage" type="TextureButton" parent="GarageButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.5258789e-05
+offset_right = 1872.0
+offset_bottom = 504.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("4_glbon")
+texture_pressed = ExtResource("5_nlkkf")
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="GarageButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_right = -43.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_joh67")
+theme_override_font_sizes/font_size = 40
+text = "GARAGE"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="PlayButton/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="SettingsButton/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="QuitButton/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="GarageButton/Garage" to="." method="_on_garage_pressed"]

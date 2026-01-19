@@ -122,7 +122,10 @@ func cleanup() -> void:
 		child.queue_free()
 	
 	hide_hud()
+<<<<<<< HEAD
 	mobile_controls.hide()
+=======
+>>>>>>> 9ccb69cf498dab81e947316ae30990bc9819625c
 	GameState.is_gameplay = false
 	print("Gameplay session ended")
 

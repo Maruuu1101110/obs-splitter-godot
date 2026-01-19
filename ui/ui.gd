@@ -19,10 +19,12 @@ func show_screen(screen: Control):
 # Overlay (example: Settings window)
 func show_overlay(overlay: Control):
 	overlay.show()
+	if overlay.has_method("on_open"):
+		overlay.on_open()
 
 func close_overlay(overlay: Control):
-	# For clearing states without nuking the node
-	# Add "reset_state" method for each script
+	if overlay.has_method("on_open"):
+		overlay.on_open()
 	if overlay.has_method("reset_state"):
 		overlay.reset_state()
 	overlay.hide()
