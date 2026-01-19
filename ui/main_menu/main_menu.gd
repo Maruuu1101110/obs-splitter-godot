@@ -17,6 +17,9 @@ func _on_play_pressed():
 	
 func _on_settings_pressed():
 	get_parent().show_overlay($/root/Main/UI/Settings)
-	
+
+func _on_garage_pressed():
+	get_parent().show_overlay($/root/Main/UI/Garage)
+
 func _on_quit_pressed():
 	get_tree().quit()
