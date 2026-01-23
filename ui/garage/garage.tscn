@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dcjfsa5x7pidq" path="res://ui/garage/garage.gd" id="1_f855h"]
 [ext_resource type="Texture2D" uid="uid://poy8xhxu6ah5" path="res://assets/menu'/garage_background.png" id="1_y2nuk"]
 [ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/menu'/window.png" id="2_2k76w"]
-[ext_resource type="Texture2D" uid="uid://qkaqpe32ffd6" path="res://assets/Road Racers Adrenaline Assets/tileset.png" id="4_1lsmf"]
+[ext_resource type="Texture2D" uid="uid://crfbbfauw11sr" path="res://assets/Road Racers Adrenaline Assets/tileset.png" id="4_1lsmf"]
 [ext_resource type="Texture2D" uid="uid://dtftgtgs8wjxo" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="4_2e2kd"]
 [ext_resource type="Script" uid="uid://7l6qkkusxt3a" path="res://ui/garage/selection_area.gd" id="7_hkxj5"]
 [ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="9_7xanw"]

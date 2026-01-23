@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqdyn6svvw3vd"]
+
+[ext_resource type="Texture2D" uid="uid://vvn4csi0c5g5" path="res://assets/Kenney Tiny Ski/Tilemap/rock.png" id="1_1q4g7"]
+[ext_resource type="Script" uid="uid://cdnhro6sg8hwq" path="res://gameplay/obstacle/rock.gd" id="1_2yn3h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yn3h"]
+atlas = ExtResource("1_1q4g7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_346ud"]
+atlas = ExtResource("1_1q4g7")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pl3b7"]
+atlas = ExtResource("1_1q4g7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pl3b7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2yn3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_346ud")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pl3b7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_80suj"]
+radius = 4.0
+height = 16.0
+
+[node name="Rock" type="CharacterBody2D" groups=["obstacle"]]
+script = ExtResource("1_2yn3h")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_pl3b7")
+animation = &"death"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_80suj")

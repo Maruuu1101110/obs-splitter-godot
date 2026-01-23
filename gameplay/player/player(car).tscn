@@ -1,11 +1,11 @@
 [gd_scene load_steps=46 format=3 uid="uid://bq0chryfdh4px"]
 
 [ext_resource type="Script" uid="uid://c40svrpyq8qks" path="res://gameplay/player/player-car.gd" id="1_lokse"]
-[ext_resource type="Texture2D" uid="uid://xje0bltaoctg" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/RC_Blue_1-Sheet.png" id="2_is578"]
-[ext_resource type="Texture2D" uid="uid://goj12bui060q" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/RC_Blue_L-Sheet.png" id="3_0qj7i"]
-[ext_resource type="Texture2D" uid="uid://b06rx6tkm4yr4" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/RC_Blue_R-Sheet.png" id="4_0qj7i"]
+[ext_resource type="Texture2D" uid="uid://n5yfvnrxvqbo" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/RC_Blue_1-Sheet.png" id="2_is578"]
+[ext_resource type="Texture2D" uid="uid://djxxs8hcl3n2o" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/RC_Blue_L-Sheet.png" id="3_0qj7i"]
+[ext_resource type="Texture2D" uid="uid://f3oxannb03qn" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/RC_Blue_R-Sheet.png" id="4_0qj7i"]
 [ext_resource type="Texture2D" uid="uid://sha8gohed45b" path="res://assets/RaceCar/Track.png" id="5_wpaad"]
-[ext_resource type="Texture2D" uid="uid://ch1d3ca78irqi" path="res://assets/RaceCar/Track_L-Sheet.png" id="6_84pn4"]
+[ext_resource type="Texture2D" uid="uid://bsfu1ibmoadej" path="res://assets/RaceCar/Track_L-Sheet.png" id="6_84pn4"]
 [ext_resource type="Texture2D" uid="uid://vq3xrkm0lpax" path="res://assets/RaceCar/Track_R-Sheet.png" id="7_rypgw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0qj7i"]
@@ -353,5 +353,11 @@ shape = SubResource("CapsuleShape2D_lokse")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 rotation = 1.5707964
-zoom = Vector2(6, 6)
+zoom = Vector2(4, 4)
 rotation_smoothing_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

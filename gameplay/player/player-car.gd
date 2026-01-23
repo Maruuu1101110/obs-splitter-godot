@@ -6,6 +6,8 @@ extends CharacterBody2D
 
 # ----- Game Mechanics Related -----
 var health := 100.0
+var armor := 0.0				# this increases when equipped with weapons
+var damage := 0.0				# this increases when equipped with weapons
 
 # ===== CAR STATS (loaded from config) =====
 var acceleration_force := 1000.0
@@ -32,6 +34,15 @@ var accel_input := 0.0
 var steer_input := 0.0
 var is_drifting := false
 var is_moving_backward := false
+
+# ------ GAME MECHANICS ------
+var breadcrumb = []
+var curr_hp = health
+var damage_cd = 0.5
+var damage_timer = 0.0
+var is_being_chased = false
+var is_punctured = false
+var punctured_tire_speed = 50.0
 
 # CAR BODY
 @onready var car_sprite = $CarAnimation/Body
@@ -100,12 +111,24 @@ func _apply_tire_stats():
 	print("Tire stats loaded: %s (Grip: %s, Drift: %s, Speed Bonus: %s)" % [tire_id, lateral_friction, drift_lateral_friction, speed_bonus])
 
 func _physics_process(delta):
+	damage_timer -= delta
 	read_input()
 	apply_drift()
 	apply_engine(delta)
 	apply_friction(delta)
 	apply_steering(delta)
 	move_and_slide()
+	
+	if is_punctured:
+		puncture_tire(delta)
+	else:
+		var body_id = GameState.player_configuration. get("body-id", "street-1")
+		var body_data = GameState.get_body_data(body_id)
+		max_speed = body_data.get("max_speed", max_speed)
+	
+	if damage_timer > 0:
+		return
+	detect_collision()
 
 # --------------------------------------------------
 
@@ -266,3 +289,58 @@ func apply_steering(delta):
 	var steer_modifier = 1.0 - (speed_factor * 0.4)
 	var steer_amount = steer_input * steering_speed * steer_modifier
 	rotation += steer_amount * delta
+
+# --------------------------------------------------
+
+func _on_timer_timeout() -> void:
+	if is_being_chased:
+		var dist_from_prev_position = 0
+		if not breadcrumb:
+			breadcrumb.append(position)
+		if breadcrumb:
+			dist_from_prev_position = position.distance_to(breadcrumb[-1])
+		if dist_from_prev_position > 50:
+			breadcrumb.append(position)	
+		if len(breadcrumb) > 30:
+			breadcrumb.pop_at(0)
+
+# --------------------------------------------------
+
+func detect_collision():
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		
+		if collider.is_in_group("obstacle"):
+			take_damage(collider.DAMAGE)
+			deal_damage(collider)
+			damage_timer = damage_cd
+			break
+
+# --------------------------------------------------
+
+func take_damage(amount: float):
+	curr_hp -= max(amount - armor, 0)
+	curr_hp = max(curr_hp, 0)
+	
+	if curr_hp <= 0:
+		game_over()
+		
+	print("Current HP: %d" % curr_hp)
+
+# --------------------------------------------------
+
+func deal_damage(collider: Object):
+	collider.take_damage(damage)
+
+# --------------------------------------------------
+
+func puncture_tire(delta):
+	if max_speed > punctured_tire_speed:
+		max_speed -= 5 * delta
+	#print(max_speed)
+
+# --------------------------------------------------
+
+func game_over():
+	print("Game Over")
