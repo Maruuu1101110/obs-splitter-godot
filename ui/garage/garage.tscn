@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dtftgtgs8wjxo" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="4_2e2kd"]
 [ext_resource type="SpriteFrames" uid="uid://drhce8j2iluj7" path="res://ui/garage/car_previews/street/street-tire-anim.tres" id="5_7xanw"]
 [ext_resource type="Texture2D" uid="uid://bd3x1spqo5pnd" path="res://ui/garage/car_previews/street/street-model1.png" id="6_hkxj5"]
+[ext_resource type="Texture2D" uid="uid://crfbbfauw11sr" path="res://assets/Road Racers Adrenaline Assets/tileset.png" id="4_1lsmf"]
 [ext_resource type="Script" uid="uid://7l6qkkusxt3a" path="res://ui/garage/selection_area.gd" id="7_hkxj5"]
 [ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/Menu/unpressed.png" id="9_7xanw"]
 [ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/Menu/pressed.png" id="10_hkxj5"]
@@ -2086,9 +2087,10 @@ layer_0/tile_data = PackedInt32Array(131077, 2818048, 2, 196613, 2818048, 4, 262
 metadata/_edit_lock_ = true
 
 [node name="CarPreview" type="Node2D" parent="PreviewArea"]
-position = Vector2(-294, -64)
+position = Vector2(-359, -64)
 
 [node name="FrontPair" type="Node2D" parent="PreviewArea/CarPreview"]
+metadata/_edit_lock_ = true
 
 [node name="TireFrontLeft" type="AnimatedSprite2D" parent="PreviewArea/CarPreview/FrontPair"]
 texture_filter = 1
@@ -2105,6 +2107,7 @@ sprite_frames = ExtResource("5_7xanw")
 autoplay = "default"
 
 [node name="BackPair" type="Node2D" parent="PreviewArea/CarPreview"]
+metadata/_edit_lock_ = true
 
 [node name="TireBackLeft" type="AnimatedSprite2D" parent="PreviewArea/CarPreview/BackPair"]
 texture_filter = 1
@@ -2183,6 +2186,17 @@ theme_override_font_sizes/bold_font_size = 24
 bbcode_enabled = true
 autowrap_mode = 0
 vertical_alignment = 1
+position = Vector2(925.0001, 481.00003)
+rotation = 1.5707964
+scale = Vector2(15, 15.785)
+metadata/_edit_lock_ = true
+
+[node name="Equipment" type="Sprite2D" parent="PreviewArea/CarPreview"]
+texture_filter = 1
+position = Vector2(1040.0001, 481)
+rotation = 1.5707964
+scale = Vector2(15, 15)
+metadata/_edit_lock_ = true
 
 [node name="SelectionArea" type="Control" parent="."]
 layout_mode = 1
@@ -2234,7 +2248,6 @@ offset_right = -1239.0
 offset_bottom = -302.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_lock_ = true
 
 [node name="BodyButton" type="Button" parent="TypeSelectionArea"]
 layout_mode = 1
@@ -2242,9 +2255,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 77.0
-offset_top = 66.0
+offset_top = 31.0
 offset_right = -183.8775
-offset_bottom = -561.9168
+offset_bottom = -596.9168
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.6880059, 1.5869281)
@@ -2289,9 +2302,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 77.0
-offset_top = 218.0
+offset_top = 172.0
 offset_right = -183.8775
-offset_bottom = -409.9168
+offset_bottom = -455.9168
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.6880059, 1.5869281)
@@ -2335,10 +2348,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 77.0
-offset_top = 386.0
-offset_right = -183.8775
-offset_bottom = -241.91681
+offset_left = 82.0
+offset_top = 309.99994
+offset_right = -178.8775
+offset_bottom = -317.91687
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.6880059, 1.5869281)
@@ -2374,6 +2387,53 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("11_nv3li")
 theme_override_font_sizes/font_size = 40
 text = "Body Color"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="EquipmentButton" type="Button" parent="TypeSelectionArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.00001
+offset_top = 447.0
+offset_right = -180.87799
+offset_bottom = -180.91699
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.688, 1.587)
+flat = true
+
+[node name="Equipments" type="TextureButton" parent="TypeSelectionArea/EquipmentButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.3696682
+offset_top = -1.2602394
+offset_right = 1874.3706
+offset_bottom = 501.73975
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("9_7xanw")
+texture_pressed = ExtResource("10_hkxj5")
+texture_focused = ExtResource("10_hkxj5")
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="TypeSelectionArea/EquipmentButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_nv3li")
+theme_override_font_sizes/font_size = 40
+text = "Equipments"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
@@ -2450,5 +2510,6 @@ texture = ExtResource("11_dpl2r")
 [connection signal="pressed" from="TypeSelectionArea/BodyButton/Body" to="." method="_on_body_pressed"]
 [connection signal="pressed" from="TypeSelectionArea/TiresButton/Tires" to="." method="_on_tires_pressed"]
 [connection signal="pressed" from="TypeSelectionArea/ColorButton/Color" to="." method="_on_color_pressed"]
+[connection signal="pressed" from="TypeSelectionArea/EquipmentButton/Equipments" to="." method="_on_equipments_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Save/SaveButton" to="." method="_on_save_button_pressed"]

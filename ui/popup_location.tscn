@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://rlhigf5m3j14"]
+
+[ext_resource type="Script" uid="uid://bvypcujd1k4ov" path="res://gameplay/player/popup_location.gd" id="1_3kg5g"]
+
+[node name="PopupLocation" type="Marker2D"]
+script = ExtResource("1_3kg5g")

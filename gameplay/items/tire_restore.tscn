@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlscohf86vrko"]
+
+[ext_resource type="Texture2D" uid="uid://cbf1wk5q80ivn" path="res://assets/Road Racers Adrenaline Assets/Pickables & Obstacles/tire.png" id="1_m8bts"]
+[ext_resource type="Script" uid="uid://yi4jlo6ggvwp" path="res://gameplay/items/tire_restore.gd" id="1_mvjg2"]
+[ext_resource type="PackedScene" uid="uid://rlhigf5m3j14" path="res://ui/popup_location.tscn" id="2_mvjg2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mxifr"]
+radius = 9.0
+
+[node name="TireRestore" type="Area2D"]
+script = ExtResource("1_mvjg2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_m8bts")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mxifr")
+
+[node name="PopupLocation" parent="." instance=ExtResource("2_mvjg2")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
