@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="obstacle_splitter"
-run/main_scene="uid://ce73k1btl3tp"
+run/main_scene="uid://chidqatak64xx"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 

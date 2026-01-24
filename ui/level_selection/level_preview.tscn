@@ -202,10 +202,10 @@ vertical_alignment = 1
 metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="StartButton" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="StartButton/TextureButton" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="StartButton/TextureButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="StartButton/TextureButton" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="GarageButton" to="." method="_on_garage_pressed"]
 [connection signal="pressed" from="GarageButton/TextureButton" to="." method="_on_garage_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="BackButton/TextureButton" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="BackButton/TextureButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="BackButton/TextureButton" to="." method="_on_back_pressed"]
