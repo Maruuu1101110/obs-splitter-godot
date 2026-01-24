@@ -2,9 +2,12 @@ extends CanvasLayer
 
 var current_screen: Control = null
 var screen_stack: Array[Control] = []
+@onready var main_sound_track: AudioStreamPlayer = $MainSoundTrack
 
 func _ready():
 	screen_stack.clear()
+	main_sound_track.process_mode = Node.PROCESS_MODE_ALWAYS
+	main_sound_track.play()
 	show_screen($MainMenu)
 
 # Full screen replace

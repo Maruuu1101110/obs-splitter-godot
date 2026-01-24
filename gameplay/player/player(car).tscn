@@ -1,3 +1,15 @@
+[gd_scene load_steps=49 format=3 uid="uid://bq0chryfdh4px"]
+
+[ext_resource type="Script" uid="uid://c40svrpyq8qks" path="res://gameplay/player/player-car.gd" id="1_wpaad"]
+[ext_resource type="Texture2D" uid="uid://xje0bltaoctg" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/RC_Blue_1-Sheet.png" id="2_is578"]
+[ext_resource type="Texture2D" uid="uid://goj12bui060q" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/RC_Blue_L-Sheet.png" id="3_0qj7i"]
+[ext_resource type="Texture2D" uid="uid://b06rx6tkm4yr4" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/RC_Blue_R-Sheet.png" id="4_0qj7i"]
+[ext_resource type="Texture2D" uid="uid://sha8gohed45b" path="res://assets/RaceCar/Track.png" id="5_wpaad"]
+[ext_resource type="Texture2D" uid="uid://ch1d3ca78irqi" path="res://assets/RaceCar/Track_L-Sheet.png" id="6_84pn4"]
+[ext_resource type="Texture2D" uid="uid://vq3xrkm0lpax" path="res://assets/RaceCar/Track_R-Sheet.png" id="7_rypgw"]
+[ext_resource type="SpriteFrames" uid="uid://drhce8j2iluj7" path="res://ui/garage/car_previews/street/street-tire-anim.tres" id="8_rypgw"]
+[ext_resource type="Texture2D" uid="uid://bd3x1spqo5pnd" path="res://ui/garage/car_previews/street/street-model1.png" id="9_vkuex"]
+[ext_resource type="AudioStream" uid="uid://byfrylcdeceol" path="res://audio/car_sounds/engine-running-byte_6-229112.mp3" id="10_vkuex"]
 [gd_scene load_steps=48 format=3 uid="uid://bq0chryfdh4px"]
 
 [ext_resource type="Script" uid="uid://c40svrpyq8qks" path="res://gameplay/player/player-car.gd" id="1_lokse"]
@@ -299,9 +311,8 @@ animations = [{
 radius = 6.0
 height = 22.0
 
-[node name="PlayerCar" type="CharacterBody2D"]
-rotation = -1.5707964
-script = ExtResource("1_lokse")
+[node name="PlayerCar" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_wpaad")
 
 [node name="TrailAnimation" type="Node2D" parent="."]
 
@@ -322,21 +333,25 @@ texture_filter = 1
 position = Vector2(8, -6.9999995)
 rotation = 1.5707964
 scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("8_rypgw")
 
 [node name="FrontRight" type="AnimatedSprite2D" parent="CarAnimation/TireLayout"]
 position = Vector2(8, 7.0000005)
 rotation = 1.5707964
 scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("8_rypgw")
 
 [node name="BackLeft" type="AnimatedSprite2D" parent="CarAnimation/TireLayout"]
 position = Vector2(-8, -7)
 rotation = 1.5707964
 scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("8_rypgw")
 
 [node name="BackRight" type="AnimatedSprite2D" parent="CarAnimation/TireLayout"]
 position = Vector2(-8, 6.9999995)
 rotation = 1.5707964
 scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("8_rypgw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CarAnimation"]
 texture_filter = 1
@@ -347,6 +362,7 @@ frame_progress = 0.6876375
 
 [node name="Body" type="Sprite2D" parent="CarAnimation"]
 rotation = 1.5707964
+texture = ExtResource("9_vkuex")
 
 [node name="Equipment" type="Sprite2D" parent="CarAnimation"]
 position = Vector2(7, 0)
@@ -356,8 +372,21 @@ rotation = 1.5707964
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_lokse")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 20.0
+
+[node name="Camera2D" type="Camera2D" parent="." groups=["player"]]
+process_mode = 3
+process_priority = 1
 rotation = 1.5707964
+offset = Vector2(0, 20)
+zoom = Vector2(4, 4)
+rotation_smoothing_enabled = true
+rotation_smoothing_speed = 3.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_vkuex")
+parameters/looping = true
 zoom = Vector2(4, 4)
 rotation_smoothing_enabled = true
 
