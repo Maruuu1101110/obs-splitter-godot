@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvqxmwifpyd4a"]
+[gd_scene load_steps=8 format=3 uid="uid://cvqxmwifpyd4a"]
 
 [ext_resource type="Script" uid="uid://ccisaxpr4xtjb" path="res://gameplay/pause_overlay.gd" id="1_bnrle"]
-[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/menu'/window.png" id="2_i5ptk"]
-[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="3_n63o2"]
-[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/menu'/pressed.png" id="4_d58qc"]
+[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/Menu/window.png" id="2_n63o2"]
+[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/Menu/pressed.png" id="3_d58qc"]
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="5_7rmys"]
+[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/Menu/unpressed.png" id="5_ax1jm"]
 [ext_resource type="PackedScene" uid="uid://bhf166x15oid0" path="res://ui/settings/settings.tscn" id="6_i5ptk"]
+[ext_resource type="Texture2D" uid="uid://d2f1wgxbpyj7x" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Gear.svg" id="6_n63o2"]
 
 [node name="PauseOverlay" type="Control"]
 texture_filter = 1
@@ -29,20 +30,18 @@ grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 424.0
 offset_top = 48.0
 offset_right = 1504.0
 offset_bottom = 1048.0
-texture = ExtResource("2_i5ptk")
+texture = ExtResource("2_n63o2")
 expand_mode = 2
 
 [node name="Pressed" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(960, 304)
 scale = Vector2(0.7466281, 0.5160643)
-texture = ExtResource("4_d58qc")
+texture = ExtResource("3_d58qc")
 
 [node name="PAUSE" type="Label" parent="."]
 layout_mode = 1
@@ -86,8 +85,8 @@ offset_bottom = 504.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.1, 0.1)
-texture_normal = ExtResource("3_n63o2")
-texture_pressed = ExtResource("4_d58qc")
+texture_normal = ExtResource("5_ax1jm")
+texture_pressed = ExtResource("3_d58qc")
 stretch_mode = 0
 metadata/_edit_lock_ = true
 
@@ -107,21 +106,54 @@ text = "RESUME"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
-[node name="SettingsButton" type="Button" parent="."]
+[node name="SettingsButton2" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1784.0
+offset_top = 32.0
+offset_right = 72.0
+offset_bottom = -984.00006
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.45624945, 1.7070572)
+
+[node name="Settings" type="TextureButton" parent="SettingsButton2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1872.0
+offset_bottom = 504.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("5_ax1jm")
+texture_pressed = ExtResource("3_d58qc")
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="SettingsButton2"]
+position = Vector2(105.20548, 23.432137)
+scale = Vector2(1.7026709, 0.46771097)
+texture = ExtResource("6_n63o2")
+
+[node name="RestartButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 792.0
-offset_top = 616.0
+offset_top = 608.0
 offset_right = -920.0
-offset_bottom = -408.0
+offset_bottom = -416.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.7000983, 1.6447368)
 flat = true
 
-[node name="Settings" type="TextureButton" parent="SettingsButton"]
+[node name="Restart" type="TextureButton" parent="RestartButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -132,12 +164,12 @@ offset_bottom = 504.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.1, 0.1)
-texture_normal = ExtResource("3_n63o2")
-texture_pressed = ExtResource("4_d58qc")
+texture_normal = ExtResource("5_ax1jm")
+texture_pressed = ExtResource("3_d58qc")
 stretch_mode = 0
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="SettingsButton"]
+[node name="Label" type="Label" parent="RestartButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -149,7 +181,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_7rmys")
 theme_override_font_sizes/font_size = 40
-text = "SETTINGS"
+text = "RESTART"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
@@ -179,8 +211,8 @@ offset_bottom = 504.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.1, 0.1)
-texture_normal = ExtResource("3_n63o2")
-texture_pressed = ExtResource("4_d58qc")
+texture_normal = ExtResource("5_ax1jm")
+texture_pressed = ExtResource("3_d58qc")
 stretch_mode = 0
 metadata/_edit_lock_ = true
 
@@ -205,5 +237,6 @@ visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="ResumeButton/Resume" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="SettingsButton/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="SettingsButton2/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="RestartButton/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="QuitButton/Quit" to="." method="_on_quit_pressed"]

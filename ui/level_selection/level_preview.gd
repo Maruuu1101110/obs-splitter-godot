@@ -34,7 +34,6 @@ func _on_start_pressed() -> void:
 		push_error("Gameplay node not found!")
 		return
 
-	# Tell Gameplay to handle everything
 	gameplay.selected_level = selected_level
 	gameplay.load_level(selected_level)
 

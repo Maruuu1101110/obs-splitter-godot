@@ -1,9 +1,14 @@
 # This is where all the persistent data should go
 extends Node
 
+# REFERENCES
+var player: Node2D = null
+var enemy: Node2D = null
+var main_soundtrack = null
+
 # --- Runtime game state ---
 var is_gameplay := false
-var total_levels := 30
+var total_levels := 10
 var unlocked_levels := 1
 var selected_level := 0
 var coins := 0
@@ -17,7 +22,6 @@ func _process(delta: float) -> void:
 	pass
 
 ## GAME SAVE ##
-
 func load_game():
 	var path := "user://savegame.json"
 
@@ -69,12 +73,14 @@ func unlock_next_level():
 
 
 ## PLAYER CONFIG ##
+# defualt value of player if no saved
 var player_configuration = {
 	"body-type":  "res://ui/garage/car_previews/sport/sport-model1.png",
 	"body-id": "sport-1",
+	"body-category": "sport",
 	"tire-type":  "res://ui/garage/car_previews/sport/sport-tire-anim. tres",
 	"tire-id": "sport_tire",
-	"body-color": "default"
+	"body-color": "ffffffff"
 }
 
 var body_stats = {
@@ -93,17 +99,17 @@ var tire_stats = {
 }
 
 func get_body_data(body_id: String) -> Dictionary:
-	return body_stats. get(body_id, {})
+	return body_stats.get(body_id, {})
 
 func get_tire_data(tire_id: String) -> Dictionary:
 	return tire_stats.get(tire_id, {})
 
 func load_player_config():
 	var path := "user://player_config.json"
-
+	
 	if not FileAccess.file_exists(path):
 		print("No player config found === starting fresh.")
-		save_player_config()  # ✅ Fixed! 
+		save_player_config() 
 		return
 
 	var file := FileAccess.open(path, FileAccess.READ)
@@ -118,10 +124,11 @@ func load_player_config():
 		push_error("Failed to parse player config file")
 		return
 
-	var data: Dictionary = json. data
+	var data: Dictionary = json.data
 	
 	player_configuration["body-type"] = data.get("body-type", player_configuration["body-type"])
 	player_configuration["body-id"] = data.get("body-id", player_configuration["body-id"])
+	player_configuration["body-category"] = data.get("body-category", player_configuration["body-category"])
 	player_configuration["tire-type"] = data.get("tire-type", player_configuration["tire-type"])
 	player_configuration["tire-id"] = data.get("tire-id", player_configuration["tire-id"])
 	player_configuration["body-color"] = data.get("body-color", player_configuration["body-color"])

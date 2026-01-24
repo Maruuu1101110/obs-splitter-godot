@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 [gd_scene load_steps=10 format=4 uid="uid://ce73k1btl3tp"]
-=======
-[gd_scene load_steps=8 format=3 uid="uid://ce73k1btl3tp"]
->>>>>>> dev
 
 [ext_resource type="Script" uid="uid://buc3mrinfhx4h" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://3y85bprkxhm5" path="res://ui/main_menu/main_menu.tscn" id="2_0xm2m"]
@@ -10,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bhf166x15oid0" path="res://ui/settings/settings.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://hg27d5ann3sa" path="res://ui/level_selection/levels.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://7i7w57c1jj6k" path="res://gameplay/gameplay.tscn" id="6_7mycd"]
-<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://dalsm1o2da8ds" path="res://assets/Kenney Tiny Ski/Tilemap/tilemap_packed.png" id="7_272bh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
@@ -207,9 +202,6 @@ texture = ExtResource("7_272bh")
 [sub_resource type="TileSet" id="TileSet_kek77"]
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_272bh")
-=======
-[ext_resource type="PackedScene" uid="uid://con1hjx6a4meh" path="res://ui/garage/garage.tscn" id="6_272bh"]
->>>>>>> dev
 
 [node name="Main" type="Node2D"]
 texture_filter = 1

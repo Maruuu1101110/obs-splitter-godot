@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://8wpn4o507iat"]
 
 [ext_resource type="Script" uid="uid://cw8d0j7rp700l" path="res://ui/level_selection/level_preview.gd" id="1_t6haa"]
-[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/menu'/window.png" id="2_ix8or"]
-[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/menu'/pressed.png" id="3_t6haa"]
-[ext_resource type="Texture2D" uid="uid://b0mgkfk5ssyru" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Play.svg" id="4_ix8or"]
+[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/Menu/window.png" id="2_ix8or"]
+[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/Menu/pressed.png" id="3_t6haa"]
+[ext_resource type="Texture2D" uid="uid://b0mgkfk5ssyru" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Play.svg" id="4_ix8or"]
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="4_tboke"]
-[ext_resource type="Texture2D" uid="uid://dtftgtgs8wjxo" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="5_6a1xn"]
-[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="6_h0dym"]
-[ext_resource type="Texture2D" uid="uid://d2f1wgxbpyj7x" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Gear.svg" id="6_t6haa"]
+[ext_resource type="Texture2D" uid="uid://dtftgtgs8wjxo" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="5_6a1xn"]
+[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/Menu/unpressed.png" id="6_h0dym"]
+[ext_resource type="Texture2D" uid="uid://d2f1wgxbpyj7x" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Gear.svg" id="6_t6haa"]
 
 [node name="LevelPreview" type="Control"]
 texture_filter = 1
