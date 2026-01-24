@@ -2,8 +2,7 @@ extends Control
 
 @onready var list = $HBoxContainer
 
-
-enum SelectionType { BODY, TIRES, COLOR }
+enum SelectionType { BODY, TIRES, COLOR, EQUIPMENT }
 
 var current_type:  SelectionType = SelectionType.BODY
 var items:  Dictionary = {}
@@ -92,8 +91,15 @@ func _on_item_selected(item_id:  String, item_data: Dictionary):
 		SelectionType.COLOR: 
 			garage.selected_body_color = item_data.get("value", null)
 			GameState.player_configuration["body-color"] = item_data.get("value")
-			print("Selected color: ", item_id)
- 
+			print("Selected color: ", item_id) 
+			
+		# FOR EQUIPMENTS
+		SelectionType.EQUIPMENT:
+			garage.selected_equipment = load(item_data.tileframe)
+			GameState.player_configuration['equipment'] = item_data['tileframe']
+			GameState.player_configuration['equipment-id'] = item_id
+			print("Selected equipment: ", item_id)
+
 func set_body_items(new_items: Dictionary):
 	current_type = SelectionType.BODY
 	items = new_items
@@ -108,6 +114,11 @@ func set_color_items(new_items: Dictionary):
 	current_type = SelectionType.COLOR
 	items = new_items
 	make_color_button()
+	
+func set_equipment(new_items: Dictionary):
+	current_type = SelectionType.EQUIPMENT
+	items = new_items
+	build_list()
 	
 func set_cars(new_items:  Dictionary, type: SelectionType = SelectionType. BODY):
 	current_type = type

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://7d6uvdjjqt7"]
+
+[ext_resource type="Script" uid="uid://bj4v328h27uj3" path="res://gameplay/items/repair.gd" id="1_dfo2p"]
+[ext_resource type="Texture2D" uid="uid://qx3227nkrw22" path="res://assets/Road Racers Adrenaline Assets/Pickables & Obstacles/repair.png" id="1_sn6qb"]
+[ext_resource type="PackedScene" uid="uid://rlhigf5m3j14" path="res://ui/popup_location.tscn" id="2_dfo2p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ncqp5"]
+radius = 9.0
+
+[node name="Repair" type="Area2D"]
+script = ExtResource("1_dfo2p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_sn6qb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ncqp5")
+
+[node name="PopupLocation" parent="." instance=ExtResource("2_dfo2p")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

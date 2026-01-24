@@ -10,3 +10,6 @@ export/
 *.mono/temp/
 *.mono/obj/
 *.mono/bin/
+main.tscn
+main.gd
+main.gd.uid

@@ -1,7 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://7i7w57c1jj6k"]
+[gd_scene load_steps=7 format=3 uid="uid://b5vaktyuvdrs8"]
 
-[ext_resource type="Script" uid="uid://b6nv8f8ret37f" path="res://gameplay/gameplay.gd" id="1_oe8ih"]
+[ext_resource type="Script" path="res://gameplay/gameplay.gd" id="1_oe8ih"]
 [ext_resource type="PackedScene" uid="uid://bv8a8pxgp468q" path="res://ui/loading_screen.tscn" id="2_41n4r"]
+[ext_resource type="Texture2D" uid="uid://bt7hg3t6bcb78" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Pause.svg" id="3_ktb3l"]
 [ext_resource type="PackedScene" uid="uid://bgh8h47b62g5f" path="res://gameplay/mobile_controls.tscn" id="3_ueusv"]
 [ext_resource type="Texture2D" uid="uid://dv5msdyujaqbq" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Pause.svg" id="4_r5as3"]
 [ext_resource type="PackedScene" uid="uid://cvqxmwifpyd4a" path="res://ui/garage/car_previews/sport/pause_overlay.tscn" id="5_gvicd"]

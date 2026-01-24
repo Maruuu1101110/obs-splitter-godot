@@ -1,0 +1,67 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://dxqbvcdlqv2fd"]
+
+[ext_resource type="Texture2D" uid="uid://dh3sklcfmaviq" path="res://assets/Road Racers Adrenaline Assets/defense_buff.png" id="1_jydiy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6b7u"]
+atlas = ExtResource("1_jydiy")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ev8hc"]
+atlas = ExtResource("1_jydiy")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejr8x"]
+atlas = ExtResource("1_jydiy")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jf4v4"]
+atlas = ExtResource("1_jydiy")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxdnp"]
+atlas = ExtResource("1_jydiy")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hnrg"]
+atlas = ExtResource("1_jydiy")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1t4te"]
+atlas = ExtResource("1_jydiy")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hv4u"]
+atlas = ExtResource("1_jydiy")
+region = Rect2(224, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 0.2,
+"texture": SubResource("AtlasTexture_u6b7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ev8hc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejr8x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jf4v4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxdnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hnrg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1t4te")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hv4u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

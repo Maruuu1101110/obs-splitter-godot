@@ -183,14 +183,18 @@ func spawn_player() -> void:
 	var gameplay_node = get_node("/root/Main/Gameplay")
 	if not gameplay_node.has_node("Player"):
 		var player_scene = load("res://gameplay/player/player(car).tscn").instantiate()
-		var level_path = "LevelContainer/Level%d/Spawnpoint" % selected_level
-		var spawnpoint = gameplay_node.get_node(level_path)
+		var level_path = "LevelContainer/Level%d" % selected_level
+		#var level_path = "LevelContainer/Level%d/Spawnpoint" % selected_level
+		var level = gameplay_node.get_node(level_path)
+		var spawnpoint = gameplay_node.get_node(level_path + "/Spawnpoint")
 		player_scene.position = spawnpoint.global_position
 		player_scene.rotation = spawnpoint.rotation
 		gameplay_node.add_child(player_scene)
 		print("Player Spawned")
 		
 		player = player_scene
+		player.biome = level.biome
+		print("Biome is " + player.biome)
 
 func spawn_enemy():
 	var gameplay_node = get_node("/root/Main/Gameplay")
