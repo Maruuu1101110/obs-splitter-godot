@@ -1,18 +1,17 @@
 [gd_scene load_steps=17 format=3 uid="uid://con1hjx6a4meh"]
 
 [ext_resource type="Script" uid="uid://dcjfsa5x7pidq" path="res://ui/garage/garage.gd" id="1_f855h"]
-[ext_resource type="Texture2D" uid="uid://poy8xhxu6ah5" path="res://assets/Menu/garage_background.png" id="1_y2nuk"]
-[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/Menu/window.png" id="2_2k76w"]
-[ext_resource type="Texture2D" uid="uid://qkaqpe32ffd6" path="res://assets/Road Racers Adrenaline Assets/tileset.png" id="4_1lsmf"]
-[ext_resource type="Texture2D" uid="uid://dtftgtgs8wjxo" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="4_2e2kd"]
+[ext_resource type="Texture2D" uid="uid://csmgc0pkbe1g6" path="res://assets/Menu/garage_background.png" id="1_y2nuk"]
+[ext_resource type="Texture2D" uid="uid://bbd4pw0bponif" path="res://assets/Menu/window.png" id="2_2k76w"]
+[ext_resource type="Texture2D" uid="uid://crfbbfauw11sr" path="res://assets/Road Racers Adrenaline Assets/tileset.png" id="4_1lsmf"]
+[ext_resource type="Texture2D" uid="uid://dkbc73bketc4f" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="4_2e2kd"]
 [ext_resource type="SpriteFrames" uid="uid://drhce8j2iluj7" path="res://ui/garage/car_previews/street/street-tire-anim.tres" id="5_7xanw"]
 [ext_resource type="Texture2D" uid="uid://bd3x1spqo5pnd" path="res://ui/garage/car_previews/street/street-model1.png" id="6_hkxj5"]
-[ext_resource type="Texture2D" uid="uid://crfbbfauw11sr" path="res://assets/Road Racers Adrenaline Assets/tileset.png" id="4_1lsmf"]
 [ext_resource type="Script" uid="uid://7l6qkkusxt3a" path="res://ui/garage/selection_area.gd" id="7_hkxj5"]
-[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/Menu/unpressed.png" id="9_7xanw"]
-[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/Menu/pressed.png" id="10_hkxj5"]
-[ext_resource type="Texture2D" uid="uid://b0bstrbbsjyy0" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Download.svg" id="11_dpl2r"]
-[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/Menu/pressed.png" id="11_hkxj5"]
+[ext_resource type="Texture2D" uid="uid://bfqko6a0v61ja" path="res://ui/garage/car_previews/equipment/snow_plow.png" id="7_nv3li"]
+[ext_resource type="Texture2D" uid="uid://dgi3rfiea36qg" path="res://assets/Menu/unpressed.png" id="9_7xanw"]
+[ext_resource type="Texture2D" uid="uid://dd6n1531y8hmy" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Download.svg" id="11_dpl2r"]
+[ext_resource type="Texture2D" uid="uid://2ebonm8vd2e" path="res://assets/Menu/pressed.png" id="11_hkxj5"]
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="11_nv3li"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o12ej"]
@@ -2087,7 +2086,7 @@ layer_0/tile_data = PackedInt32Array(131077, 2818048, 2, 196613, 2818048, 4, 262
 metadata/_edit_lock_ = true
 
 [node name="CarPreview" type="Node2D" parent="PreviewArea"]
-position = Vector2(-359, -64)
+position = Vector2(-281, -31)
 
 [node name="FrontPair" type="Node2D" parent="PreviewArea/CarPreview"]
 metadata/_edit_lock_ = true
@@ -2128,6 +2127,12 @@ texture_filter = 1
 position = Vector2(1117, 489)
 scale = Vector2(15, 15.785)
 texture = ExtResource("6_hkxj5")
+
+[node name="Equipment" type="Sprite2D" parent="PreviewArea/CarPreview"]
+texture_filter = 1
+position = Vector2(1120.0001, 384)
+scale = Vector2(15, 15)
+texture = ExtResource("7_nv3li")
 
 [node name="StatsPanel" type="Control" parent="PreviewArea"]
 layout_mode = 1
@@ -2174,9 +2179,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 16.0
-offset_top = 256.0
+offset_left = 15.999939
+offset_top = 264.0
 offset_right = -16.0
+offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("11_nv3li")
@@ -2186,17 +2192,6 @@ theme_override_font_sizes/bold_font_size = 24
 bbcode_enabled = true
 autowrap_mode = 0
 vertical_alignment = 1
-position = Vector2(925.0001, 481.00003)
-rotation = 1.5707964
-scale = Vector2(15, 15.785)
-metadata/_edit_lock_ = true
-
-[node name="Equipment" type="Sprite2D" parent="PreviewArea/CarPreview"]
-texture_filter = 1
-position = Vector2(1040.0001, 481)
-rotation = 1.5707964
-scale = Vector2(15, 15)
-metadata/_edit_lock_ = true
 
 [node name="SelectionArea" type="Control" parent="."]
 layout_mode = 1
@@ -2276,7 +2271,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.1, 0.1)
 texture_normal = ExtResource("9_7xanw")
-texture_pressed = ExtResource("10_hkxj5")
+texture_pressed = ExtResource("11_hkxj5")
 texture_focused = ExtResource("11_hkxj5")
 stretch_mode = 0
 metadata/_edit_lock_ = true
@@ -2323,7 +2318,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.1, 0.1)
 texture_normal = ExtResource("9_7xanw")
-texture_pressed = ExtResource("10_hkxj5")
+texture_pressed = ExtResource("11_hkxj5")
 texture_focused = ExtResource("11_hkxj5")
 stretch_mode = 0
 metadata/_edit_lock_ = true
@@ -2370,7 +2365,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.1, 0.1)
 texture_normal = ExtResource("9_7xanw")
-texture_pressed = ExtResource("10_hkxj5")
+texture_pressed = ExtResource("11_hkxj5")
 texture_focused = ExtResource("11_hkxj5")
 stretch_mode = 0
 metadata/_edit_lock_ = true
@@ -2417,8 +2412,8 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.1, 0.1)
 texture_normal = ExtResource("9_7xanw")
-texture_pressed = ExtResource("10_hkxj5")
-texture_focused = ExtResource("10_hkxj5")
+texture_pressed = ExtResource("11_hkxj5")
+texture_focused = ExtResource("11_hkxj5")
 stretch_mode = 0
 metadata/_edit_lock_ = true
 
@@ -2480,7 +2475,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.1, 0.1)
 texture_normal = ExtResource("9_7xanw")
-texture_pressed = ExtResource("10_hkxj5")
+texture_pressed = ExtResource("11_hkxj5")
 texture_focused = ExtResource("11_hkxj5")
 stretch_mode = 0
 metadata/_edit_lock_ = true

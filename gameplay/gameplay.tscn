@@ -1,17 +1,15 @@
 [gd_scene load_steps=12 format=3 uid="uid://7i7w57c1jj6k"]
-[gd_scene load_steps=7 format=3 uid="uid://b5vaktyuvdrs8"]
 
-[ext_resource type="Script" path="res://gameplay/gameplay.gd" id="1_oe8ih"]
+[ext_resource type="Script" uid="uid://b6nv8f8ret37f" path="res://gameplay/gameplay.gd" id="1_oe8ih"]
 [ext_resource type="PackedScene" uid="uid://bv8a8pxgp468q" path="res://ui/loading_screen.tscn" id="2_41n4r"]
-[ext_resource type="Texture2D" uid="uid://bt7hg3t6bcb78" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Pause.svg" id="3_ktb3l"]
 [ext_resource type="PackedScene" uid="uid://bgh8h47b62g5f" path="res://gameplay/mobile_controls.tscn" id="3_ueusv"]
-[ext_resource type="Texture2D" uid="uid://dv5msdyujaqbq" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Pause.svg" id="4_r5as3"]
+[ext_resource type="Texture2D" uid="uid://bma83k34h4wbn" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Pause.svg" id="4_r5as3"]
 [ext_resource type="PackedScene" uid="uid://cvqxmwifpyd4a" path="res://ui/garage/car_previews/sport/pause_overlay.tscn" id="5_gvicd"]
-[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/Menu/unpressed.png" id="6_2okcp"]
+[ext_resource type="Texture2D" uid="uid://dgi3rfiea36qg" path="res://assets/Menu/unpressed.png" id="6_2okcp"]
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="6_7pdct"]
-[ext_resource type="Texture2D" uid="uid://cleqy55b3r7u6" path="res://assets/Road Racers Adrenaline Assets/HUD/label.png" id="6_nimes"]
-[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/Menu/pressed.png" id="7_vyivm"]
-[ext_resource type="AudioStream" uid="uid://bxm1mlsrhhw7r" path="res://audio/main1.mp3" id="8_yvprt"]
+[ext_resource type="Texture2D" uid="uid://bxweqlhd8g67m" path="res://assets/Road Racers Adrenaline Assets/HUD/label.png" id="6_nimes"]
+[ext_resource type="Texture2D" uid="uid://2ebonm8vd2e" path="res://assets/Menu/pressed.png" id="7_vyivm"]
+[ext_resource type="AudioStream" uid="uid://56y43ed1tijv" path="res://audio/main1.mp3" id="8_yvprt"]
 [ext_resource type="PackedScene" uid="uid://f61a2vi1ht46" path="res://gameplay/level_completed_overlay.tscn" id="11_vyivm"]
 
 [node name="Gameplay" type="Node2D"]
@@ -169,9 +167,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 216.0
-offset_top = 100.0
+offset_top = 49.0
 offset_right = -188.0
-offset_bottom = -330.0
+offset_bottom = -211.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 24

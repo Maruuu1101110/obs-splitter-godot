@@ -80,10 +80,7 @@ var player_configuration = {
 	"body-category": "sport",
 	"tire-type":  "res://ui/garage/car_previews/sport/sport-tire-anim. tres",
 	"tire-id": "sport_tire",
-	"body-color": "ffffffff"
-	"tire-type":  "res://ui/garage/car_previews/sport/sport-tire-anim.tres",
-	"tire-id": "sport_tire",
-	"body-color": "default",
+	"body-color": "ffffffff",
 	"equipment": "res://ui/garage/car_previews/equipment/nothing.png",
 	"equipment-id": "nothing"
 }

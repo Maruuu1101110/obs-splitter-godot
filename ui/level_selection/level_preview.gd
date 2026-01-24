@@ -3,16 +3,26 @@ extends Control
 var selected_level: int = 1
 
 @onready var level_label = $Window/WindowTitle/Label
+@onready var preview_image: TextureRect = $PreviewWindow/PreviewImage
 
 func _ready() -> void:
 	update_label()
+	update_image()
 
 func set_level(level: int) -> void:
 	selected_level = level
 	update_label()
+	update_image()
 
 func update_label() -> void:
 	level_label.text = "LEVEL %d" % selected_level
+
+func update_image() -> void:
+	var image_path = load("res://ui/level_selection/level_preview_images/level%d-prev.png" % selected_level)
+	if image_path == null:
+		print("No Image Preview available for this level")
+	else:
+		preview_image.texture = image_path
 
 func _on_back_pressed() -> void:
 	var ui_node = get_node("/root/Main/UI")

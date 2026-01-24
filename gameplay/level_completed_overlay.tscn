@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://f61a2vi1ht46"]
 
-[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/Menu/window.png" id="1_tstho"]
-[ext_resource type="Script" uid="uid://bq2b6bgeqer35" path="res://gameplay/level_completed_overlay.gd" id="1_xcbdj"]
-[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/Menu/pressed.png" id="2_hh08v"]
+[ext_resource type="Texture2D" uid="uid://bbd4pw0bponif" path="res://assets/Menu/window.png" id="1_tstho"]
+[ext_resource type="Script" path="res://gameplay/level_completed_overlay.gd" id="1_xcbdj"]
+[ext_resource type="Texture2D" uid="uid://2ebonm8vd2e" path="res://assets/Menu/pressed.png" id="2_hh08v"]
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="3_q8cjt"]
-[ext_resource type="Texture2D" uid="uid://b0mgkfk5ssyru" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Play.svg" id="4_xhf10"]
-[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/Menu/unpressed.png" id="5_xcbdj"]
-[ext_resource type="Texture2D" uid="uid://cklptfwib5egw" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Next.svg" id="6_xhf10"]
-[ext_resource type="Texture2D" uid="uid://d2f1wgxbpyj7x" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Gear.svg" id="7_xcbdj"]
-[ext_resource type="Texture2D" uid="uid://bxspno7s324ud" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Home.svg" id="8_xmmqf"]
+[ext_resource type="Texture2D" uid="uid://b36uocwgryfww" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Play.svg" id="4_xhf10"]
+[ext_resource type="Texture2D" uid="uid://dgi3rfiea36qg" path="res://assets/Menu/unpressed.png" id="5_xcbdj"]
+[ext_resource type="Texture2D" uid="uid://bfvsioal0wkdh" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Next.svg" id="6_xhf10"]
+[ext_resource type="Texture2D" uid="uid://bpj7stewdoxwp" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Gear.svg" id="7_xcbdj"]
+[ext_resource type="Texture2D" uid="uid://bgwkkh5rbmkf3" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Home.svg" id="8_xmmqf"]
 
 [node name="LevelCompletedOverlay" type="Control"]
 layout_mode = 3

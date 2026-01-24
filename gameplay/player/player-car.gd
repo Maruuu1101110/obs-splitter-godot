@@ -224,6 +224,32 @@ func _apply_equipment_stats():
 	if equipment_id == "front_blade":
 		immune_to_puncture = true
 
+#func _physics_process(delta):
+	#damage_timer -= delta
+	#read_input()
+	#toggle_camera()
+	##apply_biome_multipliers(biome_multipliers[biome])
+	#apply_drift()
+	#apply_engine(delta)
+	#apply_friction(delta)
+	#apply_steering(delta)
+	#update_engine_sound()
+	#move_and_slide()
+#
+	## update buff container to follow player
+	#buff_container.global_position = global_position
+	#buff_container.global_rotation = 0.0
+#
+	#if is_punctured:
+		#puncture_tire(delta)
+	#else:
+		#actual_speed = max_speed + bonus_speed
+		#reverse_speed = actual_speed * 0.5
+#
+	#if damage_timer > 0:
+		#return
+	#detect_collision()
+
 func _physics_process(delta):
 	damage_timer -= delta
 	read_input()
@@ -234,7 +260,7 @@ func _physics_process(delta):
 	apply_steering(delta)
 	update_engine_sound()
 	move_and_slide()
-	apply_biome_multipliers(biome_multipliers[biome])
+	#apply_biome_multipliers(biome_multipliers[biome])
 	#print("Actual speed: %d" % actual_speed)
 	
 	buff_container.global_position = global_position
@@ -478,8 +504,6 @@ func apply_biome_multipliers(multipliers: Dictionary):
 	steering_speed = base_steering_speed * multipliers["steering_speed"]
 	drift_steering_speed = base_drift_steering_speed * multipliers["drift_steering"]
 
-# ================== BIOME-BASED STATS ==================
-# --------------------------------------------------
 
 func apply_buff(buff: String, duration, bonus_mult):
 	buff_container.play_buff(buff_map[buff]["path"], duration)

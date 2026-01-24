@@ -107,7 +107,7 @@ func update_speedometer() -> void:
 
 func update_health_label():
 	if player and is_instance_valid(player):
-		var player_health = player.health
+		var player_health = player.curr_hp
 		health_label.text = "HEALTH: %s" % str(int(player_health))
 	if current_level and is_instance_valid(current_level):
 		lap_label.text = "LAP: %s" % str(current_level.lap_count + 1) if current_level.lap_count < 2 else "FINAL"
@@ -167,10 +167,10 @@ func load_level(level_id:  int) -> void:
 	current_level = level_resource.instantiate()
 	level_container.add_child(current_level)
 	
-	# Add level if the level is not 1
-	if level_id > 1:
-		GameState.unlocked_levels += 1
-		GameState.save_game()
+	## Add level if the level is not 1
+	#if level_id > 1:
+		#GameState.unlocked_levels += 1
+		#GameState.save_game()
 	
 	show_loading(false)
 	spawn_player()
@@ -184,7 +184,6 @@ func spawn_player() -> void:
 	if not gameplay_node.has_node("Player"):
 		var player_scene = load("res://gameplay/player/player(car).tscn").instantiate()
 		var level_path = "LevelContainer/Level%d" % selected_level
-		#var level_path = "LevelContainer/Level%d/Spawnpoint" % selected_level
 		var level = gameplay_node.get_node(level_path)
 		var spawnpoint = gameplay_node.get_node(level_path + "/Spawnpoint")
 		player_scene.position = spawnpoint.global_position
@@ -278,4 +277,5 @@ func level_complete_check():
 		return
 	if is_instance_valid(current_level) && current_level.lap_count >= 3:
 		level_completed_overlay.show()
+		print("LAP COMPLETE")
 	pass

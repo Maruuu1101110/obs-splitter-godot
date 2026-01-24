@@ -1,34 +1,108 @@
 extends Node2D
 
+# Generalized na sya, basta follow lang ang format sang level:
+# - Need sang spawnpoint kag enemyspawnpoint node (optioanal ata ang enemy), follow lang ang concept sang level_1
+# - kung mag implement enemy npc, required mag butang sang checkpoints, follow man ang format sang CP# sa level_1, naka manage naman sa script ang automation so biskan mag 100 pa na ka CP
+# - Flagpointss... given naman na
+# mu manlang na mga critical, ang iban nga addons pwede gid pagustuhan
+
+
+@export var require_order: bool = true
 @export var lap_count: int = 0
+@export var laps_to_reward: int = 1
 
-var flag_tokens := ["fp1", "fp2", "fp3"]
-var current_index := 0
+@export var flag_parent_path: NodePath = NodePath("FlagPoints")
+@export var enemy_checkpoints_parent_path: NodePath = NodePath("EnemyCheckpoints")
+@export var police_spawn_path: NodePath = NodePath("PoliceSpawnpoint")
+@export var tire_puncture_spawn_path: NodePath = NodePath("TirePunctureSpawn")
+@export var bonus_spawn_path: NodePath = NodePath("BonusSpawn")
 
-@onready var flags := [
-	$FlagPoints/Flag1,
-	$FlagPoints/Flag2,
-	$FlagPoints/Flag3
+# Flagpoints
+@export var flag_tokens: Array = []
+
+# Spawns (currently for level 2)
+@export var available_buffs: Array = [
+	"res://gameplay/items/defense.tscn",
+	"res://gameplay/items/nitro.tscn",
+	"res://gameplay/items/repair.tscn",
+	"res://gameplay/items/tire_restore.tscn"
 ]
 
-@onready var enemy_checkpoints = $EnemyCheckpoints.get_children()
-
-@onready var lap_flag: Area2D = $FlagPoints/LapFlag
-var enemy_index = 0
+# Internal state
+var flags: Array = []
+var lap_flag: Area2D = null
+var current_index: int = 0
+var lap_passed: Array = []
+var enemy_checkpoints: Array = []
 var enemy: Node2D = null
+var enemy_index: int = 0
+var police = null
+var has_tire_punctures: bool = false
+var biome = "default"
 
 func _ready() -> void:
+	_load_flag_points()
+	_load_enemy_checkpoints()
 	_assign_enemy()
-	
+	_init_spawnpoints_meta()
+
 func _process(delta: float) -> void:
-	if enemy == null:
-		return
-	if enemy.global_position.distance_to(
-		enemy_checkpoints[enemy_index].global_position
-	) < 54:
-		enemy_index = (enemy_index + 1) % enemy_checkpoints.size()
-		enemy.target = enemy_checkpoints[enemy_index]
-		print("ENEMY TARGET:", enemy.target.name)
+	_update_enemy_targeting()
+
+# ----------------- Initialization helpers -----------------
+
+func _load_flag_points() -> void:
+	var parent = get_node_or_null(flag_parent_path)
+	if parent:
+		for c in parent.get_children():
+			if c is Area2D:
+				flags.append(c)
+				if c.name.to_lower().find("lap") != -1:
+					lap_flag = c
+	else:
+		parent = get_node_or_null("FlagPoints")
+		if parent:
+			for c in parent.get_children():
+				if c is Area2D:
+					flags.append(c)
+					if c.name.to_lower().find("lap") != -1:
+						lap_flag = c
+	if flag_tokens.is_empty():
+		for f in flags:
+			flag_tokens.append(f.name)
+
+	for i in range(flags.size()):
+		var area = flags[i]
+		if area and not area.is_connected("body_entered", Callable(self, "_on_flag_body_entered")):
+			area.body_entered.connect(_on_flag_body_entered.bind(i, flag_tokens[i]))
+
+	if lap_flag and not lap_flag.is_connected("body_entered", Callable(self, "_on_lap_body_entered")):
+		lap_flag.connect("body_entered", Callable(self, "_on_lap_body_entered"))
+
+func _load_enemy_checkpoints() -> void:
+	var parent = get_node_or_null(enemy_checkpoints_parent_path)
+	if parent:
+		enemy_checkpoints = parent.get_children()
+	else:
+		var fallback = get_node_or_null("EnemyCheckpoints")
+		if fallback:
+			enemy_checkpoints = fallback.get_children()
+
+func _init_spawnpoints_meta() -> void:
+	var ps = get_node_or_null(police_spawn_path)
+	if ps:
+		ps.set_meta("occupied", false)
+	var tire_parent = get_node_or_null(tire_puncture_spawn_path)
+	var bonus_parent = get_node_or_null(bonus_spawn_path)
+	var combined_array = []
+	if tire_parent:
+		combined_array += tire_parent.get_children()
+	if bonus_parent:
+		combined_array += bonus_parent.get_children()
+	for child_node in combined_array:
+		child_node.set_meta("occupied", false)
+
+# ----------------- Enemy routing -----------------
 
 func _assign_enemy() -> void:
 	var enemies = get_tree().get_nodes_in_group("enemy")
@@ -37,34 +111,123 @@ func _assign_enemy() -> void:
 		_assign_enemy()
 		return
 	enemy = enemies[0]
-	enemy.target = enemy_checkpoints[0]
-	print("ENEMY INITIAL TARGET:", flags[0].name)
+	if enemy_checkpoints.size() > 0:
+		enemy.target = enemy_checkpoints[0]
+		enemy_index = 0
+		print("ENEMY INITIAL TARGET:", enemy.target.name)
 
-func _is_player(body: Node2D) -> bool:
-	return body.is_in_group("player")
+func _update_enemy_targeting() -> void:
+	if enemy == null:
+		return
+	if enemy_checkpoints.size() == 0:
+		return
+	if enemy.global_position.distance_to(enemy_checkpoints[enemy_index].global_position) < 54:
+		enemy_index = (enemy_index + 1) % enemy_checkpoints.size()
+		enemy.target = enemy_checkpoints[enemy_index]
+		print("ENEMY TARGET:", enemy.target.name)
 
-func handle_flag(index: int, token: String, body: Node2D) -> void:
+# ----------------- Flag handling -----------------
+
+func _on_flag_body_entered(body: Node, idx: int, token: String) -> void:
 	if not _is_player(body):
 		return
-	if index != current_index:
+	if require_order:
+		if idx != current_index:
+			return
+		current_index += 1
+		print("OBTAINED TOKEN", token, current_index, "/", flag_tokens.size())
+	else:
+		if token in lap_passed:
+			return
+		lap_passed.append(token)
+		print("FLAG PASSED:", lap_passed)
+
+func _on_lap_body_entered(body: Node) -> void:
+	if not _is_player(body):
 		return
-	if token != flag_tokens[current_index]:
+
+	if require_order:
+		if current_index == flag_tokens.size():
+			_on_lap_complete()
+			current_index = 0
+	else:
+		if lap_passed.size() == flag_tokens.size():
+			_on_lap_complete()
+			lap_passed.clear()
+
+# ----------------- Utilities -----------------
+
+func _is_player(body: Node) -> bool:
+	if body is Node and body.is_in_group("player"):
+		return true
+	if body is Node and body.name == "PlayerCar":
+		return true
+	return false
+
+func _on_lap_complete() -> void:
+	lap_count += 1
+	print("LAP COMPLETE:", lap_count)
+
+	var bonus_parent = get_node_or_null(bonus_spawn_path)
+	if not bonus_parent:
+		bonus_parent = get_node_or_null("BonusSpawn")
+	if bonus_parent:
+		for bonus in bonus_parent.get_children():
+			var buff_scn = available_buffs.pick_random()
+			spawn_entity(buff_scn, bonus, bonus.name)
+
+	if lap_count >= laps_to_reward and not is_instance_valid(police):
+		var ps = get_node_or_null(police_spawn_path)
+		if not ps:
+			ps = get_node_or_null("PoliceSpawnpoint")
+		if ps:
+			spawn_entity("res://gameplay/obstacle/police.tscn", ps, "Police Spawned")
+
+	var player_nodes = get_tree().get_nodes_in_group("player")
+	if player_nodes.size() > 0:
+		var p = player_nodes[0]
+		if tire_puncture_spawn_flag(p):
+			var tire_parent = get_node_or_null(tire_puncture_spawn_path)
+			if not tire_parent:
+				tire_parent = get_node_or_null("TirePunctureSpawn")
+			if tire_parent:
+				for tire_punc in tire_parent.get_children():
+					spawn_entity("res://gameplay/obstacle/tire_puncture.tscn", tire_punc, tire_punc.name)
+				has_tire_punctures = true
+
+	if lap_count == 5:
+		_on_level_complete()
+
+func tire_puncture_spawn_flag(body: Node) -> bool:
+	if not (body is Node):
+		return false
+	var being_chased = false
+	if body.has_method("is_being_chased"):
+		being_chased = body.call("is_being_chased")
+	if not being_chased and body.has_meta("is_being_chased"):
+		being_chased = body.get_meta("is_being_chased")
+	if not being_chased and body.has_method("get"):
+		if body.get("is_being_chased"):
+			being_chased = true
+
+	return lap_count >= 2 and being_chased and not has_tire_punctures
+
+func spawn_entity(scene_location: String, spawnpoint: Node2D, debug_message: String = '') -> void:
+	if spawnpoint.get_meta("occupied", true):
 		return
-	current_index += 1
-	print("OBTAINED TOKEN", token, current_index, "/", flag_tokens.size())
 
-# PLAYER FLAGPOINTS
-func _on_flag_1_body_entered(body: Node2D) -> void:
-	handle_flag(0, "fp1", body)
+	var level_node = get_node(".")
+	var entity_scene = load(scene_location).instantiate()
+	entity_scene.position = spawnpoint.position
+	entity_scene.rotation = spawnpoint.rotation
+	level_node.add_child(entity_scene)
+	print(debug_message)
 
-func _on_flag_2_body_entered(body: Node2D) -> void:
-	handle_flag(1, "fp2", body)
+	spawnpoint.set_meta("occupied", true)
+	entity_scene.set_meta("spawnpoint", spawnpoint)
 
-func _on_flag_3_body_entered(body: Node2D) -> void:
-	handle_flag(2, "fp3", body)
+	if scene_location == "res://gameplay/obstacle/police.tscn":
+		police = entity_scene
 
-func _on_lap_flag_body_entered(body: Node2D) -> void:
-	if _is_player(body) and current_index == flag_tokens.size():
-		lap_count += 1
-		current_index = 0
-		print("LAP COMPLETE:", lap_count)
+func _on_level_complete() -> void:
+	print("Level complete!")

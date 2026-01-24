@@ -28,6 +28,9 @@ func _on_next_pressed() -> void:
 	if gameplay == null:
 		push_error("Gameplay node not found!")
 		return
+		
+	GameState.unlocked_levels += 1
+	GameState.save_game()
 
 	gameplay.selected_level = selected_level + 1
 	gameplay.load_level(selected_level + 1)
