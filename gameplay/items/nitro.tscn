@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://lve1isyuydmd"]
+
+[ext_resource type="Script" uid="uid://ea4r8ahd45jk" path="res://gameplay/items/nitro.gd" id="1_4lgcb"]
+[ext_resource type="Texture2D" uid="uid://dgrqc4id7khky" path="res://assets/Road Racers Adrenaline Assets/Pickables & Obstacles/nitro.png" id="1_svf3d"]
+[ext_resource type="PackedScene" uid="uid://rlhigf5m3j14" path="res://ui/popup_location.tscn" id="3_o7bwl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dat84"]
+radius = 5.0
+height = 14.0
+
+[node name="Nitro" type="Area2D"]
+script = ExtResource("1_4lgcb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_svf3d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_dat84")
+
+[node name="PopupLocation" parent="." instance=ExtResource("3_o7bwl")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

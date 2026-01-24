@@ -1,12 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://ce73k1btl3tp"]
+[gd_scene load_steps=8 format=3 uid="uid://dc11u4rc6dc8b"]
 
-[ext_resource type="Script" uid="uid://buc3mrinfhx4h" path="res://main.gd" id="1_0xm2m"]
+[ext_resource type="Script" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://3y85bprkxhm5" path="res://ui/main_menu/main_menu.tscn" id="2_0xm2m"]
-[ext_resource type="Script" uid="uid://bvg2j3q6jlvbo" path="res://ui/ui.gd" id="2_1bvp3"]
+[ext_resource type="Script" path="res://ui/ui.gd" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://bhf166x15oid0" path="res://ui/settings/settings.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://hg27d5ann3sa" path="res://ui/level_selection/levels.tscn" id="5_lquwl"]
-[ext_resource type="PackedScene" uid="uid://7i7w57c1jj6k" path="res://gameplay/gameplay.tscn" id="6_7mycd"]
-[ext_resource type="PackedScene" uid="uid://con1hjx6a4meh" path="res://ui/garage/garage.tscn" id="6_272bh"]
+[ext_resource type="PackedScene" uid="uid://b5vaktyuvdrs8" path="res://gameplay/gameplay.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" path="res://ui/garage/garage.tscn" id="6_272bh"]
 
 [node name="Main" type="Node2D"]
 texture_filter = 1

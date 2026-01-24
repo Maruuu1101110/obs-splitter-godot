@@ -72,9 +72,11 @@ func unlock_next_level():
 var player_configuration = {
 	"body-type":  "res://ui/garage/car_previews/sport/sport-model1.png",
 	"body-id": "sport-1",
-	"tire-type":  "res://ui/garage/car_previews/sport/sport-tire-anim. tres",
+	"tire-type":  "res://ui/garage/car_previews/sport/sport-tire-anim.tres",
 	"tire-id": "sport_tire",
-	"body-color": "default"
+	"body-color": "default",
+	"equipment": "res://ui/garage/car_previews/equipment/nothing.png",
+	"equipment-id": "nothing"
 }
 
 var body_stats = {
@@ -92,11 +94,21 @@ var tire_stats = {
 	"sport_tire":  {"grip": 20.0, "drift_friction": 1.5, "max_speed_bonus": 15.0},
 }
 
+var equipment_stats = {
+	"snow_plow": {"damage": 20.0, "armor": 30.0, "weight": 0.15, "speed_penalty": 50.0},
+	"front_blade": {"damage": 60.0, "armor": 30.0, "weight": 0.35, "speed_penalty": 80.0},
+	"mine_claws": {"damage": 30.0, "armor": 30.0, "weight": 0.30, "speed_penalty": 65.0},
+	"nothing": {"damage": 0.0, "armor": 0.0, "weight": 0.0, "speed_penalty": 0.0},
+}
+
 func get_body_data(body_id: String) -> Dictionary:
 	return body_stats. get(body_id, {})
 
 func get_tire_data(tire_id: String) -> Dictionary:
 	return tire_stats.get(tire_id, {})
+	
+func get_equipment_data(equipment_id: String) -> Dictionary:
+	return equipment_stats.get(equipment_id, {})
 
 func load_player_config():
 	var path := "user://player_config.json"
@@ -125,6 +137,8 @@ func load_player_config():
 	player_configuration["tire-type"] = data.get("tire-type", player_configuration["tire-type"])
 	player_configuration["tire-id"] = data.get("tire-id", player_configuration["tire-id"])
 	player_configuration["body-color"] = data.get("body-color", player_configuration["body-color"])
+	player_configuration["equipment"] = data.get("equipment", player_configuration["equipment"])
+	player_configuration["equipment-id"] = data.get("equipment-id", player_configuration["equipment-id"])
 	
 	print("Player Config loaded: ", player_configuration)
 

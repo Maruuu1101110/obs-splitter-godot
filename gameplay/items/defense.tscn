@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsls3nxng7877"]
+
+[ext_resource type="Script" uid="uid://d67vcl5j117n" path="res://gameplay/items/defense.gd" id="1_a6idl"]
+[ext_resource type="Texture2D" uid="uid://xwqo88ga86x8" path="res://assets/Road Racers Adrenaline Assets/Pickables & Obstacles/defense.png" id="1_lbxdi"]
+[ext_resource type="PackedScene" uid="uid://rlhigf5m3j14" path="res://ui/popup_location.tscn" id="2_a6idl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qtb0s"]
+radius = 8.0
+
+[node name="Defense" type="Area2D"]
+script = ExtResource("1_a6idl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_lbxdi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qtb0s")
+
+[node name="PopupLocation" parent="." instance=ExtResource("2_a6idl")]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

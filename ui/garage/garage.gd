@@ -93,22 +93,68 @@ var tire_sprites_map = {
 	},
 }
 
+# ----- EQUIPMENT DATA -----
+var equipment_sprites_map = {
+	"snow_plow": {
+		"tileframe": "res://ui/garage/car_previews/equipment/snow_plow.png",
+		"icon": "res://ui/garage/car_previews/equipment/snow_plow.png",
+		"damage": 20.0,
+		"armor": 30.0,
+		"weight": 0.15,
+		"speed_penalty": 50.0,
+		"name": "Snow Plow",
+		"description": "Effective for clearing snowmen and other light debris"
+	},
+	"front_blade": {
+		"tileframe": "res://ui/garage/car_previews/equipment/front_blade.png",
+		"icon": "res://ui/garage/car_previews/equipment/front_blade.png",
+		"damage": 60.0,
+		"armor": 30.0,
+		"weight": 0.35,
+		"speed_penalty": 80.0,
+		"name": "Front Blade",
+		"description": "Effective against heavier debris. Can clear tire punctures"
+	},
+	"mine_claws": {
+		"tileframe": "res://ui/garage/car_previews/equipment/mine_flail.png",
+		"icon": "res://ui/garage/car_previews/equipment/mine_flail.png",
+		"damage": 30.0,
+		"armor": 30.0,
+		"weight": 0.30,
+		"speed_penalty": 65.0,
+		"name": "Mine Claws",
+		"description": "Higher loot chance"
+	},
+	"nothing": {
+		"tileframe": "res://ui/garage/car_previews/equipment/nothing.png",
+		"icon": "res://ui/garage/car_previews/equipment/nothing.png",
+		"damage": 0.0,
+		"armor": 0.0,
+		"weight": 0.0,
+		"speed_penalty": 0.0,
+		"name": "Nothing",
+		"description": "Nothing"
+	}
+}
+
 # PREVIEW NODE PATHS
 @onready var sprite = $PreviewArea/CarPreview/Body
 @onready var tire_fl = $PreviewArea/CarPreview/FrontPair/TireFrontLeft
 @onready var tire_fr = $PreviewArea/CarPreview/FrontPair/TireFrontRight
 @onready var tire_bl = $PreviewArea/CarPreview/BackPair/TireBackLeft
 @onready var tire_br = $PreviewArea/CarPreview/BackPair/TireBackRight
-
+@onready var equipment = $PreviewArea/CarPreview/Equipment
 @onready var selection_area_node = $SelectionArea
 
 # SELECTED DATA ASSETS 
 var selected_body_frame:  Texture
 var selected_tire_frame: SpriteFrames
+var selected_equipment
 
 func _ready() -> void:
 	selected_body_frame = load(GameState.player_configuration['body-type'])
 	selected_tire_frame = load(GameState.player_configuration['tire-type'])
+	selected_equipment = load(GameState.player_configuration['equipment'])
 	_apply_frames()
 	_play_all_animations()
 
@@ -125,6 +171,9 @@ func _apply_frames():
 		tire_bl.sprite_frames = selected_tire_frame
 		tire_br.sprite_frames = selected_tire_frame
 		_play_tire_animations()
+	
+	if equipment.texture != selected_equipment:
+		equipment.texture = selected_equipment
 
 func _play_all_animations():
 	_play_tire_animations()
@@ -152,3 +201,7 @@ func _on_tires_pressed() -> void:
 func _on_color_pressed() -> void:
 # SOOn
 	pass
+
+
+func _on_equipments_pressed() -> void:
+	selection_area_node.set_equipment(equipment_sprites_map)

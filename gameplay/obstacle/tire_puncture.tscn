@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dch5athoh2pl7"]
+[gd_scene load_steps=5 format=3 uid="uid://dch5athoh2pl7"]
 
-[ext_resource type="Texture2D" uid="uid://bpsusuchyepdu" path="res://assets/Road Racers Adrenaline Assets/Pickables & Obstacles/police_tire_puncture.png" id="1_0i68l"]
+[ext_resource type="Texture2D" uid="uid://mnfx0q5apoop" path="res://assets/Road Racers Adrenaline Assets/Pickables & Obstacles/police_tire_puncture.png" id="1_0i68l"]
 [ext_resource type="Script" uid="uid://dv2n8e06shuj1" path="res://gameplay/obstacle/tire_puncture.gd" id="1_3jukk"]
+[ext_resource type="PackedScene" uid="uid://rlhigf5m3j14" path="res://ui/popup_location.tscn" id="3_72ubk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jukk"]
 size = Vector2(16, 9)
@@ -16,5 +17,7 @@ texture = ExtResource("1_0i68l")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_3jukk")
+
+[node name="PopupLocation" parent="." instance=ExtResource("3_72ubk")]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

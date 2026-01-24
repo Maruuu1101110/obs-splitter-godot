@@ -1,12 +1,14 @@
-[gd_scene load_steps=46 format=3 uid="uid://bq0chryfdh4px"]
+[gd_scene load_steps=48 format=3 uid="uid://bq0chryfdh4px"]
 
 [ext_resource type="Script" uid="uid://c40svrpyq8qks" path="res://gameplay/player/player-car.gd" id="1_lokse"]
-[ext_resource type="Texture2D" uid="uid://n5yfvnrxvqbo" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/RC_Blue_1-Sheet.png" id="2_is578"]
-[ext_resource type="Texture2D" uid="uid://djxxs8hcl3n2o" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/RC_Blue_L-Sheet.png" id="3_0qj7i"]
-[ext_resource type="Texture2D" uid="uid://f3oxannb03qn" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/RC_Blue_R-Sheet.png" id="4_0qj7i"]
-[ext_resource type="Texture2D" uid="uid://sha8gohed45b" path="res://assets/RaceCar/Track.png" id="5_wpaad"]
-[ext_resource type="Texture2D" uid="uid://bsfu1ibmoadej" path="res://assets/RaceCar/Track_L-Sheet.png" id="6_84pn4"]
-[ext_resource type="Texture2D" uid="uid://vq3xrkm0lpax" path="res://assets/RaceCar/Track_R-Sheet.png" id="7_rypgw"]
+[ext_resource type="Texture2D" uid="uid://bl81stdlwuygb" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/RC_Blue_1-Sheet.png" id="2_is578"]
+[ext_resource type="Texture2D" uid="uid://75gons4wankf" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/RC_Blue_L-Sheet.png" id="3_0qj7i"]
+[ext_resource type="Texture2D" uid="uid://blqjobapk5hr1" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/RC_Blue_R-Sheet.png" id="4_0qj7i"]
+[ext_resource type="Texture2D" uid="uid://8586xxyqpefv" path="res://assets/RaceCar/Track.png" id="5_wpaad"]
+[ext_resource type="Texture2D" uid="uid://chavvcmxbf7o6" path="res://assets/RaceCar/Track_L-Sheet.png" id="6_84pn4"]
+[ext_resource type="Texture2D" uid="uid://f0lmwm5giwqo" path="res://assets/RaceCar/Track_R-Sheet.png" id="7_rypgw"]
+[ext_resource type="PackedScene" uid="uid://rlhigf5m3j14" path="res://ui/popup_location.tscn" id="8_84pn4"]
+[ext_resource type="Script" uid="uid://bu78831hik7ui" path="res://gameplay/player/buff_container.gd" id="9_rypgw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0qj7i"]
 atlas = ExtResource("2_is578")
@@ -337,7 +339,6 @@ rotation = 1.5707964
 scale = Vector2(0.5, 0.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CarAnimation"]
-visible = false
 texture_filter = 1
 position = Vector2(0, 1)
 rotation = 1.5707964
@@ -345,6 +346,10 @@ sprite_frames = SubResource("SpriteFrames_qs6fy")
 frame_progress = 0.6876375
 
 [node name="Body" type="Sprite2D" parent="CarAnimation"]
+rotation = 1.5707964
+
+[node name="Equipment" type="Sprite2D" parent="CarAnimation"]
+position = Vector2(7, 0)
 rotation = 1.5707964
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -359,5 +364,10 @@ rotation_smoothing_enabled = true
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5
 autostart = true
+
+[node name="PopupLocation" parent="." instance=ExtResource("8_84pn4")]
+
+[node name="BuffContainer" type="Node2D" parent="."]
+script = ExtResource("9_rypgw")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

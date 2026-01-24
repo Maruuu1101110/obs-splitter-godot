@@ -14,6 +14,7 @@ const DEATH_REPEATS = 5
 var death_play_count = 0
 
 @onready var sprite = $AnimatedSprite2D
+@onready var popup = $PopupLocation
 
 # --------------------------------------------------
 #
@@ -46,7 +47,7 @@ func _physics_process(delta: float) -> void:
 
 # --------------------------------------------------
 
-func take_damage(amount: int):
+func take_damage(amount: float):
 	if is_dead:
 		return
 		
@@ -54,6 +55,9 @@ func take_damage(amount: int):
 	print(curr_hp)
 	if curr_hp <= 0:
 		die()
+		
+	if amount > 0:
+		popup.popup(str(amount))
 
 # --------------------------------------------------
 
@@ -81,3 +85,8 @@ func _on_death_animation_finished():
 	else:
 		queue_free()
 	
+func _exit_tree() -> void:
+	if has_meta("spawnpoint"):
+		var spawn = get_meta("spawnpoint")
+		if is_instance_valid(spawn):
+			spawn.set_meta("occupied", false)
