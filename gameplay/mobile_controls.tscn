@@ -31,31 +31,31 @@ script = ExtResource("1_rgiws")
 metadata/_edit_lock_ = true
 
 [node name="SteerLeft" type="TouchScreenButton" parent="."]
-position = Vector2(136, 752)
+position = Vector2(40, 808)
 scale = Vector2(15, 15)
 texture_normal = ExtResource("2_bhmwq")
 shape = SubResource("RectangleShape2D_aq63k")
 visibility_mode = 1
 
 [node name="SteerRight" type="TouchScreenButton" parent="."]
-position = Vector2(432, 752.00006)
+position = Vector2(336, 808.00006)
 scale = Vector2(15, 15)
 texture_normal = ExtResource("3_t1u3n")
 shape = SubResource("RectangleShape2D_aq63k")
 
 [node name="Gas" type="TouchScreenButton" parent="."]
-position = Vector2(1512, 720)
-scale = Vector2(15, 16)
+position = Vector2(1616.0001, 704)
+scale = Vector2(15, 20.795105)
 texture_normal = ExtResource("4_7uj1h")
 shape = SubResource("RectangleShape2D_0xccx")
 
 [node name="Brake" type="TouchScreenButton" parent="."]
-position = Vector2(1232.0001, 744.00006)
+position = Vector2(1336, 792.00006)
 scale = Vector2(15, 15)
 texture_normal = ExtResource("5_k3am5")
 shape = SubResource("RectangleShape2D_hda62")
 
 [node name="Handbrake" type="TouchScreenButton" parent="."]
-position = Vector2(1496, 416)
+position = Vector2(1640, 368)
 texture_normal = ExtResource("2_aq63k")
 shape = SubResource("RectangleShape2D_pq8d4")
