@@ -1,6 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+main.tscn
 
 .import/
 export/
@@ -9,3 +10,6 @@ export/
 *.mono/temp/
 *.mono/obj/
 *.mono/bin/
+main.tscn
+main.gd
+main.gd.uid

@@ -1,0 +1,232 @@
+[gd_scene load_steps=10 format=3 uid="uid://f61a2vi1ht46"]
+
+[ext_resource type="Texture2D" uid="uid://bbd4pw0bponif" path="res://assets/Menu/window.png" id="1_tstho"]
+[ext_resource type="Script" path="res://gameplay/level_completed_overlay.gd" id="1_xcbdj"]
+[ext_resource type="Texture2D" uid="uid://2ebonm8vd2e" path="res://assets/Menu/pressed.png" id="2_hh08v"]
+[ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="3_q8cjt"]
+[ext_resource type="Texture2D" uid="uid://b36uocwgryfww" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Play.svg" id="4_xhf10"]
+[ext_resource type="Texture2D" uid="uid://dgi3rfiea36qg" path="res://assets/Menu/unpressed.png" id="5_xcbdj"]
+[ext_resource type="Texture2D" uid="uid://bfvsioal0wkdh" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Next.svg" id="6_xhf10"]
+[ext_resource type="Texture2D" uid="uid://bpj7stewdoxwp" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Gear.svg" id="7_xcbdj"]
+[ext_resource type="Texture2D" uid="uid://bgwkkh5rbmkf3" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Home.svg" id="8_xmmqf"]
+
+[node name="LevelCompletedOverlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xcbdj")
+
+[node name="BackgroundOverlay" type="ColorRect" parent="."]
+self_modulate = Color(0, 0, 0, 0.39215687)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Window" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 480.0
+offset_top = 200.0
+offset_right = 480.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_tstho")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Window"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 48.0
+offset_right = -16.0
+offset_bottom = -343.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 80
+theme_override_fonts/font = ExtResource("3_q8cjt")
+theme_override_font_sizes/font_size = 300
+text = "LEVEL 
+COMPLETE!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextLevel" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1176.0
+offset_top = 832.0
+offset_right = -594.66675
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+text = "Select"
+icon = ExtResource("4_xhf10")
+flat = true
+
+[node name="TextureButton" type="TextureButton" parent="NextLevel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.5258789e-05
+offset_top = -1.4781952e-05
+offset_right = 1344.0002
+offset_bottom = 792.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("5_xcbdj")
+texture_pressed = ExtResource("2_hh08v")
+stretch_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="NextLevel"]
+position = Vector2(74.66665, 26.666674)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("6_xhf10")
+
+[node name="Label" type="Label" parent="NextLevel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.666667
+offset_bottom = 10.666664
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_q8cjt")
+theme_override_font_sizes/font_size = 28
+text = "Next Level"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Garage" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 848.0
+offset_top = 832.0
+offset_right = -922.66675
+offset_bottom = -160.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+text = "Select"
+icon = ExtResource("4_xhf10")
+flat = true
+
+[node name="TextureButton" type="TextureButton" parent="Garage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.5258789e-05
+offset_top = -1.4781952e-05
+offset_right = 1344.0002
+offset_bottom = 792.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("5_xcbdj")
+texture_pressed = ExtResource("2_hh08v")
+stretch_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Garage"]
+position = Vector2(74.66665, 26.666676)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_xcbdj")
+
+[node name="Label" type="Label" parent="Garage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.666667
+offset_bottom = 10.666664
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_q8cjt")
+theme_override_font_sizes/font_size = 28
+text = "Garage"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Quit" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 520.0
+offset_top = 832.00006
+offset_right = -1250.6667
+offset_bottom = -159.99994
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+text = "Select"
+icon = ExtResource("4_xhf10")
+flat = true
+
+[node name="TextureButton" type="TextureButton" parent="Quit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.5258789e-05
+offset_top = -1.4781952e-05
+offset_right = 1344.0002
+offset_bottom = 792.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("5_xcbdj")
+texture_pressed = ExtResource("2_hh08v")
+stretch_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="Quit"]
+position = Vector2(74.66665, 26.666634)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("8_xmmqf")
+
+[node name="Label" type="Label" parent="Quit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.666667
+offset_bottom = 10.666664
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_q8cjt")
+theme_override_font_sizes/font_size = 28
+text = "Home"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="NextLevel" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="NextLevel/TextureButton" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="Garage" to="." method="_on_garage_pressed"]
+[connection signal="pressed" from="Garage/TextureButton" to="." method="_on_garage_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="Quit/TextureButton" to="." method="_on_home_pressed"]

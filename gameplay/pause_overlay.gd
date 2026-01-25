@@ -2,13 +2,13 @@ extends Control
 
 var is_paused := false
 
-@onready var quit_confirm: Control = $QuitConfirmation
+#@onready var quit_confirm: Control = $QuitConfirmation
 
 func _ready() -> void:
 	hide()
-	process_mode = Node. PROCESS_MODE_ALWAYS
-	if quit_confirm: 
-		quit_confirm.hide()
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	#if quit_confirm: 
+		#quit_confirm.hide()
 
 func toggle_pause() -> void:
 	if is_paused:
@@ -25,8 +25,8 @@ func resume_game() -> void:
 	is_paused = false
 	get_tree().paused = false
 	hide()
-	if quit_confirm:
-		quit_confirm.hide()
+	#if quit_confirm:
+		#quit_confirm.hide()
 
 # ----- BUTTONS -----
 
@@ -42,21 +42,10 @@ func _on_restart_pressed() -> void:
 	_restart_level()
 
 func _on_quit_pressed() -> void:
-	if quit_confirm: 
-		quit_confirm.show()
-	else:
-		_quit_to_menu()
-
-func _on_quit_confirm_pressed() -> void:
 	_quit_to_menu()
-
-func _on_quit_cancel_pressed() -> void:
-	if quit_confirm: 
-		quit_confirm.hide()
 
 # ----- GAMEPLAY MANAGEMENT -----
 func _quit_to_menu() -> void:
-	var ingame_hud = $GameHud/HUD
 	get_tree().paused = false
 	_cleanup_gameplay()
 	get_parent().get_parent().hide_hud()

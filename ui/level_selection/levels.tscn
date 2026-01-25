@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://hg27d5ann3sa"]
 
 [ext_resource type="Script" uid="uid://diomsq2554omf" path="res://ui/level_selection/level_selection.gd" id="1_2tyw7"]
-[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/menu'/window.png" id="1_a7te6"]
-[ext_resource type="Texture2D" uid="uid://dtftgtgs8wjxo" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="2_2tyw7"]
-[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/menu'/pressed.png" id="3_4wel7"]
+[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/Menu/window.png" id="1_a7te6"]
+[ext_resource type="Texture2D" uid="uid://dtftgtgs8wjxo" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="2_2tyw7"]
+[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/Menu/pressed.png" id="3_4wel7"]
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="4_4wel7"]
-[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="6_b5hqg"]
+[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/Menu/unpressed.png" id="6_b5hqg"]
 [ext_resource type="PackedScene" uid="uid://8wpn4o507iat" path="res://ui/level_selection/level_preview.tscn" id="7_48mtt"]
 
 [node name="LevelSelection" type="Control"]

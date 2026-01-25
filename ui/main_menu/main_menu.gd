@@ -11,7 +11,6 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_play_pressed():
-	# Placeholder for now
 	print("Play Button Pressed")
 	get_parent().show_overlay($/root/Main/UI/LevelSelection)
 	

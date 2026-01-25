@@ -1,14 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://con1hjx6a4meh"]
+[gd_scene load_steps=17 format=3 uid="uid://con1hjx6a4meh"]
 
 [ext_resource type="Script" uid="uid://dcjfsa5x7pidq" path="res://ui/garage/garage.gd" id="1_f855h"]
-[ext_resource type="Texture2D" uid="uid://poy8xhxu6ah5" path="res://assets/menu'/garage_background.png" id="1_y2nuk"]
-[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/menu'/window.png" id="2_2k76w"]
-[ext_resource type="Texture2D" uid="uid://qkaqpe32ffd6" path="res://assets/Road Racers Adrenaline Assets/tileset.png" id="4_1lsmf"]
-[ext_resource type="Texture2D" uid="uid://dtftgtgs8wjxo" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="4_2e2kd"]
+[ext_resource type="Texture2D" uid="uid://csmgc0pkbe1g6" path="res://assets/Menu/garage_background.png" id="1_y2nuk"]
+[ext_resource type="Texture2D" uid="uid://bbd4pw0bponif" path="res://assets/Menu/window.png" id="2_2k76w"]
+[ext_resource type="Texture2D" uid="uid://crfbbfauw11sr" path="res://assets/Road Racers Adrenaline Assets/tileset.png" id="4_1lsmf"]
+[ext_resource type="Texture2D" uid="uid://dkbc73bketc4f" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="4_2e2kd"]
+[ext_resource type="SpriteFrames" uid="uid://drhce8j2iluj7" path="res://ui/garage/car_previews/street/street-tire-anim.tres" id="5_7xanw"]
+[ext_resource type="Texture2D" uid="uid://bd3x1spqo5pnd" path="res://ui/garage/car_previews/street/street-model1.png" id="6_hkxj5"]
 [ext_resource type="Script" uid="uid://7l6qkkusxt3a" path="res://ui/garage/selection_area.gd" id="7_hkxj5"]
-[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="9_7xanw"]
-[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/menu'/pressed.png" id="10_hkxj5"]
-[ext_resource type="Texture2D" uid="uid://b0bstrbbsjyy0" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Download.svg" id="11_dpl2r"]
+[ext_resource type="Texture2D" uid="uid://bfqko6a0v61ja" path="res://ui/garage/car_previews/equipment/snow_plow.png" id="7_nv3li"]
+[ext_resource type="Texture2D" uid="uid://dgi3rfiea36qg" path="res://assets/Menu/unpressed.png" id="9_7xanw"]
+[ext_resource type="Texture2D" uid="uid://dd6n1531y8hmy" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Download.svg" id="11_dpl2r"]
+[ext_resource type="Texture2D" uid="uid://2ebonm8vd2e" path="res://assets/Menu/pressed.png" id="11_hkxj5"]
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="11_nv3li"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o12ej"]
@@ -2008,6 +2011,13 @@ texture = ExtResource("4_1lsmf")
 [sub_resource type="TileSet" id="TileSet_fis60"]
 sources/0 = SubResource("TileSetAtlasSource_o12ej")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5yeo"]
+bg_color = Color(0, 0, 0, 0.409)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [node name="Garage" type="Control"]
 texture_filter = 1
 layout_mode = 3
@@ -2076,45 +2086,112 @@ layer_0/tile_data = PackedInt32Array(131077, 2818048, 2, 196613, 2818048, 4, 262
 metadata/_edit_lock_ = true
 
 [node name="CarPreview" type="Node2D" parent="PreviewArea"]
-position = Vector2(-294, -64)
+position = Vector2(-281, -31)
 
 [node name="FrontPair" type="Node2D" parent="PreviewArea/CarPreview"]
+metadata/_edit_lock_ = true
 
 [node name="TireFrontLeft" type="AnimatedSprite2D" parent="PreviewArea/CarPreview/FrontPair"]
 texture_filter = 1
-position = Vector2(1053, 385)
-rotation = 1.5707964
+position = Vector2(1213, 361)
 scale = Vector2(7, 7.012)
+sprite_frames = ExtResource("5_7xanw")
 autoplay = "default"
 
 [node name="TireFrontRight" type="AnimatedSprite2D" parent="PreviewArea/CarPreview/FrontPair"]
 texture_filter = 1
-position = Vector2(1053, 577)
-rotation = 1.5707964
+position = Vector2(1213, 617)
 scale = Vector2(7, 7.012)
+sprite_frames = ExtResource("5_7xanw")
 autoplay = "default"
 
 [node name="BackPair" type="Node2D" parent="PreviewArea/CarPreview"]
+metadata/_edit_lock_ = true
 
 [node name="TireBackLeft" type="AnimatedSprite2D" parent="PreviewArea/CarPreview/BackPair"]
 texture_filter = 1
-position = Vector2(797.0001, 385.00003)
-rotation = 1.5707964
+position = Vector2(1021, 361)
 scale = Vector2(7, 7.012)
+sprite_frames = ExtResource("5_7xanw")
 autoplay = "default"
 
 [node name="TireBackRight" type="AnimatedSprite2D" parent="PreviewArea/CarPreview/BackPair"]
 texture_filter = 1
-position = Vector2(797, 577)
-rotation = 1.5707964
+position = Vector2(1021, 617)
 scale = Vector2(7, 7.012)
+sprite_frames = ExtResource("5_7xanw")
 autoplay = "default"
 
 [node name="Body" type="Sprite2D" parent="PreviewArea/CarPreview"]
 texture_filter = 1
-position = Vector2(925, 481)
-rotation = 1.5707964
+position = Vector2(1117, 489)
 scale = Vector2(15, 15.785)
+texture = ExtResource("6_hkxj5")
+
+[node name="Equipment" type="Sprite2D" parent="PreviewArea/CarPreview"]
+texture_filter = 1
+position = Vector2(1120.0001, 384)
+scale = Vector2(15, 15)
+texture = ExtResource("7_nv3li")
+
+[node name="StatsPanel" type="Control" parent="PreviewArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 215.0
+offset_top = 193.0
+offset_right = -613.0
+offset_bottom = -190.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="PreviewArea/StatsPanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m5yeo")
+
+[node name="BodyStatsLabel" type="RichTextLabel" parent="PreviewArea/StatsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = -208.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("11_nv3li")
+theme_override_fonts/bold_font = ExtResource("11_nv3li")
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+autowrap_mode = 0
+
+[node name="TireStatsLabel" type="RichTextLabel" parent="PreviewArea/StatsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.999939
+offset_top = 264.0
+offset_right = -16.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("11_nv3li")
+theme_override_fonts/bold_font = ExtResource("11_nv3li")
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+autowrap_mode = 0
+vertical_alignment = 1
 
 [node name="SelectionArea" type="Control" parent="."]
 layout_mode = 1
@@ -2131,6 +2208,7 @@ script = ExtResource("7_hkxj5")
 metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="SelectionArea"]
+self_modulate = Color(0.41590622, 0.42820084, 1, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2165,7 +2243,6 @@ offset_right = -1239.0
 offset_bottom = -302.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_lock_ = true
 
 [node name="BodyButton" type="Button" parent="TypeSelectionArea"]
 layout_mode = 1
@@ -2173,9 +2250,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 77.0
-offset_top = 66.0
+offset_top = 31.0
 offset_right = -183.8775
-offset_bottom = -561.9168
+offset_bottom = -596.9168
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.6880059, 1.5869281)
@@ -2194,8 +2271,8 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.1, 0.1)
 texture_normal = ExtResource("9_7xanw")
-texture_pressed = ExtResource("10_hkxj5")
-texture_focused = ExtResource("10_hkxj5")
+texture_pressed = ExtResource("11_hkxj5")
+texture_focused = ExtResource("11_hkxj5")
 stretch_mode = 0
 metadata/_edit_lock_ = true
 
@@ -2220,9 +2297,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 77.0
-offset_top = 218.0
+offset_top = 172.0
 offset_right = -183.8775
-offset_bottom = -409.9168
+offset_bottom = -455.9168
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.6880059, 1.5869281)
@@ -2241,8 +2318,8 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.1, 0.1)
 texture_normal = ExtResource("9_7xanw")
-texture_pressed = ExtResource("10_hkxj5")
-texture_focused = ExtResource("10_hkxj5")
+texture_pressed = ExtResource("11_hkxj5")
+texture_focused = ExtResource("11_hkxj5")
 stretch_mode = 0
 metadata/_edit_lock_ = true
 
@@ -2266,10 +2343,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 77.0
-offset_top = 386.0
-offset_right = -183.8775
-offset_bottom = -241.91681
+offset_left = 82.0
+offset_top = 309.99994
+offset_right = -178.8775
+offset_bottom = -317.91687
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.6880059, 1.5869281)
@@ -2288,8 +2365,8 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.1, 0.1)
 texture_normal = ExtResource("9_7xanw")
-texture_pressed = ExtResource("10_hkxj5")
-texture_focused = ExtResource("10_hkxj5")
+texture_pressed = ExtResource("11_hkxj5")
+texture_focused = ExtResource("11_hkxj5")
 stretch_mode = 0
 metadata/_edit_lock_ = true
 
@@ -2305,6 +2382,53 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("11_nv3li")
 theme_override_font_sizes/font_size = 40
 text = "Body Color"
+horizontal_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="EquipmentButton" type="Button" parent="TypeSelectionArea"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.00001
+offset_top = 447.0
+offset_right = -180.87799
+offset_bottom = -180.91699
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.688, 1.587)
+flat = true
+
+[node name="Equipments" type="TextureButton" parent="TypeSelectionArea/EquipmentButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.3696682
+offset_top = -1.2602394
+offset_right = 1874.3706
+offset_bottom = 501.73975
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("9_7xanw")
+texture_pressed = ExtResource("11_hkxj5")
+texture_focused = ExtResource("11_hkxj5")
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="TypeSelectionArea/EquipmentButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("11_nv3li")
+theme_override_font_sizes/font_size = 40
+text = "Equipments"
 horizontal_alignment = 1
 metadata/_edit_lock_ = true
 
@@ -2351,8 +2475,8 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.1, 0.1)
 texture_normal = ExtResource("9_7xanw")
-texture_pressed = ExtResource("10_hkxj5")
-texture_focused = ExtResource("10_hkxj5")
+texture_pressed = ExtResource("11_hkxj5")
+texture_focused = ExtResource("11_hkxj5")
 stretch_mode = 0
 metadata/_edit_lock_ = true
 
@@ -2381,5 +2505,6 @@ texture = ExtResource("11_dpl2r")
 [connection signal="pressed" from="TypeSelectionArea/BodyButton/Body" to="." method="_on_body_pressed"]
 [connection signal="pressed" from="TypeSelectionArea/TiresButton/Tires" to="." method="_on_tires_pressed"]
 [connection signal="pressed" from="TypeSelectionArea/ColorButton/Color" to="." method="_on_color_pressed"]
+[connection signal="pressed" from="TypeSelectionArea/EquipmentButton/Equipments" to="." method="_on_equipments_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Save/SaveButton" to="." method="_on_save_button_pressed"]

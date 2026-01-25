@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://8wpn4o507iat"]
+[gd_scene load_steps=11 format=3 uid="uid://8wpn4o507iat"]
 
 [ext_resource type="Script" uid="uid://cw8d0j7rp700l" path="res://ui/level_selection/level_preview.gd" id="1_t6haa"]
-[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/menu'/window.png" id="2_ix8or"]
-[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/menu'/pressed.png" id="3_t6haa"]
-[ext_resource type="Texture2D" uid="uid://b0mgkfk5ssyru" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Play.svg" id="4_ix8or"]
+[ext_resource type="Texture2D" uid="uid://bbd4pw0bponif" path="res://assets/Menu/window.png" id="2_ix8or"]
+[ext_resource type="Texture2D" uid="uid://2ebonm8vd2e" path="res://assets/Menu/pressed.png" id="3_t6haa"]
+[ext_resource type="Texture2D" uid="uid://b36uocwgryfww" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Play.svg" id="4_ix8or"]
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="4_tboke"]
-[ext_resource type="Texture2D" uid="uid://dtftgtgs8wjxo" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="5_6a1xn"]
-[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="6_h0dym"]
-[ext_resource type="Texture2D" uid="uid://d2f1wgxbpyj7x" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Gear.svg" id="6_t6haa"]
+[ext_resource type="Texture2D" uid="uid://dkbc73bketc4f" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="5_6a1xn"]
+[ext_resource type="Texture2D" uid="uid://dgi3rfiea36qg" path="res://assets/Menu/unpressed.png" id="6_h0dym"]
+[ext_resource type="Texture2D" uid="uid://bpj7stewdoxwp" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Gear.svg" id="6_t6haa"]
+[ext_resource type="Texture2D" uid="uid://bxweqlhd8g67m" path="res://assets/Road Racers Adrenaline Assets/HUD/label.png" id="9_5l4ss"]
+[ext_resource type="Texture2D" uid="uid://iv47oxcrlnrq" path="res://ui/level_selection/level_preview_images/level1-prev.png" id="10_4xlt5"]
 
 [node name="LevelPreview" type="Control"]
 texture_filter = 1
@@ -182,24 +184,54 @@ position = Vector2(74.666664, 37.333344)
 scale = Vector2(1, 0.74999976)
 texture = ExtResource("5_6a1xn")
 
-[node name="Label2" type="Label" parent="."]
+[node name="PreviewWindow" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 416.0
-offset_top = 232.0
-offset_right = -408.0
-offset_bottom = -320.0
+offset_left = 509.0
+offset_top = 254.0
+offset_right = -513.0
+offset_bottom = -388.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Sprite2D" parent="PreviewWindow"]
+position = Vector2(453, 246.49997)
+scale = Vector2(31.333334, 16.291666)
+texture = ExtResource("9_5l4ss")
+
+[node name="PreviewImage" type="TextureRect" parent="PreviewWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 89.0
+offset_top = 64.0
+offset_right = -78.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_4xlt5")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Label2" type="Label" parent="PreviewWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 285.0
+offset_top = -52.0
+offset_right = -271.0
+offset_bottom = -358.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_tboke")
 theme_override_font_sizes/font_size = 50
-text = "Preview of the Level
-goes here"
+text = "Level Preview"
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
 
 [connection signal="pressed" from="StartButton" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="StartButton/TextureButton" to="." method="_on_start_pressed"]

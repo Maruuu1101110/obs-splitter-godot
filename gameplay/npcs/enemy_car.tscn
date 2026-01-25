@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0mh3f5ro5lvy"]
+
+[ext_resource type="Script" uid="uid://bh1os2cl82l4a" path="res://gameplay/npcs/enemy_car.gd" id="1_2l24a"]
+[ext_resource type="Texture2D" uid="uid://ciyon4afg6fs" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/red_cars_sprites.png" id="2_10mg1"]
+[ext_resource type="AudioStream" uid="uid://brkjcc18aix7w" path="res://audio/car_sounds/offroad-engine-61234.mp3" id="3_7qpxv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qpxv"]
+atlas = ExtResource("2_10mg1")
+region = Rect2(896, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3lxr"]
+atlas = ExtResource("2_10mg1")
+region = Rect2(928, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xjixy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qpxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3lxr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_10mg1"]
+radius = 7.0
+
+[node name="EnemyCar" type="CharacterBody2D" groups=["enemy"]]
+texture_filter = 1
+script = ExtResource("1_2l24a")
+
+[node name="CarSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xjixy")
+frame_progress = 0.5170965
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+rotation = 3.1415927
+shape = SubResource("CapsuleShape2D_10mg1")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 50.0
+target_desired_distance = 50.0
+path_max_distance = 10.0
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="debugCamera" type="Camera2D" parent="."]
+enabled = false
+zoom = Vector2(4, 4)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7qpxv")
+max_distance = 300.0
+parameters/looping = true
