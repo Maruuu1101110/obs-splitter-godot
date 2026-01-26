@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+class_name Level
+
+>>>>>>> origin/game-physics
 extends Node2D
 
 # Generalized na sya, basta follow lang ang format sang level:
@@ -10,6 +15,12 @@ extends Node2D
 @export var require_order: bool = true
 @export var lap_count: int = 0
 @export var laps_to_reward: int = 1
+<<<<<<< HEAD
+=======
+@export var biome: String = "default"
+@export var speed_limit: int = 80
+@export var police_speed: int = 100
+>>>>>>> origin/game-physics
 
 @export var flag_parent_path: NodePath = NodePath("FlagPoints")
 @export var enemy_checkpoints_parent_path: NodePath = NodePath("EnemyCheckpoints")
@@ -19,6 +30,10 @@ extends Node2D
 
 # Flagpoints
 @export var flag_tokens: Array = []
+<<<<<<< HEAD
+=======
+var flagpoint_map = {1: "flagpt_1", 2: "flagpt_2", 3: "flagpt_3"}
+>>>>>>> origin/game-physics
 
 # Spawns (currently for level 2)
 @export var available_buffs: Array = [
@@ -38,10 +53,21 @@ var enemy: Node2D = null
 var enemy_index: int = 0
 var police = null
 var has_tire_punctures: bool = false
+<<<<<<< HEAD
 var biome = "default"
 
 func _ready() -> void:
 	_load_flag_points()
+=======
+#var biome = "default"
+
+@onready var police_spawn = $PoliceSpawnpoint
+@onready var bonus_spawn = $BonusSpawn
+@onready var tire_puncture_spawn = $TirePunctureSpawn
+
+func _ready() -> void:
+	#_load_flag_points()
+>>>>>>> origin/game-physics
 	_load_enemy_checkpoints()
 	_assign_enemy()
 	_init_spawnpoints_meta()
@@ -51,6 +77,7 @@ func _process(delta: float) -> void:
 
 # ----------------- Initialization helpers -----------------
 
+<<<<<<< HEAD
 func _load_flag_points() -> void:
 	var parent = get_node_or_null(flag_parent_path)
 	if parent:
@@ -75,6 +102,32 @@ func _load_flag_points() -> void:
 		var area = flags[i]
 		if area and not area.is_connected("body_entered", Callable(self, "_on_flag_body_entered")):
 			area.body_entered.connect(_on_flag_body_entered.bind(i, flag_tokens[i]))
+=======
+#func _load_flag_points() -> void:
+	#var parent = get_node_or_null(flag_parent_path)
+	#if parent:
+		#for c in parent.get_children():
+			#if c is Area2D:
+				#flags.append(c)
+				#if c.name.to_lower().find("lap") != -1:
+					#lap_flag = c
+	#else:
+		#parent = get_node_or_null("FlagPoints")
+		#if parent:
+			#for c in parent.get_children():
+				#if c is Area2D:
+					#flags.append(c)
+					#if c.name.to_lower().find("lap") != -1:
+						#lap_flag = c
+	#if flag_tokens.is_empty():
+		#for f in flags:
+			#flag_tokens.append(f.name)
+#
+	#for i in range(flags.size()):
+		#var area = flags[i]
+		#if area and not area.is_connected("body_entered", Callable(self, "_on_flag_body_entered")):
+			#area.body_entered.connect(_on_flag_body_entered.bind(i, flag_tokens[i]))
+>>>>>>> origin/game-physics
 
 	if lap_flag and not lap_flag.is_connected("body_entered", Callable(self, "_on_lap_body_entered")):
 		lap_flag.connect("body_entered", Callable(self, "_on_lap_body_entered"))
@@ -128,6 +181,7 @@ func _update_enemy_targeting() -> void:
 
 # ----------------- Flag handling -----------------
 
+<<<<<<< HEAD
 func _on_flag_body_entered(body: Node, idx: int, token: String) -> void:
 	if not _is_player(body):
 		return
@@ -154,6 +208,87 @@ func _on_lap_body_entered(body: Node) -> void:
 		if lap_passed.size() == flag_tokens.size():
 			_on_lap_complete()
 			lap_passed.clear()
+=======
+#func _on_flag_body_entered(body: Node, idx: int, token: String) -> void:
+	#if not _is_player(body):
+		#return
+	#if require_order:
+		#if idx != current_index:
+			#return
+		#current_index += 1
+		#print("OBTAINED TOKEN", token, current_index, "/", flag_tokens.size())
+	#else:
+		#if token in lap_passed:
+			#return
+		#lap_passed.append(token)
+		#print("FLAG PASSED:", lap_passed)
+#
+#func _on_lap_body_entered(body: Node) -> void:
+	#if not _is_player(body):
+		#return
+#
+	#if require_order:
+		#if current_index == flag_tokens.size():
+			#_on_lap_complete()
+			#current_index = 0
+	#else:
+		#if lap_passed.size() == flag_tokens.size():
+			#_on_lap_complete()
+			#lap_passed.clear()
+			
+func _on_flagpoint_1_body_entered(body: Node2D) -> void:
+	if _is_player(body):
+		var pixel_speed = body.velocity.length()
+		var kmh = (pixel_speed / 32) * 3.6 * 6.5
+		if kmh > speed_limit && is_instance_valid(police):
+			police.in_pursuit = true
+			body.is_being_chased = true
+			
+		if flagpoint_map[1] in lap_passed:
+			return
+		lap_passed.append(flagpoint_map[1])
+		print(lap_passed)
+
+# ------------------------------------------------------------------------------
+
+func _on_flagpoint_2_body_entered(body: Node2D) -> void:
+	if flagpoint_map[2] in lap_passed:
+		return
+	if body.name == 'PlayerCar' and flagpoint_map[1] in lap_passed:
+		lap_passed.append(flagpoint_map[2])
+		print(lap_passed)
+
+# ------------------------------------------------------------------------------
+
+func _on_flagpoint_3_body_entered(body: Node2D) -> void:
+	if flagpoint_map[3] in lap_passed:
+		return
+	if body.name == 'PlayerCar' and flagpoint_map[2] in lap_passed:
+		lap_passed.append(flagpoint_map[3])
+		print(lap_passed)
+
+func _on_lap_body_entered(body: Node2D) -> void:
+	if _is_player(body) && lap_passed == [flagpoint_map[1], flagpoint_map[2], flagpoint_map[3]]:
+		lap_count += 1
+		print("Lap Count: %d" % lap_count)
+		if bonus_spawn != null:
+			for bonus in bonus_spawn.get_children():
+				var buff_scn = available_buffs.pick_random()
+				spawn_entity(buff_scn, bonus, bonus.name)
+		lap_passed.clear()
+	
+	if lap_count >= 1 && not is_instance_valid(police):
+		spawn_entity("res://gameplay/obstacle/police.tscn", police_spawn, "Police Spawned")
+		
+	if body.name == "PlayerCar":
+		if tire_puncture_spawn_flag(body):
+			for tire_punc in tire_puncture_spawn.get_children():
+				spawn_entity("res://gameplay/obstacle/tire_puncture.tscn", tire_punc, tire_punc.name)
+			has_tire_punctures = true
+			
+	if lap_count == 3:
+		get_parent().get_parent().level_completed_overlay.show()
+>>>>>>> origin/game-physics
 
 # ----------------- Utilities -----------------
 
@@ -228,6 +363,10 @@ func spawn_entity(scene_location: String, spawnpoint: Node2D, debug_message: Str
 
 	if scene_location == "res://gameplay/obstacle/police.tscn":
 		police = entity_scene
+<<<<<<< HEAD
+=======
+		police.speed = police_speed
+>>>>>>> origin/game-physics
 
 func _on_level_complete() -> void:
 	print("Level complete!")

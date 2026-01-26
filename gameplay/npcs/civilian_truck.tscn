@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://yfcsdu12e2sn"]
+
+[ext_resource type="Texture2D" uid="uid://dbymnh3hlpvu5" path="res://assets/Road Racers Adrenaline Assets/Vehicles/civilian_truck_1.png" id="1_e2d5b"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y8y84"]
+height = 48.0
+
+[node name="CivilianTruck" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_e2d5b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_y8y84")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 50.0
+target_desired_distance = 50.0
+path_max_distance = 10.0
+avoidance_enabled = true
+debug_enabled = true

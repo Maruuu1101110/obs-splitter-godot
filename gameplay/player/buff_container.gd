@@ -14,5 +14,7 @@ func play_buff(buff_path: String, duration):
 	buff_sprite.sprite_frames = load(buff_path)
 	add_child(buff_sprite)
 	buff_sprite.play()
-	get_tree().create_timer(duration).timeout.connect(func():buff_sprite.queue_free())
+	get_tree().create_timer(duration).timeout.connect(func():
+		if is_instance_valid(buff_sprite):
+			buff_sprite.queue_free())
 	

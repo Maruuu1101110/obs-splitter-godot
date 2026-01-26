@@ -1,9 +1,23 @@
 extends Node2D
 
 @export var selected_level: int
-@export var levels := {
-	1: "res://gameplay/levels/level1.tscn",
-	2: "res://gameplay/levels/level2.tscn"
+#@export var levels := {
+	#1: "res://gameplay/levels/level1.tscn",
+	#2: "res://gameplay/levels/level2.tscn"
+#}
+@export var level_info_map := {
+	1: {
+		"path": "res://gameplay/levels/level1.tscn",
+		"biome": "offroad",
+		"speed_limit": 100,
+		"police_speed": 100
+	},
+	2: {
+		"path": "res://gameplay/levels/level2.tscn",
+		"biome": "ice",
+		"speed_limit": 80,
+		"police_speed": 150
+	}
 }
 
 @onready var level_container := $LevelContainer
@@ -130,7 +144,7 @@ func load_level(level_id:  int) -> void:
 		enemy.queue_free()
 		enemy = null
 
-	var level_path = levels.get(level_id)
+	var level_path = level_info_map[level_id]["path"]
 	if level_path == null:
 		push_error("Invalid level ID: %s" % level_id)
 		show_loading(false)
@@ -171,6 +185,8 @@ func load_level(level_id:  int) -> void:
 	#if level_id > 1:
 		#GameState.unlocked_levels += 1
 		#GameState.save_game()
+		
+	assign_map_variables()
 	
 	show_loading(false)
 	spawn_player()
@@ -278,4 +294,11 @@ func level_complete_check():
 	if is_instance_valid(current_level) && current_level.lap_count >= 3:
 		level_completed_overlay.show()
 		print("LAP COMPLETE")
+	pass
+
+func assign_map_variables():
+	var level_info = level_info_map[selected_level]
+	current_level.biome = level_info["biome"]
+	current_level.speed_limit = level_info["speed_limit"]
+	current_level.police_speed = level_info["police_speed"]
 	pass
