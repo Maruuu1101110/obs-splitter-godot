@@ -1,11 +1,7 @@
 extends CharacterBody2D
 
-<<<<<<< HEAD
-const SPEED = 150.0
-=======
 #const SPEED = 150.0
 var speed = 150.0
->>>>>>> origin/game-physics
 const MAX_HP = 1500.0
 const DAMAGE = 50.0
 
@@ -33,21 +29,13 @@ func _physics_process(delta: float) -> void:
 	if target != null && curr_hp > 0 && in_pursuit:
 		if position.distance_to(target.position) < 100:
 			var direction = (target.position - position).normalized()
-<<<<<<< HEAD
-			velocity = direction * SPEED
-=======
 			velocity = direction * speed
->>>>>>> origin/game-physics
 			look_at(target.position)
 			#print("Chasing at player")
 			target.breadcrumb.clear()
 		elif len(target.breadcrumb) > 0:
 			var direction = (target.breadcrumb[0] - position).normalized()
-<<<<<<< HEAD
-			velocity = direction * SPEED
-=======
 			velocity = direction * speed
->>>>>>> origin/game-physics
 			look_at(target.breadcrumb[0])
 			#print("Chasing at " + str(target.breadcrumb[0]))
 		move_and_slide() 
