@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://cvqxmwifpyd4a"]
 
 [ext_resource type="Script" uid="uid://ccisaxpr4xtjb" path="res://gameplay/pause_overlay.gd" id="1_bnrle"]
-[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/Menu/window.png" id="2_n63o2"]
-[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/Menu/pressed.png" id="3_d58qc"]
+[ext_resource type="Texture2D" uid="uid://bbd4pw0bponif" path="res://assets/Menu/window.png" id="2_n63o2"]
+[ext_resource type="Texture2D" uid="uid://2ebonm8vd2e" path="res://assets/Menu/pressed.png" id="3_d58qc"]
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="5_7rmys"]
-[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/Menu/unpressed.png" id="5_ax1jm"]
+[ext_resource type="Texture2D" uid="uid://dgi3rfiea36qg" path="res://assets/Menu/unpressed.png" id="5_ax1jm"]
 [ext_resource type="PackedScene" uid="uid://bhf166x15oid0" path="res://ui/settings/settings.tscn" id="6_i5ptk"]
-[ext_resource type="Texture2D" uid="uid://d2f1wgxbpyj7x" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Gear.svg" id="6_n63o2"]
+[ext_resource type="Texture2D" uid="uid://bpj7stewdoxwp" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Gear.svg" id="6_n63o2"]
 
 [node name="PauseOverlay" type="Control"]
 texture_filter = 1
@@ -145,9 +145,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 792.0
-offset_top = 608.0
+offset_top = 618.0
 offset_right = -920.0
-offset_bottom = -416.0
+offset_bottom = -406.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.7000983, 1.6447368)

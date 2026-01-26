@@ -2030,6 +2030,7 @@ script = ExtResource("1_f855h")
 metadata/_edit_lock_ = true
 
 [node name="Background" type="TextureRect" parent="."]
+self_modulate = Color(0.59717613, 0.59717613, 0.5971761, 1)
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -2042,6 +2043,7 @@ expand_mode = 2
 metadata/_edit_lock_ = true
 
 [node name="BackgroundOverlay" type="ColorRect" parent="."]
+visible = false
 self_modulate = Color(0, 0, 0, 0.23137255)
 layout_mode = 1
 anchors_preset = 15
@@ -2064,7 +2066,6 @@ offset_right = -107.0
 offset_bottom = -226.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_lock_ = true
 
 [node name="WindowBackground" type="TextureRect" parent="PreviewArea"]
 layout_mode = 1
@@ -2284,6 +2285,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("11_nv3li")
 theme_override_font_sizes/font_size = 40
@@ -2331,6 +2333,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("11_nv3li")
 theme_override_font_sizes/font_size = 40
@@ -2378,6 +2381,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("11_nv3li")
 theme_override_font_sizes/font_size = 40
@@ -2425,6 +2429,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("11_nv3li")
 theme_override_font_sizes/font_size = 40
@@ -2492,6 +2497,7 @@ offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("11_nv3li")
 theme_override_font_sizes/font_size = 100

@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bsfu1ibmoadej" path="res://assets/RaceCar/Track_L-Sheet.png" id="6_84pn4"]
 [ext_resource type="Texture2D" uid="uid://vq3xrkm0lpax" path="res://assets/RaceCar/Track_R-Sheet.png" id="7_rypgw"]
 [ext_resource type="PackedScene" uid="uid://rlhigf5m3j14" path="res://ui/popup_location.tscn" id="8_rypgw"]
-[ext_resource type="Script" path="res://gameplay/player/buff_container.gd" id="9_vkuex"]
+[ext_resource type="Script" uid="uid://bu78831hik7ui" path="res://gameplay/player/buff_container.gd" id="9_vkuex"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0qj7i"]
 atlas = ExtResource("2_is578")
@@ -353,7 +353,8 @@ shape = SubResource("CapsuleShape2D_lokse")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 rotation = 1.5707964
-zoom = Vector2(4, 4)
+offset = Vector2(0, 25)
+zoom = Vector2(4.5, 4.5)
 rotation_smoothing_enabled = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

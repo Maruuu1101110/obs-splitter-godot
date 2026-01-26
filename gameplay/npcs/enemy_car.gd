@@ -19,7 +19,7 @@ var current_drift := 0.0
 func _ready() -> void:
 	add_to_group("enemy")
 	GameState.enemy = self
-	
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 	engine_sound_player.volume_db = 2.0
 	engine_sound_player.play()
 	engine_sound_player.pitch_scale = 0.5 
@@ -98,8 +98,6 @@ func _on_velocity_computed(safe_velocity: Vector2) -> void:
 	move_and_slide()
 	
 # SOUNDS
-	
-
 func update_engine_sound():
 	var base_pitch := 0.5
 	var max_pitch := 1.8

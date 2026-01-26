@@ -28,8 +28,11 @@ extends Node2D
 
 # LABELS
 @onready var speed_label = $GameHud/HUD/Labels/SpeedLabel
-@onready var health_label: RichTextLabel = $GameHud/HUD/Labels/HealthLabel
+@onready var health_label: RichTextLabel = $GameHud/HUD/Labels/HealthBar/HealthLabel
 @onready var lap_label: RichTextLabel = $GameHud/HUD/Labels/LapLabel
+
+# BAR
+@onready var health_bar: ProgressBar = $GameHud/HUD/Labels/HealthBar/HealthProgressBar
 
 
 @onready var mobile_controls = $/root/Main/Gameplay/GameHud/HUD/MobileControls
@@ -56,9 +59,8 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	_update_timer_label()
-	update_health_label()
+	update_label()
 	update_speedometer()
-	level_complete_check()
 
 func _start_countdown():
 	print("COUNTDOWN START")
@@ -119,12 +121,17 @@ func update_speedometer() -> void:
 		var kmh = (pixel_speed / PIXELS_PER_METER) * 3.6 * display_multiplier
 		speed_label.text = "%d km/h" % int(kmh)
 
-func update_health_label():
+func update_label():
 	if player and is_instance_valid(player):
 		var player_health = player.curr_hp
 		health_label.text = "HEALTH: %s" % str(int(player_health))
+		update_healthbar()
 	if current_level and is_instance_valid(current_level):
 		lap_label.text = "LAP: %s" % str(current_level.lap_count + 1) if current_level.lap_count < 2 else "FINAL"
+
+func update_healthbar():
+	health_bar.max_value = player.max_hp
+	health_bar.value = player.curr_hp
 
 func load_level(level_id:  int) -> void:
 	show_loading(true)
@@ -286,19 +293,33 @@ func restart_current_level() -> void:
 	await get_tree().process_frame
 	load_level(level_id)
 
-
-# gonna be used if we do the same lap concept for every level...
-func level_complete_check():
-	if current_level == null:
-		return
-	if is_instance_valid(current_level) && current_level.lap_count >= 3:
-		level_completed_overlay.show()
-		print("LAP COMPLETE")
-	pass
-
 func assign_map_variables():
 	var level_info = level_info_map[selected_level]
 	current_level.biome = level_info["biome"]
 	current_level.speed_limit = level_info["speed_limit"]
 	current_level.police_speed = level_info["police_speed"]
 	pass
+
+
+@onready var effects_container: HBoxContainer = $GameHud/HUD/EffectsContainer
+
+func effects_add_item(item_path: String):
+	var effect_id := item_path.get_file()
+
+	for child in effects_container.get_children():
+		if child.get_meta("effect_id", "") == effect_id:
+			return
+
+	var icon := TextureRect.new()
+	icon.set_meta("effect_id", effect_id)
+	icon.texture = load(item_path)
+	icon.custom_minimum_size = Vector2(64, 64)
+
+	effects_container.add_child(icon)
+
+func effects_remove_item(item_path: String):
+	var effect_id := item_path.get_file()
+	for child in effects_container.get_children():
+		if child.get_meta("effect_id", "") == effect_id:
+			child.queue_free()
+			return

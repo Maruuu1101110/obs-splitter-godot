@@ -1793,9 +1793,9 @@ shape = SubResource("RectangleShape2D_u8808")
 position = Vector2(2023.5, 912)
 shape = SubResource("RectangleShape2D_d1m6t")
 
-[node name="Lap" type="Area2D" parent="." groups=["player"]]
+[node name="Lap" type="Area2D" parent="FlagPoints" groups=["player"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Lap"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlagPoints/Lap"]
 position = Vector2(1088, 504)
 shape = SubResource("RectangleShape2D_patc8")
 
@@ -1904,4 +1904,4 @@ position = Vector2(1098, 667)
 [connection signal="body_entered" from="FlagPoints/Flagpoint1" to="." method="_on_flagpoint_1_body_entered"]
 [connection signal="body_entered" from="FlagPoints/Flagpoint2" to="." method="_on_flagpoint_2_body_entered"]
 [connection signal="body_entered" from="FlagPoints/Flagpoint3" to="." method="_on_flagpoint_3_body_entered"]
-[connection signal="body_entered" from="Lap" to="." method="_on_lap_body_entered"]
+[connection signal="body_entered" from="FlagPoints/Lap" to="." method="_on_lap_body_entered"]

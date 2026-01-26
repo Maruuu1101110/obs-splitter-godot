@@ -216,7 +216,7 @@ func _on_lap_body_entered(body: Node2D) -> void:
 			has_tire_punctures = true
 			
 	if lap_count == 3:
-		get_parent().get_parent().level_completed_overlay.show()
+		_on_level_complete()
 
 # ----------------- Utilities -----------------
 
@@ -226,40 +226,6 @@ func _is_player(body: Node) -> bool:
 	if body is Node and body.name == "PlayerCar":
 		return true
 	return false
-
-func _on_lap_complete() -> void:
-	lap_count += 1
-	print("LAP COMPLETE:", lap_count)
-
-	var bonus_parent = get_node_or_null(bonus_spawn_path)
-	if not bonus_parent:
-		bonus_parent = get_node_or_null("BonusSpawn")
-	if bonus_parent:
-		for bonus in bonus_parent.get_children():
-			var buff_scn = available_buffs.pick_random()
-			spawn_entity(buff_scn, bonus, bonus.name)
-
-	if lap_count >= laps_to_reward and not is_instance_valid(police):
-		var ps = get_node_or_null(police_spawn_path)
-		if not ps:
-			ps = get_node_or_null("PoliceSpawnpoint")
-		if ps:
-			spawn_entity("res://gameplay/obstacle/police.tscn", ps, "Police Spawned")
-
-	var player_nodes = get_tree().get_nodes_in_group("player")
-	if player_nodes.size() > 0:
-		var p = player_nodes[0]
-		if tire_puncture_spawn_flag(p):
-			var tire_parent = get_node_or_null(tire_puncture_spawn_path)
-			if not tire_parent:
-				tire_parent = get_node_or_null("TirePunctureSpawn")
-			if tire_parent:
-				for tire_punc in tire_parent.get_children():
-					spawn_entity("res://gameplay/obstacle/tire_puncture.tscn", tire_punc, tire_punc.name)
-				has_tire_punctures = true
-
-	if lap_count == 5:
-		_on_level_complete()
 
 func tire_puncture_spawn_flag(body: Node) -> bool:
 	if not (body is Node):
@@ -283,7 +249,7 @@ func spawn_entity(scene_location: String, spawnpoint: Node2D, debug_message: Str
 	var entity_scene = load(scene_location).instantiate()
 	entity_scene.position = spawnpoint.position
 	entity_scene.rotation = spawnpoint.rotation
-	level_node.add_child(entity_scene)
+	level_node.call_deferred("add_child", entity_scene)
 	print(debug_message)
 
 	spawnpoint.set_meta("occupied", true)
@@ -294,4 +260,5 @@ func spawn_entity(scene_location: String, spawnpoint: Node2D, debug_message: Str
 		police.speed = police_speed
 
 func _on_level_complete() -> void:
-	print("Level complete!")
+	print("Level Complete")
+	get_parent().get_parent().level_completed_overlay.show()

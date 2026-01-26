@@ -1,13 +1,13 @@
 [gd_scene load_steps=10 format=3 uid="uid://f61a2vi1ht46"]
 
 [ext_resource type="Texture2D" uid="uid://bbd4pw0bponif" path="res://assets/Menu/window.png" id="1_tstho"]
-[ext_resource type="Script" path="res://gameplay/level_completed_overlay.gd" id="1_xcbdj"]
+[ext_resource type="Script" uid="uid://bq2b6bgeqer35" path="res://gameplay/level_completed_overlay.gd" id="1_xcbdj"]
 [ext_resource type="Texture2D" uid="uid://2ebonm8vd2e" path="res://assets/Menu/pressed.png" id="2_hh08v"]
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="3_q8cjt"]
 [ext_resource type="Texture2D" uid="uid://b36uocwgryfww" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Play.svg" id="4_xhf10"]
 [ext_resource type="Texture2D" uid="uid://dgi3rfiea36qg" path="res://assets/Menu/unpressed.png" id="5_xcbdj"]
 [ext_resource type="Texture2D" uid="uid://bfvsioal0wkdh" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Next.svg" id="6_xhf10"]
-[ext_resource type="Texture2D" uid="uid://bpj7stewdoxwp" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Gear.svg" id="7_xcbdj"]
+[ext_resource type="Texture2D" uid="uid://bs2oya2ipmb71" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Redo.svg" id="8_xcbdj"]
 [ext_resource type="Texture2D" uid="uid://bgwkkh5rbmkf3" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Home.svg" id="8_xmmqf"]
 
 [node name="LevelCompletedOverlay" type="Control"]
@@ -112,13 +112,14 @@ offset_top = 10.666667
 offset_bottom = 10.666664
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_q8cjt")
 theme_override_font_sizes/font_size = 28
 text = "Next Level"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Garage" type="Button" parent="."]
+[node name="Restart" type="Button" parent="."]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 15
@@ -135,7 +136,7 @@ text = "Select"
 icon = ExtResource("4_xhf10")
 flat = true
 
-[node name="TextureButton" type="TextureButton" parent="Garage"]
+[node name="TextureButton" type="TextureButton" parent="Restart"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -151,23 +152,26 @@ texture_normal = ExtResource("5_xcbdj")
 texture_pressed = ExtResource("2_hh08v")
 stretch_mode = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="Garage"]
+[node name="Sprite2D" type="Sprite2D" parent="Restart"]
 position = Vector2(74.66665, 26.666676)
 scale = Vector2(0.6, 0.6)
-texture = ExtResource("7_xcbdj")
+texture = ExtResource("8_xcbdj")
 
-[node name="Label" type="Label" parent="Garage"]
+[node name="Label" type="Label" parent="Restart"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 0.6666667
 offset_top = 10.666667
+offset_right = 0.66667175
 offset_bottom = 10.666664
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_q8cjt")
 theme_override_font_sizes/font_size = 28
-text = "Garage"
+text = "Restart"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -214,10 +218,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 10.666667
-offset_bottom = 10.666664
+offset_top = 8.666626
+offset_bottom = 8.666626
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_q8cjt")
 theme_override_font_sizes/font_size = 28
 text = "Home"
@@ -226,7 +231,7 @@ vertical_alignment = 1
 
 [connection signal="pressed" from="NextLevel" to="." method="_on_next_pressed"]
 [connection signal="pressed" from="NextLevel/TextureButton" to="." method="_on_next_pressed"]
-[connection signal="pressed" from="Garage" to="." method="_on_garage_pressed"]
-[connection signal="pressed" from="Garage/TextureButton" to="." method="_on_garage_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="Restart/TextureButton" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_home_pressed"]
 [connection signal="pressed" from="Quit/TextureButton" to="." method="_on_home_pressed"]

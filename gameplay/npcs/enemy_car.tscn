@@ -39,19 +39,19 @@ sprite_frames = SubResource("SpriteFrames_xjixy")
 frame_progress = 0.5170965
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_10mg1")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 50.0
-target_desired_distance = 50.0
-path_max_distance = 10.0
 avoidance_enabled = true
+avoidance_layers = 3
 
 [node name="debugCamera" type="Camera2D" parent="."]
 enabled = false
 zoom = Vector2(4, 4)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+process_mode = 1
 stream = ExtResource("3_7qpxv")
 max_distance = 300.0
 parameters/looping = true

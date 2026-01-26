@@ -8,9 +8,11 @@ var main_soundtrack = null
 
 # --- Runtime game state ---
 var is_gameplay := false
-var total_levels := 10
+var total_levels := 20
 var unlocked_levels := 1
 var selected_level := 0
+
+# FOR UPDATES
 var coins := 0
 var highscore := 0
 
@@ -86,12 +88,12 @@ var player_configuration = {
 }
 
 var body_stats = {
-	"offroad-1": {"max_speed": 240.0, "acceleration": 600.0, "weight": 1.2, "health": 150.0},
-	"offroad-2": {"max_speed": 235.0, "acceleration": 580.0, "weight": 1.5, "health": 160.0},
-	"street-1":  {"max_speed": 270.0, "acceleration": 720.0, "weight": 1.0, "health": 120.0},
-	"street-2": {"max_speed": 285.0, "acceleration": 760.0, "weight": 0.95, "health": 115.0},
-	"sport-1": {"max_speed": 320.0, "acceleration": 900.0, "weight": 0.8, "health": 95.0},
-	"sport-2": {"max_speed":  340.0, "acceleration":  980.0, "weight":  0.75, "health":  85.0},
+	"offroad-1": {"max_speed": 260.0, "acceleration": 620.0, "weight": 1.2, "health": 150.0},
+	"offroad-2": {"max_speed": 255.0, "acceleration": 600.0, "weight": 1.5, "health": 160.0},
+	"street-1":  {"max_speed": 290.0, "acceleration": 740.0, "weight": 1.0, "health": 120.0},
+	"street-2": {"max_speed": 305.0, "acceleration": 780.0, "weight": 0.95, "health": 115.0},
+	"sport-1": {"max_speed": 340.0, "acceleration": 920.0, "weight": 0.8, "health": 95.0},
+	"sport-2": {"max_speed":  360.0, "acceleration":  1000.0, "weight":  0.75, "health":  85.0},
 }
 
 var tire_stats = {

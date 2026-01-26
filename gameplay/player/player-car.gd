@@ -5,7 +5,6 @@ extends CharacterBody2D
 # SYA NA NI NAG TIMPLA SANG PARAMS
 
 # ----- Game Mechanics Related -----
-var health := 100.0
 var armor := 0.0				# this increases when equipped with weapons
 var damage := 0.0				# this increases when equipped with weapons
 var bonus_speed := 0.0
@@ -47,7 +46,8 @@ var accelerating := false
 
 # ------ GAME MECHANICS ------
 var breadcrumb = []
-var curr_hp = health
+var curr_hp
+var max_hp
 var damage_cd = 0.5
 var damage_timer = 0.0
 var is_being_chased = false
@@ -97,7 +97,7 @@ var biome_multipliers = {
 var buff_map = {
 	"nitro": {
 		"path": "res://gameplay/effects/nitro_buff.tres",
-		"buff": nitro_buff
+		"buff": nitro_buff,
 	},
 	"defense": {
 		"path": "res://gameplay/effects/defense_buff.tres",
@@ -175,14 +175,15 @@ func _apply_car_stats():
 	
 	max_speed = body_data.get("max_speed", max_speed)
 	acceleration_force = body_data.get("acceleration", acceleration_force)
-	health = body_data.get("health", health)
+	curr_hp = body_data.get("health", 100)
+	max_hp = body_data.get("health",100)
 	weight = body_data.get("weight", weight)
 	
 	reverse_speed = max_speed * 0.5
 	actual_speed = max_speed
 	brake_force = acceleration_force * 0.6
 	
-	print("Body stats loaded: %s (Speed: %s, Accel:  %s, HP: %s)" % [body_id, actual_speed, acceleration_force, health])
+	print("Body stats loaded: %s (Speed: %s, Accel:  %s, HP: %s)" % [body_id, actual_speed, acceleration_force, curr_hp])
 
 func _apply_tire_stats():
 	var tire_id = GameState. player_configuration.get("tire-id", "street_tire")
@@ -224,32 +225,6 @@ func _apply_equipment_stats():
 	if equipment_id == "front_blade":
 		immune_to_puncture = true
 
-#func _physics_process(delta):
-	#damage_timer -= delta
-	#read_input()
-	#toggle_camera()
-	##apply_biome_multipliers(biome_multipliers[biome])
-	#apply_drift()
-	#apply_engine(delta)
-	#apply_friction(delta)
-	#apply_steering(delta)
-	#update_engine_sound()
-	#move_and_slide()
-#
-	## update buff container to follow player
-	#buff_container.global_position = global_position
-	#buff_container.global_rotation = 0.0
-#
-	#if is_punctured:
-		#puncture_tire(delta)
-	#else:
-		#actual_speed = max_speed + bonus_speed
-		#reverse_speed = actual_speed * 0.5
-#
-	#if damage_timer > 0:
-		#return
-	#detect_collision()
-
 func _physics_process(delta):
 	damage_timer -= delta
 	read_input()
@@ -268,12 +243,14 @@ func _physics_process(delta):
 	
 	if is_punctured:
 		puncture_tire(delta)
+		get_parent().effects_add_item("res://assets/Road Racers Adrenaline Assets/Pickables & Obstacles/police_tire_puncture.png")
 	else:
 		#var body_id = GameState.player_configuration. get("body-id", "street-1")
 		#var body_data = GameState.get_body_data(body_id)
 		#max_speed = body_data.get("max_speed", max_speed)
 		actual_speed = max_speed + bonus_speed
 		reverse_speed = actual_speed * 0.5
+		get_parent().effects_remove_item("res://assets/Road Racers Adrenaline Assets/Pickables & Obstacles/police_tire_puncture.png")
 	
 	if damage_timer > 0:
 		return
@@ -518,6 +495,7 @@ func nitro_buff(duration, bonus_mult):
 		actual_speed += bonus_speed
 	get_tree().create_timer(duration).timeout.connect(clear_nitro_buff.bind(bonus_mult))
 	player_nitro_buffs.append("nitro")
+	get_parent().effects_add_item("res://assets/Road Racers Adrenaline Assets/Pickables & Obstacles/nitro.png")
 
 # --------------------------------------------------
 
@@ -528,6 +506,7 @@ func defense_buff(duration, bonus_mult):
 	
 	get_tree().create_timer(duration).timeout.connect(clear_defense_buff.bind(bonus_mult))
 	player_defense_buffs.append("defense")
+	get_parent().effects_add_item("res://assets/Road Racers Adrenaline Assets/Pickables & Obstacles/defense.png")
 
 # --------------------------------------------------
 
@@ -537,6 +516,7 @@ func clear_nitro_buff(bonus_mult):
 		actual_speed -= bonus_speed
 	bonus_speed -= 2 * bonus_mult
 	#print("Bonus nitro cleared, actual speed %d" % actual_speed)
+	get_parent().effects_remove_item("res://assets/Road Racers Adrenaline Assets/Pickables & Obstacles/nitro.png")
 
 # --------------------------------------------------
 
@@ -547,6 +527,7 @@ func clear_defense_buff(bonus_mult):
 	if len(player_defense_buffs) <= 0:
 		immune_to_puncture = false
 	#print("Bonus defense cleared")
+	get_parent().effects_remove_item("res://assets/Road Racers Adrenaline Assets/Pickables & Obstacles/defense.png")
 
 # --------------------------------------------------
 

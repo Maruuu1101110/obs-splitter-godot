@@ -11,14 +11,8 @@ func set_level(level: int) -> void:
 func _on_home_pressed() -> void:
 	_quit_to_menu()
 
-func _on_garage_pressed() -> void:
-	hide()
-	var ui_node = get_node("/root/Main/UI")
-	ui_node.show_overlay($/root/Main/UI/Garage)
-	print("Pressed Garage Button on Level Preview")
-	print("Selected level:", selected_level)
-	
-	
+func _on_restart_pressed() -> void:
+	_restart_level()
 
 func _on_next_pressed() -> void:
 	_cleanup_gameplay()
@@ -34,19 +28,12 @@ func _on_next_pressed() -> void:
 
 	gameplay.selected_level = selected_level + 1
 	gameplay.load_level(selected_level + 1)
-
-	# Hide UI overlays
-	var ui_node = get_node("/root/Main/UI")
-	ui_node.close_overlay(ui_node.get_node("MainMenu"))
-	ui_node.close_overlay(ui_node.get_node("LevelSelection"))
-	ui_node.close_overlay(self)
+	hide()
 
 func _quit_to_menu() -> void:
 	get_tree().paused = false
 	_cleanup_gameplay()
-	get_parent().get_parent().hide_hud()
-	hide()
-	_show_main_menu()
+	get_tree().change_scene_to_file("res://main.tscn")
 
 # CLEANUP
 func _cleanup_gameplay() -> void:
@@ -61,7 +48,13 @@ func _cleanup_gameplay() -> void:
 				else:
 					for subchild in child.get_children():
 						subchild. queue_free()
-						
+
+func _restart_level() -> void:
+	var gameplay = get_node_or_null("/root/Main/Gameplay")
+	if gameplay and gameplay.has_method("restart_current_level"):
+		gameplay.restart_current_level()
+	hide()
+
 func _show_main_menu() -> void:
 	var main_menu = get_node_or_null("/root/Main/UI/MainMenu")
 	var gameplay_hud = get_node_or_null("/root/Main/UI/GameHud")

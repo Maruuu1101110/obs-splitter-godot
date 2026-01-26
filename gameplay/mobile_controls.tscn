@@ -56,6 +56,6 @@ texture_normal = ExtResource("5_k3am5")
 shape = SubResource("RectangleShape2D_hda62")
 
 [node name="Handbrake" type="TouchScreenButton" parent="."]
-position = Vector2(1640, 368)
+position = Vector2(1679, 382)
 texture_normal = ExtResource("2_aq63k")
 shape = SubResource("RectangleShape2D_pq8d4")

@@ -276,7 +276,7 @@ func _on_back_pressed():
 	
 func _on_save_button_pressed() -> void:
 	GameState.save_player_config()
-	get_parent().close_overlay($/root/Main/UI/Garage)
+	_on_back_pressed()
 
 func _on_body_pressed() -> void:
 	selection_area_node.set_body_items(body_sprites_map)

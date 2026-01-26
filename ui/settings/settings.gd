@@ -11,6 +11,7 @@ func _process(delta: float) -> void:
 
 func _on_goback_pressed():
 	print("Go Back Button Pressed")
+	Ui.close_overlay($/root/Main/UI/Settings)
 	hide()
 
 func _say_hi_pressed():

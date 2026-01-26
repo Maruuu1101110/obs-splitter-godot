@@ -13,7 +13,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "PlayerCar":
-		body.curr_hp = body.health
+		body.curr_hp = clamp(body.curr_hp + 30, 0, body.max_hp)
 		popup.popup("HP Restored!!!", Color("green"))
 		queue_free()
 

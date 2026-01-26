@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://8a2ch64kjlwc"]
 
-[ext_resource type="Script" uid="uid://bwphujugb41p0" path="res://ui/speedo.gd" id="1_8mnr1"]
+[ext_resource type="Script" path="res://ui/speedo.gd" id="1_8mnr1"]
 [ext_resource type="Texture2D" uid="uid://bykiffm0fyadc" path="res://assets/AUS1/AUS1 Layers/3. MSBColor.png" id="1_glgdo"]
 [ext_resource type="Texture2D" uid="uid://dyk4754ylqtie" path="res://assets/AUS1/AUS1 Layers/4. MKPHSticks.png" id="2_8mnr1"]
 [ext_resource type="Texture2D" uid="uid://di5smwk5nsdqs" path="res://assets/AUS1/AUS1 Layers/2. SpeedoHolders.png" id="2_mnaia"]
@@ -57,7 +57,7 @@ position = Vector2(475, 297)
 texture = ExtResource("2_mnaia")
 
 [node name="Others" type="Node2D" parent="."]
-position = Vector2(18.947369, 82.105286)
+position = Vector2(625.2631, 73.68423)
 scale = Vector2(0.95, 0.95)
 
 [node name="13_MrpmbColor" type="Sprite2D" parent="Others"]
@@ -87,7 +87,7 @@ texture = ExtResource("9_hyhww")
 offset = Vector2(-70, 0)
 
 [node name="Others2" type="Node2D" parent="."]
-position = Vector2(1164.2106, 82.10524)
+position = Vector2(541.0526, 73.68418)
 scale = Vector2(0.95, 0.95)
 
 [node name="18_MftbColor" type="Sprite2D" parent="Others2"]
