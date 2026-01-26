@@ -454,10 +454,14 @@ tile_map_data = PackedByteArray("AACJAB0AAAAIABEAAACQAB4AAAAIABEAAACMACEAAAAIABE
 tile_set = SubResource("TileSet_yp00e")
 
 [node name="Spawnpoint" type="Marker2D" parent="."]
-position = Vector2(1192, 562)
+position = Vector2(1220, 586)
 
 [node name="EnemySpawnPoint" type="Marker2D" parent="."]
 position = Vector2(1076, 549)
+rotation = 1.5707964
+
+[node name="CivilianSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(3930, 931)
 rotation = 1.5707964
 
 [node name="FlagPoints" type="Node2D" parent="."]
@@ -586,6 +590,20 @@ position = Vector2(352, 248)
 
 [node name="CP12" type="Marker2D" parent="EnemyCheckpoints"]
 position = Vector2(1338, 564)
+
+[node name="CivilianCheckpoints" type="Node2D" parent="."]
+
+[node name="CP1" type="Marker2D" parent="CivilianCheckpoints"]
+position = Vector2(3505, 1485)
+
+[node name="CP2" type="Marker2D" parent="CivilianCheckpoints"]
+position = Vector2(3662, 1288)
+
+[node name="CP3" type="Marker2D" parent="CivilianCheckpoints"]
+position = Vector2(3934, 977)
+
+[node name="CP4" type="Marker2D" parent="CivilianCheckpoints"]
+position = Vector2(3662, 1288)
 
 [node name="debugCamera" type="Camera2D" parent="."]
 position = Vector2(1248, 554)

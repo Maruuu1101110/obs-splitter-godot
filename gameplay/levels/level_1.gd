@@ -39,12 +39,25 @@ var flags: Array = []
 var lap_flag: Area2D = null
 var current_index: int = 0
 var lap_passed: Array = []
-var enemy_checkpoints: Array = []
+#var enemy_checkpoints: Array = []
 var enemy: Node2D = null
 var enemy_index: int = 0
 var police = null
 var has_tire_punctures: bool = false
+var civilian: Node2D = null
+var civilian_index: int = 0
 #var biome = "default"
+
+@export var entity_checkpoint_map = {
+	"enemy": {
+		"checkpoint_array": [],
+		"checkpoint_node": "EnemyCheckpoints"
+	},
+	"civilian": {
+		"checkpoint_array": [],
+		"checkpoint_node": "CivilianCheckpoints"
+	}
+}
 
 @onready var police_spawn = $PoliceSpawnpoint
 @onready var bonus_spawn = $BonusSpawn
@@ -52,12 +65,16 @@ var has_tire_punctures: bool = false
 
 func _ready() -> void:
 	#_load_flag_points()
-	_load_enemy_checkpoints()
+	#_load_enemy_checkpoints()
+	_load_npc_checkpoints("enemy")
+	_load_npc_checkpoints("civilian")
 	_assign_enemy()
+	_assign_civilian()
 	_init_spawnpoints_meta()
 
 func _process(delta: float) -> void:
 	_update_enemy_targeting()
+	_update_civilian_targeting()
 
 # ----------------- Initialization helpers -----------------
 
@@ -89,14 +106,25 @@ func _process(delta: float) -> void:
 	if lap_flag and not lap_flag.is_connected("body_entered", Callable(self, "_on_lap_body_entered")):
 		lap_flag.connect("body_entered", Callable(self, "_on_lap_body_entered"))
 
-func _load_enemy_checkpoints() -> void:
-	var parent = get_node_or_null(enemy_checkpoints_parent_path)
+#func _load_enemy_checkpoints() -> void:
+	#var parent = get_node_or_null(enemy_checkpoints_parent_path)
+	#if parent:
+		#enemy_checkpoints = parent.get_children()
+	#else:
+		#var fallback = get_node_or_null("EnemyCheckpoints")
+		#if fallback:
+			#enemy_checkpoints = fallback.get_children()
+			
+func _load_npc_checkpoints(npc_name: String) -> void:
+	print("Loading")
+	var checkpoint_node = entity_checkpoint_map[npc_name]["checkpoint_node"]
+	var parent = get_node_or_null(NodePath(checkpoint_node))
 	if parent:
-		enemy_checkpoints = parent.get_children()
+		entity_checkpoint_map[npc_name]["checkpoint_array"] = parent.get_children()
 	else:
-		var fallback = get_node_or_null("EnemyCheckpoints")
+		var fallback = get_node_or_null(checkpoint_node)
 		if fallback:
-			enemy_checkpoints = fallback.get_children()
+			entity_checkpoint_map[npc_name]["checkpoint_array"] = fallback.get_children()			
 
 func _init_spawnpoints_meta() -> void:
 	var ps = get_node_or_null(police_spawn_path)
@@ -115,6 +143,7 @@ func _init_spawnpoints_meta() -> void:
 # ----------------- Enemy routing -----------------
 
 func _assign_enemy() -> void:
+	var enemy_checkpoints = entity_checkpoint_map["enemy"]["checkpoint_array"]
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	if enemies.is_empty():
 		await get_tree().process_frame
@@ -125,8 +154,22 @@ func _assign_enemy() -> void:
 		enemy.target = enemy_checkpoints[0]
 		enemy_index = 0
 		print("ENEMY INITIAL TARGET:", enemy.target.name)
+		
+func _assign_civilian() -> void:
+	var civilian_checkpoints = entity_checkpoint_map["civilian"]["checkpoint_array"]
+	var civilians = get_tree().get_nodes_in_group("civilian")
+	if civilians.is_empty():
+		await  get_tree().process_frame
+		_assign_civilian()
+		return
+	civilian = civilians[0]
+	if civilian_checkpoints.size() > 0:
+		civilian.target = civilian_checkpoints[0]
+		civilian_index = 0
+		print("CIVILIAN INITIAL TARGET:", civilian.target.name)
 
 func _update_enemy_targeting() -> void:
+	var enemy_checkpoints = entity_checkpoint_map["enemy"]["checkpoint_array"]
 	if enemy == null:
 		return
 	if enemy_checkpoints.size() == 0:
@@ -135,6 +178,17 @@ func _update_enemy_targeting() -> void:
 		enemy_index = (enemy_index + 1) % enemy_checkpoints.size()
 		enemy.target = enemy_checkpoints[enemy_index]
 		print("ENEMY TARGET:", enemy.target.name)
+		
+func _update_civilian_targeting() -> void:
+	var civilian_checkpoints = entity_checkpoint_map["civilian"]["checkpoint_array"]
+	if civilian == null:
+		return
+	if civilian_checkpoints.size() == 0:
+		return
+	if civilian.global_position.distance_to(civilian_checkpoints[civilian_index].global_position) < 54:
+		civilian_index = (civilian_index + 1) % civilian_checkpoints.size()
+		civilian.target = civilian_checkpoints[civilian_index]
+		print("CIVILIAN TARGET:", civilian.target.name)
 
 # ----------------- Flag handling -----------------
 

@@ -4,6 +4,7 @@ extends Node
 # REFERENCES
 var player: Node2D = null
 var enemy: Node2D = null
+var civilian: Node2D = null
 var main_soundtrack = null
 
 # --- Runtime game state ---

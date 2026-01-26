@@ -27,7 +27,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_10mg1"]
-radius = 7.0
+radius = 6.0
+height = 24.0
 
 [node name="EnemyCar" type="CharacterBody2D" groups=["enemy"]]
 texture_filter = 1
@@ -38,8 +39,6 @@ sprite_frames = SubResource("SpriteFrames_xjixy")
 frame_progress = 0.5170965
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2)
-rotation = 3.1415927
 shape = SubResource("CapsuleShape2D_10mg1")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
@@ -47,7 +46,6 @@ path_desired_distance = 50.0
 target_desired_distance = 50.0
 path_max_distance = 10.0
 avoidance_enabled = true
-debug_enabled = true
 
 [node name="debugCamera" type="Camera2D" parent="."]
 enabled = false
