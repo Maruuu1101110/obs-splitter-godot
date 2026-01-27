@@ -1771,6 +1771,8 @@ rotation = -1.5707964
 position = Vector2(1076, 549)
 rotation = 1.5707964
 
+[node name="CivilianSpawnPoint" type="Marker2D" parent="."]
+
 [node name="FlagPoints" type="Node2D" parent="."]
 
 [node name="Flagpoint1" type="Area2D" parent="FlagPoints"]

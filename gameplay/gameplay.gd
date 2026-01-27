@@ -46,7 +46,11 @@ extends Node2D
 
 var current_level: Node2D
 var player:  Node2D
-var enemy: Node2D
+#var enemy: Node2D
+#var civilian: Node2D
+
+var enemy_list: Array[Node2D] = []
+var civilian_list: Array[Node2D] = []
 
 const PIXELS_PER_METER := 32.0
 
@@ -69,8 +73,12 @@ func _start_countdown():
 	GameState.main_soundtrack.stream = preload("res://audio/main1.mp3")
 	GameState.main_soundtrack.volume_db = -7.0
 	GameState.main_soundtrack.play()
-	GameState.player.engine_sound_player.process_mode = Node.PROCESS_MODE_ALWAYS
-	GameState.enemy.engine_sound_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	var entity_list = [GameState.player] + GameState.enemy_list + GameState.civilian_list
+	for npc in entity_list:
+		if npc and is_instance_valid(npc) and npc.engine_sound_player:
+			npc.engine_sound_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	#GameState.player.engine_sound_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	#GameState.enemy.engine_sound_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	# START TIMER 
 	timer_label.show()
@@ -80,7 +88,12 @@ func _start_countdown():
 	get_tree().paused = true
 	player.process_mode = Node.PROCESS_MODE_DISABLED
 	current_level.process_mode = Node.PROCESS_MODE_DISABLED
-	enemy.process_mode = Node.PROCESS_MODE_DISABLED
+	#enemy.process_mode = Node.PROCESS_MODE_DISABLED
+	
+	var npc_list = enemy_list + civilian_list
+	for npc in npc_list:
+		npc.process_mode = Node.PROCESS_MODE_DISABLED
+	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	timer_label.process_mode = Node.PROCESS_MODE_ALWAYS
 	timer.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -103,7 +116,13 @@ func _on_timer_finished():
 	get_tree().paused = false
 	player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	current_level.process_mode = Node.PROCESS_MODE_PAUSABLE
-	enemy.process_mode = Node.PROCESS_MODE_PAUSABLE
+	#enemy.process_mode = Node.PROCESS_MODE_PAUSABLE
+	#civilian.process_mode = Node.PROCESS_MODE_PAUSABLE
+	
+	var npc_list = enemy_list + civilian_list
+	for npc in npc_list:
+		npc.process_mode = Node.PROCESS_MODE_PAUSABLE
+		
 	GameState.player.engine_sound_player.process_mode = Node.PROCESS_MODE_PAUSABLE
 	
 	# HIDE TIMER LABEL
@@ -147,9 +166,20 @@ func load_level(level_id:  int) -> void:
 		player.queue_free()
 		player = null
 	
-	if enemy:
-		enemy.queue_free()
-		enemy = null
+	#if enemy:
+		#enemy.queue_free()
+		#enemy = null
+		#
+	#if civilian:
+		#civilian.queue_free()
+		#civilian = null
+		
+	var npc_list = enemy_list + civilian_list
+	for npc in npc_list:
+		npc.queue_free()
+		
+	enemy_list = []
+	civilian_list = []
 
 	var level_path = level_info_map[level_id]["path"]
 	if level_path == null:
@@ -227,7 +257,20 @@ func spawn_enemy():
 		enemy_scence.position = spawnpoint.global_position
 		enemy_scence.rotation = spawnpoint.rotation
 		gameplay_node.add_child(enemy_scence)
-		enemy = enemy_scence
+		#enemy = enemy_scence
+		enemy_list.append(enemy_scence)
+		
+func spawn_civilian():
+	var gameplay_node = get_node("/root/Main/Gameplay")
+	if not gameplay_node.has_node("CivilianTruck"):
+		var civilian_scene = load("res://gameplay/npcs/civilian_truck.tscn").instantiate()
+		var level_path = "LevelContainer/Level%d/CivilianSpawnPoint" % selected_level
+		var spawnpoint = gameplay_node.get_node(level_path)
+		civilian_scene.position = spawnpoint.global_position
+		civilian_scene.rotation = spawnpoint.rotation
+		gameplay_node.add_child(civilian_scene)
+		#civilian = civilian_scene
+		civilian_list.append(civilian_scene)
 	
 func show_speedometer():
 	var speedo_container_node = get_node("/root/Main/Gameplay/GameHud/HUD/Labels/SpeedoContainer")
@@ -267,9 +310,20 @@ func cleanup() -> void:
 		player.queue_free()
 		player = null
 		
-	if enemy:
-		enemy.queue_free()
-		enemy = null
+	#if enemy:
+		#enemy.queue_free()
+		#enemy = null
+	#
+	#if civilian:
+		#civilian.queue_free()
+		#civilian = null
+		
+	var npc_list = enemy_list + civilian_list
+	for npc in npc_list:
+		npc.queue_free()
+		
+	enemy_list = []
+	civilian_list = []
 	
 	for child in level_container.get_children():
 		child.queue_free()

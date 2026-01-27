@@ -1,15 +1,15 @@
 extends CharacterBody2D
 
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
-@onready var car_sprite: AnimatedSprite2D = $CarSprite
+@onready var car_sprite: Sprite2D = $CarSprite
 @onready var target: Node2D = null
 @onready var engine_sound_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 var accelerating: bool
 
 # DRIVING PARAMS
-var max_speed := 200.0
-var acceleration := 2200.0
-var friction := 600.0
+var max_speed := 80.0
+var acceleration := 880.0
+var friction := 240.0
 
 # DRIFT PARAMS
 var drift_strength := 120.0
@@ -17,9 +17,9 @@ var drift_smooth := 6.0
 var current_drift := 0.0 
 
 func _ready() -> void:
-	add_to_group("enemy")
-	#GameState.enemy = self
-	GameState.enemy_list.append(self)
+	add_to_group("civilian")
+	#GameState.civilian = self
+	GameState.civilian_list.append(self)
 	
 	engine_sound_player.volume_db = 2.0
 	engine_sound_player.play()
@@ -30,7 +30,6 @@ func _ready() -> void:
 
 	call_deferred("seeker_setup")
 
-	car_sprite.play()
 	car_sprite.rotation = 0.0
 
 
@@ -99,6 +98,8 @@ func _on_velocity_computed(safe_velocity: Vector2) -> void:
 	move_and_slide()
 	
 # SOUNDS
+	
+
 func update_engine_sound():
 	var base_pitch := 0.5
 	var max_pitch := 1.8
