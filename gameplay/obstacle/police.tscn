@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://b70yfkuj10c2m"]
 
 [ext_resource type="Script" uid="uid://bxa78ceothq56" path="res://gameplay/obstacle/police.gd" id="1_sggxn"]
-[ext_resource type="Texture2D" uid="uid://bts4c4086ohhb" path="res://assets/Road Racers Adrenaline Assets/Vehicles/police_cars_sprites.png" id="1_ueku3"]
+[ext_resource type="Texture2D" uid="uid://dgkvgk5gwcv4o" path="res://assets/Road Racers Adrenaline Assets/Vehicles/police_cars_sprites.png" id="1_ueku3"]
 [ext_resource type="PackedScene" uid="uid://rlhigf5m3j14" path="res://ui/popup_location.tscn" id="3_t0ose"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qyuf4"]

@@ -17,6 +17,12 @@ extends Node2D
 		"biome": "ice",
 		"speed_limit": 80,
 		"police_speed": 150
+	},
+	3: {
+		"path": "res://gameplay/levels/level3.tscn",
+		"biome": "default",
+		"speed_limit": 90,
+		"police_speed": 180
 	}
 }
 
