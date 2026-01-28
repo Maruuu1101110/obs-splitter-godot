@@ -10,13 +10,19 @@ extends Node2D
 		"path": "res://gameplay/levels/level1.tscn",
 		"biome": "offroad",
 		"speed_limit": 100,
-		"police_speed": 100
+		"police_speed": 150
 	},
 	2: {
 		"path": "res://gameplay/levels/level2.tscn",
 		"biome": "ice",
 		"speed_limit": 80,
-		"police_speed": 150
+		"police_speed": 200
+	},
+	3: {
+		"path": "res://gameplay/levels/level3.tscn",
+		"biome": "default",
+		"speed_limit": 60,
+		"police_speed": 180
 	}
 }
 
@@ -224,10 +230,12 @@ func load_level(level_id:  int) -> void:
 		#GameState.save_game()
 		
 	assign_map_variables()
+	print("Map variables assigned")
 	
 	show_loading(false)
 	spawn_player()
 	spawn_enemy()
+	#spawn_civilian()
 	_start_countdown()
 	show_speedometer()
 
@@ -260,17 +268,17 @@ func spawn_enemy():
 		#enemy = enemy_scence
 		enemy_list.append(enemy_scence)
 		
-func spawn_civilian():
-	var gameplay_node = get_node("/root/Main/Gameplay")
-	if not gameplay_node.has_node("CivilianTruck"):
-		var civilian_scene = load("res://gameplay/npcs/civilian_truck.tscn").instantiate()
-		var level_path = "LevelContainer/Level%d/CivilianSpawnPoint" % selected_level
-		var spawnpoint = gameplay_node.get_node(level_path)
-		civilian_scene.position = spawnpoint.global_position
-		civilian_scene.rotation = spawnpoint.rotation
-		gameplay_node.add_child(civilian_scene)
-		#civilian = civilian_scene
-		civilian_list.append(civilian_scene)
+#func spawn_civilian():
+	#var gameplay_node = get_node("/root/Main/Gameplay")
+	#if not gameplay_node.has_node("CivilianTruck"):
+		#var civilian_scene = load("res://gameplay/npcs/civilian_truck.tscn").instantiate()
+		#var level_path = "LevelContainer/Level%d/CivilianSpawnPoint" % selected_level
+		#var spawnpoint = gameplay_node.get_node(level_path)
+		#civilian_scene.position = spawnpoint.global_position
+		#civilian_scene.rotation = spawnpoint.rotation
+		#gameplay_node.add_child(civilian_scene)
+		##civilian = civilian_scene
+		#civilian_list.append(civilian_scene)
 	
 func show_speedometer():
 	var speedo_container_node = get_node("/root/Main/Gameplay/GameHud/HUD/Labels/SpeedoContainer")
@@ -320,7 +328,8 @@ func cleanup() -> void:
 		
 	var npc_list = enemy_list + civilian_list
 	for npc in npc_list:
-		npc.queue_free()
+		if is_instance_valid(npc):
+			npc.queue_free()
 		
 	enemy_list = []
 	civilian_list = []

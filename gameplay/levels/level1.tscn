@@ -1,9 +1,10 @@
-[gd_scene load_steps=28 format=4 uid="uid://bibc1kfmrm1pe"]
+[gd_scene load_steps=32 format=4 uid="uid://bibc1kfmrm1pe"]
 
 [ext_resource type="Script" uid="uid://bowgfucxvfjhq" path="res://gameplay/levels/level_1.gd" id="1_yp00e"]
 [ext_resource type="Texture2D" uid="uid://dja27nwcna1u6" path="res://assets/Road Racers Adrenaline Assets/deserrt.png" id="2_iwapd"]
 [ext_resource type="Texture2D" uid="uid://d24urfdp8msii" path="res://assets/Bakbak assets/slow_down.png" id="3_yp00e"]
 [ext_resource type="Texture2D" uid="uid://bb1f5bgbs4fuo" path="res://assets/Bakbak assets/100kph.png" id="4_nr4p5"]
+[ext_resource type="PackedScene" uid="uid://bfvrb1clkkg1h" path="res://gameplay/npcs/truck_path.tscn" id="5_nr4p5"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_iwapd"]
 tile_data = PackedInt32Array(0, 131072, 12, 1, 262144, 13, 2, 327680, 13)
@@ -23,9 +24,9 @@ tile_data = PackedInt32Array(0, 65536, 14, 65536, 655360, 12, 1, 327680, 14, 655
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_501y7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ybilb"]
-vertices = PackedVector2Array(6.265625, -5.6484375, 8, -0.125, 5.40625, 5.8984375, 0.125, 8, -5.7734375, 6.015625, -8, 0.125, -5.7734375, -5.6484375, 0, -8)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, -8, -5.7737584, -5.6509123, -8, 0.12284565, -5.7737584, 6.019449, 0.12284565, 8, 5.405219, 5.8966045, 8, -0.1228466, 6.2651415, -5.6509123)])
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
 agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_yhib1"]
@@ -49,9 +50,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-1.4213572, 1.1675434, 
 agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_xv5oc"]
-vertices = PackedVector2Array(6.265625, -5.6484375, 8, -0.125, 5.40625, 5.8984375, 0.125, 8, -5.7734375, 6.015625, -8, 0.125, -5.7734375, -5.6484375, 0, -8)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, -8, -5.7737584, -5.6509123, -8, 0.12284565, -5.7737584, 6.019449, 0.12284565, 8, 5.405219, 5.8966045, 8, -0.1228466, 6.2651415, -5.6509123)])
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
 agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_h7uit"]
@@ -67,9 +68,9 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(1.1675434, 1.4213572, -
 agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_77knu"]
-vertices = PackedVector2Array(6.265625, -5.6484375, 8, -0.125, 5.40625, 5.8984375, 0.125, 8, -5.7734375, 6.015625, -8, 0.125, -5.7734375, -5.6484375, 0, -8)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(0, -8, -5.7737584, -5.6509123, -8, 0.12284565, -5.7737584, 6.019449, 0.12284565, 8, 5.405219, 5.8966045, 8, -0.1228466, 6.2651415, -5.6509123)])
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
 agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3bkkq"]
@@ -479,6 +480,24 @@ pattern_2 = SubResource("TileMapPattern_yp00e")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_501y7"]
 size = Vector2(18, 108)
 
+[sub_resource type="Curve2D" id="Curve2D_d6tlw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3752, 1139, 0, 0, 0, 0, 3609, 1288, 0, 0, 0, 0, 3507, 1432, 28.358137, 4.7794614, -28.358137, -4.7794614, 3447, 1499, 0, 0, 0, 0, 3482, 1394, 0, 0, 0, 0, 3660, 1191, 0, 0, 0, 0, 3781, 1090, -24.184076, -21.380125, 24.184076, 21.380125, 3890, 958, 0, 0, 0, 0, 3820, 1094, 0, 0, 0, 0, 3752, 1139)
+}
+point_count = 10
+
+[sub_resource type="Curve2D" id="Curve2D_501y7"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3872, 1087, 24.724886, -22.39235, -24.724886, 22.39235, 3815, 1149, 15.861248, -14.928233, -15.861248, 14.928233, 3753, 1201, 11.196175, -15.39474, -11.196175, 15.39474, 3695, 1271, 17.727278, -18.193785, -17.727278, 18.193785, 3654, 1343, 11.662683, -10.729668, -11.662683, 10.729668, 3595, 1398, 11.196175, -11.662683, -11.196175, 11.662683, 3542, 1453, 27.990437, -0.9330146, -27.990437, 0.9330146, 3498, 1489, -12.1291895, 14.461726, 12.1291895, -14.461726, 3520, 1410, -23.325365, 21.459335, 23.325365, -21.459335, 3567, 1357, -11.662683, 14.461726, 11.662683, -14.461726, 3623, 1299, -15.861248, 11.196175, 15.861248, -11.196175, 3777, 1121, -23.325365, 24.258379, 23.325365, -24.258379, 3843, 1075, -29.856466, -5.1315804, 29.856466, 5.1315804, 3941, 960, 0, 0, 0, 0, 3872, 1087)
+}
+point_count = 15
+
+[sub_resource type="Curve2D" id="Curve2D_nr4p5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 3742, 1212, 8.723686, -21.039478, -8.723686, 21.039478, 3698, 1267, 23.092112, -37.973694, -23.092112, 37.973694, 3676, 1350, 27.710533, -21.552637, -27.710533, 21.552637, 3600, 1392, 17.960531, -14.368424, -17.960531, 14.368424, 3545, 1459, 18.986847, 8.723686, -18.986847, -8.723686, 3502, 1481, 0, 0, 0, 0, 3511, 1427, -9.236844, 12.828951, 9.236844, -12.828951, 3564, 1368, -8.210528, 11.289476, 8.210528, -11.289476, 3625, 1291, -21.039478, 21.552637, 21.039478, -21.552637, 3714, 1190, -41.052643, 24.118427, 41.052643, -24.118427, 3793, 1114, 0, 0, 0, 0, 3865, 1031, -12.315792, 6.6710544, 12.315792, -6.6710544, 3927, 960, -10.263161, -16.421057, 10.263161, 16.421057, 3947, 967, 12.828951, -26.171059, -12.828951, 26.171059, 3908, 1053, 0, 0, 0, 0, 3771, 1185, 0, 0, 0, 0, 3742, 1212)
+}
+point_count = 17
+
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_yp00e")
 
@@ -506,7 +525,7 @@ tile_map_data = PackedByteArray("AACJAB0AAAAIABEAAACQAB4AAAAIABEAAACMACEAAAAIABE
 tile_set = SubResource("TileSet_yp00e")
 
 [node name="Spawnpoint" type="Marker2D" parent="."]
-position = Vector2(1192, 562)
+position = Vector2(1226, 564)
 
 [node name="EnemySpawnPoint" type="Marker2D" parent="."]
 position = Vector2(1076, 549)
@@ -643,6 +662,27 @@ position = Vector2(1338, 564)
 position = Vector2(1248, 554)
 enabled = false
 zoom = Vector2(4, 4)
+
+[node name="TruckPath1" type="Path2D" parent="."]
+position = Vector2(50, 0)
+curve = SubResource("Curve2D_d6tlw")
+
+[node name="TruckPath" parent="TruckPath1" instance=ExtResource("5_nr4p5")]
+position = Vector2(3752, 1139)
+
+[node name="TruckPath2" type="Path2D" parent="."]
+curve = SubResource("Curve2D_501y7")
+
+[node name="TruckPath" parent="TruckPath2" instance=ExtResource("5_nr4p5")]
+position = Vector2(3872, 1087)
+rotation = 2.2545395
+
+[node name="TruckPath3" type="Path2D" parent="."]
+curve = SubResource("Curve2D_nr4p5")
+
+[node name="TruckPath" parent="TruckPath3" instance=ExtResource("5_nr4p5")]
+position = Vector2(3742, 1212)
+rotation = 2.3751965
 
 [connection signal="body_entered" from="FlagPoints/Flag1" to="." method="_on_flagpoint_1_body_entered"]
 [connection signal="body_entered" from="FlagPoints/Flag2" to="." method="_on_flagpoint_2_body_entered"]

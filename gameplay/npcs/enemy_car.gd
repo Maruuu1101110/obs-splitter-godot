@@ -6,6 +6,17 @@ extends CharacterBody2D
 @onready var engine_sound_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 var accelerating: bool
 
+const MAX_HP := 500
+const DAMAGE := 2
+
+var curr_hp = MAX_HP
+var is_dead = false
+# ------ Death Animation ------
+const DEATH_REPEATS = 5
+var death_play_count = 0
+
+@onready var popup = $PopupLocation
+
 # DRIVING PARAMS
 var max_speed := 200.0
 var acceleration := 2200.0
@@ -114,3 +125,47 @@ func update_engine_sound():
 		target_pitch,
 		smoothing
 	)
+
+func take_damage(amount: float):
+	if is_dead:
+		return
+		
+	curr_hp -= amount
+	print(curr_hp)
+	if curr_hp <= 0:
+		die()
+		
+	if amount > 0:
+		popup.popup(str(amount))
+
+# --------------------------------------------------
+
+func die():
+	if is_dead:
+		return
+	is_dead = true
+	
+	collision_layer = 0
+	collision_mask = 0
+	
+	car_sprite.play_backwards()
+	_on_death_animation_finished()
+
+# --------------------------------------------------
+
+func _on_death_animation_finished():
+	death_play_count += 1
+	print(death_play_count)
+	
+	if death_play_count < DEATH_REPEATS:
+		await get_tree().create_timer(1).timeout
+		car_sprite.play("death")
+		_on_death_animation_finished()
+	else:
+		queue_free()
+	
+func _exit_tree() -> void:
+	if has_meta("spawnpoint"):
+		var spawn = get_meta("spawnpoint")
+		if is_instance_valid(spawn):
+			spawn.set_meta("occupied", false)

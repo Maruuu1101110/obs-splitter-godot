@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfvrb1clkkg1h"]
+
+[ext_resource type="Script" uid="uid://bi8ng01y7tkel" path="res://gameplay/levels/truck_path.gd" id="1_r2kn2"]
+[ext_resource type="PackedScene" uid="uid://yfcsdu12e2sn" path="res://gameplay/npcs/civilian_truck.tscn" id="2_e7t1y"]
+
+[node name="TruckPath" type="PathFollow2D"]
+rotation = 2.3356495
+script = ExtResource("1_r2kn2")
+
+[node name="CivilianTruck" parent="." instance=ExtResource("2_e7t1y")]
+rotation = 1.5707964
+scale = Vector2(0.99999994, 0.99999994)

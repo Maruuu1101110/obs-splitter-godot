@@ -24,6 +24,12 @@ var level_infos = {
 		"lap_count": 3,
 		"difficulty": "Medium",
 		"tips": "Try not to get a frostbite."
+	},
+	3: {
+		"name": "Camote City",
+		"lap_count": 3,
+		"difficulty": "Hard",
+		"tips": "Follow the traffic rules."
 	}
 }
 

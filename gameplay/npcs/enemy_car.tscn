@@ -1,12 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0mh3f5ro5lvy"]
+[gd_scene load_steps=10 format=3 uid="uid://b0mh3f5ro5lvy"]
 
 [ext_resource type="Script" uid="uid://bh1os2cl82l4a" path="res://gameplay/npcs/enemy_car.gd" id="1_2l24a"]
 [ext_resource type="Texture2D" uid="uid://ciyon4afg6fs" path="res://assets/Road Racers Adrenaline Assets/Vehicles/Racing Cars/red_cars_sprites.png" id="2_10mg1"]
 [ext_resource type="AudioStream" uid="uid://brkjcc18aix7w" path="res://audio/car_sounds/offroad-engine-61234.mp3" id="3_7qpxv"]
+[ext_resource type="PackedScene" uid="uid://rlhigf5m3j14" path="res://ui/popup_location.tscn" id="4_k3lxr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7qpxv"]
 atlas = ExtResource("2_10mg1")
 region = Rect2(896, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aj5gb"]
+atlas = ExtResource("2_10mg1")
+region = Rect2(448, 288, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k3lxr"]
 atlas = ExtResource("2_10mg1")
@@ -14,6 +19,17 @@ region = Rect2(928, 128, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xjixy"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qpxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aj5gb")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7qpxv")
@@ -36,7 +52,7 @@ script = ExtResource("1_2l24a")
 
 [node name="CarSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_xjixy")
-frame_progress = 0.5170965
+autoplay = "default"
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
@@ -55,3 +71,5 @@ process_mode = 1
 stream = ExtResource("3_7qpxv")
 max_distance = 300.0
 parameters/looping = true
+
+[node name="PopupLocation" parent="." instance=ExtResource("4_k3lxr")]

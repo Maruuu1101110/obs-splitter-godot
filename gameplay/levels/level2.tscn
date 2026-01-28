@@ -1,10 +1,9 @@
-[gd_scene load_steps=49 format=4 uid="uid://cv44swjssmvtl"]
+[gd_scene load_steps=48 format=4 uid="uid://cv44swjssmvtl"]
 
 [ext_resource type="Texture2D" uid="uid://cq6w45thdf6dr" path="res://assets/Kenney Tiny Ski/Tilemap/tilemap_roads.png" id="1_1wdtl"]
 [ext_resource type="Script" uid="uid://bowgfucxvfjhq" path="res://gameplay/levels/level_1.gd" id="1_d1m6t"]
 [ext_resource type="Texture2D" uid="uid://ck8mheooi7fi0" path="res://assets/Road Racers Adrenaline Assets/tileset_urban.png" id="2_r6v6a"]
 [ext_resource type="Texture2D" uid="uid://srfjwxt237bx" path="res://assets/Road Racers Adrenaline Assets/80kph.png" id="4_u8808"]
-[ext_resource type="PackedScene" uid="uid://lve1isyuydmd" path="res://gameplay/items/nitro.tscn" id="6_patc8"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_d1m6t"]
 vertices = PackedVector2Array(8, 8, -8, -8, 8, -8)
@@ -1771,8 +1770,6 @@ rotation = -1.5707964
 position = Vector2(1076, 549)
 rotation = 1.5707964
 
-[node name="CivilianSpawnPoint" type="Marker2D" parent="."]
-
 [node name="FlagPoints" type="Node2D" parent="."]
 
 [node name="Flagpoint1" type="Area2D" parent="FlagPoints"]
@@ -1853,12 +1850,6 @@ position = Vector2(2092, 914)
 
 [node name="BonusSpawn11" type="Marker2D" parent="BonusSpawn"]
 position = Vector2(1194, 803)
-
-[node name="Nitro" parent="." instance=ExtResource("6_patc8")]
-position = Vector2(1016, 286)
-
-[node name="Nitro2" parent="." instance=ExtResource("6_patc8")]
-position = Vector2(1044, 308)
 
 [node name="debugCamera" type="Camera2D" parent="."]
 position = Vector2(1099, 481)

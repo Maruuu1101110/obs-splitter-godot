@@ -39,12 +39,24 @@ var flags: Array = []
 var lap_flag: Area2D = null
 var current_index: int = 0
 var lap_passed: Array = []
-var enemy_checkpoints: Array = []
+#var enemy_checkpoints: Array = []
 var enemy: Node2D = null
 var enemy_index: int = 0
 var police = null
 var has_tire_punctures: bool = false
+var civilian: Node2D = null
+var civilian_index: int = 0
 #var biome = "default"
+var entity_checkpoint_map = {
+	"enemy": {
+		"checkpoint_array": [],
+		"checkpoint_node": "EnemyCheckpoints"
+	},
+	"civilian": {
+		"checkpoint_array": [],
+		"checkpoint_node": "CivilianCheckpoints"
+	}
+}
 
 @onready var police_spawn = $PoliceSpawnpoint
 @onready var bonus_spawn = $BonusSpawn
@@ -52,12 +64,30 @@ var has_tire_punctures: bool = false
 
 func _ready() -> void:
 	#_load_flag_points()
-	_load_enemy_checkpoints()
+	if entity_checkpoint_map == null:
+		entity_checkpoint_map = {
+			"enemy": {
+				"checkpoint_array": [],
+				"checkpoint_node": "EnemyCheckpoints"
+			}
+		}
+		
+	_load_npc_checkpoints("enemy")
+	#_load_npc_checkpoints("civilian")
 	_assign_enemy()
+	#_assign_civilian()
 	_init_spawnpoints_meta()
+		
+	if get_node_or_null("SlowDownArea") != null:
+		print("../..")
+		var children = $SlowDownArea.get_children()
+		for child in children:
+			child.body_entered.connect(_on_slow_area_body_entered.bind(child))
+			print(child.is_connected("body_entered", _on_slow_area_body_entered))
 
 func _process(delta: float) -> void:
 	_update_enemy_targeting()
+	#_update_civilian_targeting()
 
 # ----------------- Initialization helpers -----------------
 
@@ -89,14 +119,16 @@ func _process(delta: float) -> void:
 	if lap_flag and not lap_flag.is_connected("body_entered", Callable(self, "_on_lap_body_entered")):
 		lap_flag.connect("body_entered", Callable(self, "_on_lap_body_entered"))
 
-func _load_enemy_checkpoints() -> void:
-	var parent = get_node_or_null(enemy_checkpoints_parent_path)
+func _load_npc_checkpoints(npc_name: String) -> void:
+	print("Loading")
+	var checkpoint_node = entity_checkpoint_map[npc_name]["checkpoint_node"]
+	var parent = get_node_or_null(NodePath(checkpoint_node))
 	if parent:
-		enemy_checkpoints = parent.get_children()
+		entity_checkpoint_map[npc_name]["checkpoint_array"] = parent.get_children()
 	else:
-		var fallback = get_node_or_null("EnemyCheckpoints")
+		var fallback = get_node_or_null(checkpoint_node)
 		if fallback:
-			enemy_checkpoints = fallback.get_children()
+			entity_checkpoint_map[npc_name]["checkpoint_array"] = fallback.get_children()			
 
 func _init_spawnpoints_meta() -> void:
 	var ps = get_node_or_null(police_spawn_path)
@@ -114,7 +146,9 @@ func _init_spawnpoints_meta() -> void:
 
 # ----------------- Enemy routing -----------------
 
+#
 func _assign_enemy() -> void:
+	var enemy_checkpoints = entity_checkpoint_map["enemy"]["checkpoint_array"]
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	if enemies.is_empty():
 		await get_tree().process_frame
@@ -125,8 +159,22 @@ func _assign_enemy() -> void:
 		enemy.target = enemy_checkpoints[0]
 		enemy_index = 0
 		print("ENEMY INITIAL TARGET:", enemy.target.name)
+		
+#func _assign_civilian() -> void:
+	#var civilian_checkpoints = entity_checkpoint_map["civilian"]["checkpoint_array"]
+	#var civilians = get_tree().get_nodes_in_group("civilian")
+	#if civilians.is_empty():
+		#await  get_tree().process_frame
+		#_assign_civilian()
+		#return
+	#civilian = civilians[0]
+	#if civilian_checkpoints.size() > 0:
+		#civilian.target = civilian_checkpoints[0]
+		#civilian_index = 0
+		#print("CIVILIAN INITIAL TARGET:", civilian.target.name)
 
 func _update_enemy_targeting() -> void:
+	var enemy_checkpoints = entity_checkpoint_map["enemy"]["checkpoint_array"]
 	if enemy == null:
 		return
 	if enemy_checkpoints.size() == 0:
@@ -135,6 +183,17 @@ func _update_enemy_targeting() -> void:
 		enemy_index = (enemy_index + 1) % enemy_checkpoints.size()
 		enemy.target = enemy_checkpoints[enemy_index]
 		print("ENEMY TARGET:", enemy.target.name)
+		
+#func _update_civilian_targeting() -> void:
+	#var civilian_checkpoints = entity_checkpoint_map["civilian"]["checkpoint_array"]
+	#if civilian == null:
+		#return
+	#if civilian_checkpoints.size() == 0:
+		#return
+	#if civilian.global_position.distance_to(civilian_checkpoints[civilian_index].global_position) < 54:
+		#civilian_index = (civilian_index + 1) % civilian_checkpoints.size()
+		#civilian.target = civilian_checkpoints[civilian_index]
+		#print("CIVILIAN TARGET:", civilian.target.name)
 
 # ----------------- Flag handling -----------------
 
@@ -207,7 +266,7 @@ func _on_lap_body_entered(body: Node2D) -> void:
 		lap_passed.clear()
 	
 	if lap_count >= 1 && not is_instance_valid(police):
-		spawn_entity("res://gameplay/obstacle/police.tscn", police_spawn, "Police Spawned")
+		police = spawn_entity("res://gameplay/obstacle/police.tscn", police_spawn, "Police Spawned")
 		
 	if body.name == "PlayerCar":
 		if tire_puncture_spawn_flag(body):
@@ -217,6 +276,33 @@ func _on_lap_body_entered(body: Node2D) -> void:
 			
 	if lap_count == 3:
 		_on_level_complete()
+		
+func _on_slow_area_body_entered(body: Node2D, area: Area2D) -> void:
+	if not _is_player(body):
+		return
+	print("Triggered by:", body.name)
+	print("Triggered at:", area.name)
+	var spawnpoint = area.get_node_or_null("PoliceSpawn")
+	if spawnpoint == null:
+		print("No Police spawnpoint in " + area.name)
+		return 
+		
+	var pixel_speed = body.velocity.length()
+	var kmh = (pixel_speed / 32) * 3.6 * 6.5
+	if kmh < speed_limit:
+		return
+	if not is_instance_valid(police):
+			#police.queue_free()
+		police = spawn_entity("res://gameplay/obstacle/police.tscn", spawnpoint, "Police spawned")
+		#police = load("res://gameplay/obstacle/police.tscn").instantiate()
+	if not is_instance_valid(police):
+		return 
+		
+	police.global_position = spawnpoint.global_position
+	print(police)
+	police.in_pursuit = true
+	body.is_being_chased = true
+		
 
 # ----------------- Utilities -----------------
 
@@ -241,7 +327,7 @@ func tire_puncture_spawn_flag(body: Node) -> bool:
 
 	return lap_count >= 2 and being_chased and not has_tire_punctures
 
-func spawn_entity(scene_location: String, spawnpoint: Node2D, debug_message: String = '') -> void:
+func spawn_entity(scene_location: String, spawnpoint: Node2D, debug_message: String = ''):
 	if spawnpoint.get_meta("occupied", true):
 		return
 
@@ -258,6 +344,8 @@ func spawn_entity(scene_location: String, spawnpoint: Node2D, debug_message: Str
 	if scene_location == "res://gameplay/obstacle/police.tscn":
 		police = entity_scene
 		police.speed = police_speed
+		
+	return police
 
 func _on_level_complete() -> void:
 	print("Level Complete")

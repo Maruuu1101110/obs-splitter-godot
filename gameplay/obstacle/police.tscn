@@ -45,8 +45,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sggxn"]
-radius = 1.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t0ose"]
+radius = 7.0
+height = 27.0
 
 [node name="Police" type="CharacterBody2D" groups=["obstacle"]]
 rotation = -1.5707964
@@ -61,8 +62,9 @@ autoplay = "default"
 frame_progress = 0.6724262
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(13, 5.68248e-07)
-shape = SubResource("CircleShape2D_sggxn")
+position = Vector2(0.5, 2.1855694e-08)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_t0ose")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true

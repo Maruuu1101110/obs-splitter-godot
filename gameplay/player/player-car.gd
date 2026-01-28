@@ -58,6 +58,7 @@ var equipment = "nothing"
 var player_nitro_buffs = []
 var player_defense_buffs = []
 var immune_to_puncture = false
+var police_spawnpoint
 
 # ------ DAMAGE TEXT ------
 var floating_text = preload("res://ui/floating_text.tscn")
@@ -108,6 +109,7 @@ var buff_map = {
 # NODES
 @onready var popup_location = $PopupLocation
 @onready var buff_container = $BuffContainer
+@onready var police_spawner = $PoliceSpawn
 
 # CAR BODY
 @onready var car_sprite = $CarAnimation/Body
@@ -137,6 +139,8 @@ func _ready():
 	engine_sound_player.play()
 	engine_sound_player.pitch_scale = 0.5 
 	_apply_equipment_stats()
+	
+	#police_spawnpoint = police_spawner.position
 	
 	#apply_buff("nitro", 10, 100)
 	#apply_buff("defense", 15, 30)
@@ -235,7 +239,7 @@ func _physics_process(delta):
 	apply_steering(delta)
 	update_engine_sound()
 	move_and_slide()
-	#apply_biome_multipliers(biome_multipliers[biome])
+	apply_biome_multipliers(biome_multipliers[biome])
 	#print("Actual speed: %d" % actual_speed)
 	
 	buff_container.global_position = global_position
@@ -358,7 +362,7 @@ func apply_engine(delta):
 	var weight_modifier = 1.0 / sqrt(weight)
 	
 	# Engine power multiplier
-	var engine_mult = biome_multipliers[biome]["engine_power"]
+	var engine_mult = get_engine_multiplier()
 	
 	if is_drifting:
 		if accel_input > 0.0:
@@ -480,7 +484,26 @@ func apply_biome_multipliers(multipliers: Dictionary):
 	
 	steering_speed = base_steering_speed * multipliers["steering_speed"]
 	drift_steering_speed = base_drift_steering_speed * multipliers["drift_steering"]
-
+	
+# --------------------------------------------------
+# ================== BUFF OFFROAD CARS IN OFFROAD MAPS ==================
+func get_engine_multiplier() -> float:
+	var mult = biome_multipliers[biome]["engine_power"]
+	
+	if biome == "offroad":
+		var body_id = GameState.player_configuration.get("body-id", "street-1")
+		var tire_id = GameState.player_configuration.get("tire-id", "street_tire")
+		
+		if body_id in ["offroad-1", "offroad-2"]:
+			mult = 2
+		if tire_id == "offroad_tire":
+			mult *= 1.2
+			
+	#print(mult)
+			
+	return mult
+	
+# --------------------------------------------------
 
 func apply_buff(buff: String, duration, bonus_mult):
 	buff_container.play_buff(buff_map[buff]["path"], duration)
@@ -536,11 +559,19 @@ func detect_collision():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		
-		if collider.is_in_group("obstacle"):
-			take_damage(collider.DAMAGE)
-			deal_damage(collider)
-			damage_timer = damage_cd
-			break
+		#if collider.is_in_group("obstacle"):
+			#take_damage(collider.DAMAGE)
+			#deal_damage(collider)
+			#damage_timer = damage_cd
+			#break
+			
+		for group in ["obstacle", "enemy", "civilian"]:
+			if collider.is_in_group(group):
+				take_damage(collider.DAMAGE)
+				deal_damage(collider)
+				damage_timer = damage_cd
+				break
+			
 			
 		if collider is TileMapLayer:
 			take_damage(2)
