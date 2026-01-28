@@ -579,4 +579,4 @@ func puncture_tire(delta):
 # --------------------------------------------------
 
 func game_over():
-	print("Game Over")
+	GameState.game_over = true

@@ -24,7 +24,7 @@ var level_infos = {
 		"lap_count": 3,
 		"difficulty": "Medium",
 		"tips": "Try not to get a frostbite."
-	}
+	},
 }
 
 func _ready() -> void:

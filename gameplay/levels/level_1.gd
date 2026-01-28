@@ -34,6 +34,8 @@ var flagpoint_map = {1: "flagpt_1", 2: "flagpt_2", 3: "flagpt_3"}
 	"res://gameplay/items/tire_restore.tscn"
 ]
 
+
+
 # Internal state
 var flags: Array = []
 var lap_flag: Area2D = null

@@ -54,12 +54,3 @@ func _restart_level() -> void:
 	if gameplay and gameplay.has_method("restart_current_level"):
 		gameplay.restart_current_level()
 	hide()
-
-func _show_main_menu() -> void:
-	var main_menu = get_node_or_null("/root/Main/UI/MainMenu")
-	var gameplay_hud = get_node_or_null("/root/Main/UI/GameHud")
-	
-	if main_menu: 
-		main_menu.show()
-	if gameplay_hud:
-		gameplay_hud.hide()

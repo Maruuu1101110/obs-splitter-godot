@@ -6,17 +6,23 @@ extends Node2D
 	#2: "res://gameplay/levels/level2.tscn"
 #}
 @export var level_info_map := {
-	1: {
+	1: { 
 		"path": "res://gameplay/levels/level1.tscn",
 		"biome": "offroad",
 		"speed_limit": 100,
-		"police_speed": 100
+		"police_speed": 100,
 	},
 	2: {
 		"path": "res://gameplay/levels/level2.tscn",
 		"biome": "ice",
 		"speed_limit": 80,
-		"police_speed": 150
+		"police_speed": 150,
+	},
+	3: {
+		"path": "res://gameplay/levels/level3.tscn",
+		"biome": "ice",
+		"speed_limit": 80,
+		"police_speed": 150,
 	}
 }
 
@@ -25,6 +31,7 @@ extends Node2D
 @onready var speedo_container: Control = $GameHud/HUD/Labels/SpeedoContainer
 @onready var loading_screen := $LoadingScreen
 @onready var hud = $GameHud/HUD
+@onready var game_over_overlay: Control = $GameHud/GameOverOverlay
 
 # LABELS
 @onready var speed_label = $GameHud/HUD/Labels/SpeedLabel
@@ -61,6 +68,7 @@ func _process(_delta: float) -> void:
 	_update_timer_label()
 	update_label()
 	update_speedometer()
+	check_gameover()
 
 func _start_countdown():
 	print("COUNTDOWN START")
@@ -225,7 +233,7 @@ func spawn_enemy():
 		var level_path = "LevelContainer/Level%d/EnemySpawnPoint" % selected_level
 		var spawnpoint = gameplay_node.get_node(level_path)
 		enemy_scence.position = spawnpoint.global_position
-		enemy_scence.rotation = spawnpoint.rotation
+		enemy_scence.rotation_degrees = spawnpoint.global_rotation_degrees
 		gameplay_node.add_child(enemy_scence)
 		enemy = enemy_scence
 	
@@ -292,6 +300,12 @@ func restart_current_level() -> void:
 	cleanup()
 	await get_tree().process_frame
 	load_level(level_id)
+
+func check_gameover():
+	if GameState.game_over:
+		game_over_overlay.show()
+		if is_instance_valid(GameState.player):
+			GameState.player.process_mode = Node.PROCESS_MODE_DISABLED
 
 func assign_map_variables():
 	var level_info = level_info_map[selected_level]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://7i7w57c1jj6k"]
+[gd_scene load_steps=14 format=3 uid="uid://7i7w57c1jj6k"]
 
 [ext_resource type="Script" uid="uid://b6nv8f8ret37f" path="res://gameplay/gameplay.gd" id="1_oe8ih"]
 [ext_resource type="PackedScene" uid="uid://bv8a8pxgp468q" path="res://ui/loading_screen.tscn" id="2_41n4r"]
@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="6_7pdct"]
 [ext_resource type="Texture2D" uid="uid://2ebonm8vd2e" path="res://assets/Menu/pressed.png" id="7_vyivm"]
 [ext_resource type="AudioStream" uid="uid://56y43ed1tijv" path="res://audio/main1.mp3" id="8_yvprt"]
+[ext_resource type="PackedScene" uid="uid://qolurg3qx0n5" path="res://ui/game_over_overlay.tscn" id="11_uqgqx"]
 [ext_resource type="PackedScene" uid="uid://f61a2vi1ht46" path="res://gameplay/level_completed_overlay.tscn" id="11_vyivm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2okcp"]
@@ -226,6 +227,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LevelCompletedOverlay" parent="GameHud" instance=ExtResource("11_vyivm")]
+visible = false
+
+[node name="GameOverOverlay" parent="GameHud" instance=ExtResource("11_uqgqx")]
 visible = false
 
 [node name="Timer" type="Timer" parent="."]

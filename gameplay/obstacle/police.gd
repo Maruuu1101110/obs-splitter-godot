@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 #const SPEED = 150.0
-var speed = 150.0
-const MAX_HP = 1500.0
-const DAMAGE = 50.0
+var speed = 250.0
+const MAX_HP = 100.0
+const DAMAGE = 10.0
 
 var curr_hp = MAX_HP
 var is_dead = false
@@ -25,7 +25,7 @@ func _ready() -> void:
 # --------------------------------------------------
 
 func _physics_process(delta: float) -> void:
-	var target = $/root/Main/Gameplay/PlayerCar
+	var target = get_node("/root/Main/Gameplay/PlayerCar")
 	if target != null && curr_hp > 0 && in_pursuit:
 		if position.distance_to(target.position) < 100:
 			var direction = (target.position - position).normalized()
@@ -47,6 +47,8 @@ func _physics_process(delta: float) -> void:
 		#print("NULLL")
 
 # --------------------------------------------------
+
+
 
 func take_damage(amount: float):
 	if is_dead:
