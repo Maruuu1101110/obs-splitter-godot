@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var collision_box: CollisionShape2D = $CollisionBox
 @onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 @onready var car_sprite: AnimatedSprite2D = $CarSprite
 @onready var target: Node2D = null
@@ -69,6 +70,11 @@ func _physics_process(delta: float) -> void:
 	var desired_angle = to_target.angle()
 	car_sprite.rotation = lerp_angle(
 		car_sprite.rotation,
+		desired_angle,
+		delta * 4.0
+	)
+	collision_box.rotation = lerp_angle(
+		collision_box.rotation,
 		desired_angle,
 		delta * 4.0
 	)

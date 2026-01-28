@@ -12,9 +12,10 @@ var civilian_list: Array[Node2D] = []
 
 # --- Runtime game state ---
 var is_gameplay := false
-var total_levels := 20
+var total_levels := 50
 var unlocked_levels := 1
 var selected_level := 0
+var game_over := false
 
 # FOR UPDATES
 var coins := 0
