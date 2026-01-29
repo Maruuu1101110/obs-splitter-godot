@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bhf166x15oid0"]
 
 [ext_resource type="Script" uid="uid://i5vakx30utlt" path="res://ui/settings/settings.gd" id="1_71mqq"]
-[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/menu'/window.png" id="2_nkug2"]
-[ext_resource type="Texture2D" uid="uid://oko7h1y35mws" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Left-Arrow.svg" id="3_cj1lu"]
-[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="4_71mqq"]
-[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/menu'/pressed.png" id="5_3j6r5"]
+[ext_resource type="Texture2D" uid="uid://bbd4pw0bponif" path="res://assets/Menu/window.png" id="2_nkug2"]
+[ext_resource type="Texture2D" uid="uid://dkbc73bketc4f" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="3_y7dpk"]
+[ext_resource type="Texture2D" uid="uid://2ebonm8vd2e" path="res://assets/Menu/pressed.png" id="5_3j6r5"]
+[ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="5_y7dpk"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -37,61 +37,41 @@ texture = ExtResource("2_nkug2")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
-[node name="BackButton" type="TextureButton" parent="TextureRect"]
+[node name="BackButton2" type="Button" parent="TextureRect"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 256.0
-offset_top = 192.0
-offset_right = -1608.0
-offset_bottom = -832.0
+anchors_preset = -1
+anchor_left = 0.119531
+anchor_top = 0.151389
+anchor_right = 0.164063
+anchor_bottom = 0.240278
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2, 2)
-texture_normal = ExtResource("3_cj1lu")
-
-[node name="HiButton" type="TextureButton" parent="TextureRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 776.0
-offset_top = 352.0
-offset_right = 889.0
-offset_bottom = 215.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.15, 0.15)
-texture_normal = ExtResource("4_71mqq")
-texture_pressed = ExtResource("5_3j6r5")
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="TextureRect/HiButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/font_size = 300
-text = "Say Hi!"
-horizontal_alignment = 1
+icon = ExtResource("3_y7dpk")
+flat = true
+icon_alignment = 1
+metadata/_edit_use_anchors_ = true
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
+[node name="WindowTitle" type="Sprite2D" parent="TextureRect"]
+position = Vector2(970.5, 128)
+scale = Vector2(0.34393063, 0.2128514)
+texture = ExtResource("5_3j6r5")
+
+[node name="Label" type="Label" parent="TextureRect/WindowTitle"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 840.0
-offset_top = 168.0
-offset_right = -887.0
-offset_bottom = -840.0
+offset_left = -516.09247
+offset_top = -187.92455
+offset_right = -541.09247
+offset_bottom = -346.92456
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "Settings"
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_y7dpk")
+theme_override_font_sizes/font_size = 250
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[connection signal="pressed" from="TextureRect/BackButton" to="." method="_on_goback_pressed"]
-[connection signal="pressed" from="TextureRect/HiButton" to="." method="_say_hi_pressed"]
+[connection signal="pressed" from="TextureRect/BackButton2" to="." method="_on_goback_pressed"]

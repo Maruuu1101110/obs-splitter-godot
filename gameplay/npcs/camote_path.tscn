@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://kjt4tt2acnq2"]
+
+[ext_resource type="Script" uid="uid://bi8ng01y7tkel" path="res://gameplay/levels/truck_path.gd" id="1_boqb6"]
+[ext_resource type="PackedScene" uid="uid://r1waoydf2juh" path="res://gameplay/npcs/camote.tscn" id="1_gbx2o"]
+
+[node name="CamotePath" type="PathFollow2D"]
+script = ExtResource("1_boqb6")
+
+[node name="Camote" parent="." instance=ExtResource("1_gbx2o")]
+rotation = 1.5707964

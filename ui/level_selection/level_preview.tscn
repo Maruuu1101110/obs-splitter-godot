@@ -1,13 +1,28 @@
-[gd_scene load_steps=9 format=3 uid="uid://8wpn4o507iat"]
+[gd_scene load_steps=12 format=3 uid="uid://8wpn4o507iat"]
 
 [ext_resource type="Script" uid="uid://cw8d0j7rp700l" path="res://ui/level_selection/level_preview.gd" id="1_t6haa"]
-[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/menu'/window.png" id="2_ix8or"]
-[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/menu'/pressed.png" id="3_t6haa"]
-[ext_resource type="Texture2D" uid="uid://b0mgkfk5ssyru" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Play.svg" id="4_ix8or"]
+[ext_resource type="Texture2D" uid="uid://bbd4pw0bponif" path="res://assets/Menu/window.png" id="2_ix8or"]
+[ext_resource type="Texture2D" uid="uid://2ebonm8vd2e" path="res://assets/Menu/pressed.png" id="3_t6haa"]
+[ext_resource type="Texture2D" uid="uid://b36uocwgryfww" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Play.svg" id="4_ix8or"]
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="4_tboke"]
-[ext_resource type="Texture2D" uid="uid://dtftgtgs8wjxo" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="5_6a1xn"]
-[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="6_h0dym"]
-[ext_resource type="Texture2D" uid="uid://d2f1wgxbpyj7x" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Gear.svg" id="6_t6haa"]
+[ext_resource type="Texture2D" uid="uid://dkbc73bketc4f" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="5_6a1xn"]
+[ext_resource type="Texture2D" uid="uid://dgi3rfiea36qg" path="res://assets/Menu/unpressed.png" id="6_h0dym"]
+[ext_resource type="Texture2D" uid="uid://bpj7stewdoxwp" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Gear.svg" id="6_t6haa"]
+[ext_resource type="Texture2D" uid="uid://iv47oxcrlnrq" path="res://ui/level_selection/level_preview_images/level1-prev.png" id="10_4xlt5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5l4ss"]
+bg_color = Color(0.24313726, 0.043137256, 0.06666667, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrj2c"]
+bg_color = Color(0, 0, 0, 0.29803923)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [node name="LevelPreview" type="Control"]
 texture_filter = 1
@@ -182,30 +197,165 @@ position = Vector2(74.666664, 37.333344)
 scale = Vector2(1, 0.74999976)
 texture = ExtResource("5_6a1xn")
 
-[node name="Label2" type="Label" parent="."]
+[node name="PreviewWindow" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 416.0
-offset_top = 232.0
-offset_right = -408.0
-offset_bottom = -320.0
+offset_left = 441.0
+offset_top = 306.0
+offset_right = -837.0
+offset_bottom = -365.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5l4ss")
+
+[node name="PreviewImage" type="TextureRect" parent="PreviewWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 13.0
+offset_right = -14.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_4xlt5")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="PreviewWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -94.0
+offset_right = -387.0
+offset_bottom = -400.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tboke")
+theme_override_font_sizes/font_size = 50
+text = "Level Preview"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelInfo" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1097.0
+offset_top = 308.0
+offset_right = -449.0
+offset_bottom = -365.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yrj2c")
+
+[node name="LevelName" type="Label" parent="LevelInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 1.0
+offset_right = -37.0
+offset_bottom = -240.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.93333334, 0.7137255, 0.21568628, 1)
+theme_override_colors/font_shadow_color = Color(0.23529412, 0.03529412, 0.06666667, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_fonts/font = ExtResource("4_tboke")
+theme_override_font_sizes/font_size = 75
+text = "Rocky Sands"
+horizontal_alignment = 1
+
+[node name="Divider" type="ColorRect" parent="LevelInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 163.0
+offset_bottom = -239.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.93333334, 0.69411767, 0.22745098, 1)
+
+[node name="Divider2" type="ColorRect" parent="LevelInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 300.0
+offset_right = -1.0
+offset_bottom = -102.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.93333334, 0.69411767, 0.22745098, 1)
+
+[node name="LevelLapCount" type="Label" parent="LevelInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 156.0
+offset_right = 1.0
+offset_bottom = -179.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tboke")
+theme_override_font_sizes/font_size = 50
+text = "Laps: 3"
+vertical_alignment = 1
+
+[node name="LevelDifficulty" type="Label" parent="LevelInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 224.0
+offset_right = 1.0
+offset_bottom = -109.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_tboke")
+theme_override_font_sizes/font_size = 50
+text = "Difficulty: Easy"
+vertical_alignment = 1
+
+[node name="Tips" type="Label" parent="LevelInfo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 308.0
+offset_right = 1.0
+offset_bottom = 3.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("4_tboke")
-theme_override_font_sizes/font_size = 50
-text = "Preview of the Level
-goes here"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
+theme_override_font_sizes/font_size = 30
+text = "Tips: Eyes on the road"
+autowrap_mode = 3
 
 [connection signal="pressed" from="StartButton" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="StartButton/TextureButton" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="StartButton/TextureButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="StartButton/TextureButton" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="GarageButton" to="." method="_on_garage_pressed"]
 [connection signal="pressed" from="GarageButton/TextureButton" to="." method="_on_garage_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="BackButton/TextureButton" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="BackButton/TextureButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="BackButton/TextureButton" to="." method="_on_back_pressed"]

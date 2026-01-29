@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://yfcsdu12e2sn"]
+
+[ext_resource type="Texture2D" uid="uid://dbymnh3hlpvu5" path="res://assets/Road Racers Adrenaline Assets/Vehicles/civilian_truck_1.png" id="1_e2d5b"]
+[ext_resource type="Script" uid="uid://y6jks43021f4" path="res://gameplay/npcs/civilian_truck.gd" id="1_y8y84"]
+[ext_resource type="PackedScene" uid="uid://rlhigf5m3j14" path="res://ui/popup_location.tscn" id="3_ltauk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7jgwa"]
+atlas = ExtResource("1_e2d5b")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jucal"]
+atlas = ExtResource("1_e2d5b")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70a6w"]
+atlas = ExtResource("1_e2d5b")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sonp3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7jgwa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jucal")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70a6w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y8y84"]
+height = 48.0
+
+[node name="CivilianTruck" type="CharacterBody2D" groups=["civilian"]]
+script = ExtResource("1_y8y84")
+
+[node name="CarSprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_sonp3")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_y8y84")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 50.0
+target_desired_distance = 50.0
+path_max_distance = 10.0
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="PopupLocation" parent="." instance=ExtResource("3_ltauk")]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://hg27d5ann3sa"]
 
 [ext_resource type="Script" uid="uid://diomsq2554omf" path="res://ui/level_selection/level_selection.gd" id="1_2tyw7"]
-[ext_resource type="Texture2D" uid="uid://budv42pla6fmf" path="res://assets/menu'/window.png" id="1_a7te6"]
-[ext_resource type="Texture2D" uid="uid://dtftgtgs8wjxo" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="2_2tyw7"]
-[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/menu'/pressed.png" id="3_4wel7"]
+[ext_resource type="Texture2D" uid="uid://bbd4pw0bponif" path="res://assets/Menu/window.png" id="1_a7te6"]
+[ext_resource type="Texture2D" uid="uid://dkbc73bketc4f" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Chevron-Arrow-Left.svg" id="2_2tyw7"]
+[ext_resource type="Texture2D" uid="uid://2ebonm8vd2e" path="res://assets/Menu/pressed.png" id="3_4wel7"]
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="4_4wel7"]
-[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="6_b5hqg"]
+[ext_resource type="Texture2D" uid="uid://dgi3rfiea36qg" path="res://assets/Menu/unpressed.png" id="6_b5hqg"]
 [ext_resource type="PackedScene" uid="uid://8wpn4o507iat" path="res://ui/level_selection/level_preview.tscn" id="7_48mtt"]
 
 [node name="LevelSelection" type="Control"]
@@ -36,7 +36,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_a7te6")
 expand_mode = 2
-metadata/_edit_lock_ = true
 
 [node name="WindowTitle" type="Sprite2D" parent="Window"]
 position = Vector2(960, 128)
@@ -48,17 +47,17 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -519.0
-offset_top = -249.0
+offset_top = -300.67923
 offset_right = -519.0
-offset_bottom = -249.0
+offset_bottom = -300.67923
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_4wel7")
 theme_override_font_sizes/font_size = 300
 text = "LEVELS"
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 1
@@ -142,6 +141,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("4_4wel7")
 theme_override_font_sizes/font_size = 40

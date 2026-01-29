@@ -1,25 +1,36 @@
-[gd_scene load_steps=7 format=3 uid="uid://7i7w57c1jj6k"]
+[gd_scene load_steps=14 format=3 uid="uid://7i7w57c1jj6k"]
 
 [ext_resource type="Script" uid="uid://b6nv8f8ret37f" path="res://gameplay/gameplay.gd" id="1_oe8ih"]
 [ext_resource type="PackedScene" uid="uid://bv8a8pxgp468q" path="res://ui/loading_screen.tscn" id="2_41n4r"]
-[ext_resource type="Texture2D" uid="uid://dv5msdyujaqbq" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Pause.svg" id="3_ktb3l"]
+[ext_resource type="Texture2D" uid="uid://dhlsbo6iqklfi" path="res://assets/Menu/healthbar.png" id="3_2okcp"]
 [ext_resource type="PackedScene" uid="uid://bgh8h47b62g5f" path="res://gameplay/mobile_controls.tscn" id="3_ueusv"]
+[ext_resource type="Texture2D" uid="uid://bma83k34h4wbn" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Pause.svg" id="4_r5as3"]
 [ext_resource type="PackedScene" uid="uid://cvqxmwifpyd4a" path="res://ui/garage/car_previews/sport/pause_overlay.tscn" id="5_gvicd"]
+[ext_resource type="Texture2D" uid="uid://dgi3rfiea36qg" path="res://assets/Menu/unpressed.png" id="6_2okcp"]
+[ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="6_7pdct"]
+[ext_resource type="Texture2D" uid="uid://2ebonm8vd2e" path="res://assets/Menu/pressed.png" id="7_vyivm"]
+[ext_resource type="AudioStream" uid="uid://56y43ed1tijv" path="res://audio/main1.mp3" id="8_yvprt"]
+[ext_resource type="PackedScene" uid="uid://qolurg3qx0n5" path="res://ui/game_over_overlay.tscn" id="11_uqgqx"]
+[ext_resource type="PackedScene" uid="uid://f61a2vi1ht46" path="res://gameplay/level_completed_overlay.tscn" id="11_vyivm"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvicd"]
-size = Vector2(60, 60)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2okcp"]
+bg_color = Color(0.6, 0, 0, 1)
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource("1_oe8ih")
+metadata/_edit_lock_ = true
 
 [node name="LevelContainer" type="Node2D" parent="."]
+position = Vector2(-2, 0)
 
 [node name="PlayerContainer" type="Node2D" parent="."]
+position = Vector2(-2, 0)
 
 [node name="LoadingScreen" type="CanvasLayer" parent="."]
 visible = false
 
 [node name="LoadingScreen2" parent="LoadingScreen" instance=ExtResource("2_41n4r")]
+script = null
 
 [node name="GameHud" type="CanvasLayer" parent="."]
 
@@ -33,47 +44,204 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="GameHud/HUD"]
+[node name="Labels" type="Control" parent="GameHud/HUD"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 789.0
-offset_top = 956.0
-offset_right = -777.0
-offset_bottom = -47.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 50
-text = "Test Display"
-horizontal_alignment = 1
-vertical_alignment = 2
+metadata/_edit_lock_ = true
 
-[node name="PauseMobile" type="TouchScreenButton" parent="GameHud/HUD"]
-position = Vector2(1809, 59)
-texture_normal = ExtResource("3_ktb3l")
-shape = SubResource("RectangleShape2D_gvicd")
-visibility_mode = 1
-
-[node name="PauseDesktop" type="Button" parent="GameHud/HUD"]
+[node name="SpeedoContainer" type="Control" parent="GameHud/HUD/Labels"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1796.0
-offset_top = 44.0
-offset_right = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="HealthBar" type="Control" parent="GameHud/HUD/Labels"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.1804471, 1.2576225)
+metadata/_edit_lock_ = true
+
+[node name="Healthbar" type="Sprite2D" parent="GameHud/HUD/Labels/HealthBar"]
+texture_filter = 1
+position = Vector2(324.4533, 115.29692)
+scale = Vector2(4.899569, 4.7935343)
+texture = ExtResource("3_2okcp")
+
+[node name="HealthProgressBar" type="ProgressBar" parent="GameHud/HUD/Labels/HealthBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 62.299564
+offset_top = 19.87878
+offset_right = -1381.7004
+offset_bottom = -1026.1212
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_2okcp")
+show_percentage = false
+
+[node name="HealthLabel" type="RichTextLabel" parent="GameHud/HUD/Labels/HealthBar"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.014930823
+anchor_top = 0.014215736
+anchor_right = 0.25763914
+anchor_bottom = 0.07875621
+offset_left = 25.549564
+offset_top = 3.7306328
+offset_right = -13.450439
+offset_bottom = -34.973076
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("6_7pdct")
+theme_override_font_sizes/normal_font_size = 25
+text = "HealthLabel"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="LapLabel" type="RichTextLabel" parent="GameHud/HUD/Labels"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.31041667
+anchor_top = -0.14074074
+anchor_right = 1.2223958
+anchor_bottom = 0.84166664
+offset_left = 36.0
+offset_top = 152.0
+offset_right = -1489.0
+offset_bottom = -833.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("6_7pdct")
+theme_override_font_sizes/normal_font_size = 50
+text = "LapLabel"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SpeedLabel" type="RichTextLabel" parent="GameHud/HUD/Labels"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 759.0
+offset_top = 1014.0
+offset_right = -766.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("6_7pdct")
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "SPEED km/h"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MobileControls" parent="GameHud/HUD" instance=ExtResource("3_ueusv")]
+visible = false
+layout_mode = 1
+
+[node name="PauseButton" type="Control" parent="GameHud/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1784.0
+offset_top = 32.0
+offset_right = 72.0
+offset_bottom = -984.00006
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.45624945, 1.7070572)
+
+[node name="Pause" type="TextureButton" parent="GameHud/HUD/PauseButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1872.0
+offset_bottom = 504.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("6_2okcp")
+texture_pressed = ExtResource("7_vyivm")
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="GameHud/HUD/PauseButton"]
+position = Vector2(105.20548, 23.432137)
+scale = Vector2(1.7026709, 0.46771097)
+texture = ExtResource("4_r5as3")
+
+[node name="EffectsContainer" type="HBoxContainer" parent="GameHud/HUD"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 72.0
+offset_top = 96.0
+offset_right = -1280.0
 offset_bottom = -950.0
 grow_horizontal = 2
 grow_vertical = 2
-icon = ExtResource("3_ktb3l")
-icon_alignment = 1
-
-[node name="MobileControls" parent="GameHud" instance=ExtResource("3_ueusv")]
-visible = false
 
 [node name="PauseOverlay" parent="GameHud" instance=ExtResource("5_gvicd")]
 visible = false
 
-[connection signal="released" from="GameHud/HUD/PauseMobile" to="." method="_on_pause_btn_pressed"]
-[connection signal="pressed" from="GameHud/HUD/PauseDesktop" to="." method="_on_pause_btn_pressed"]
+[node name="TimerLabel" type="RichTextLabel" parent="GameHud"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 216.0
+offset_top = 49.0
+offset_right = -188.0
+offset_bottom = -211.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 24
+theme_override_fonts/normal_font = ExtResource("6_7pdct")
+theme_override_font_sizes/normal_font_size = 600
+bbcode_enabled = true
+text = "TIMER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelCompletedOverlay" parent="GameHud" instance=ExtResource("11_vyivm")]
+visible = false
+
+[node name="GameOverOverlay" parent="GameHud" instance=ExtResource("11_uqgqx")]
+visible = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="GamePlaySountrack" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+position = Vector2(-3, 0)
+stream = ExtResource("8_yvprt")
+volume_db = -5.0
+parameters/looping = true
+
+[connection signal="pressed" from="GameHud/HUD/PauseButton/Pause" to="." method="_on_pause_btn_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_finished"]

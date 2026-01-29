@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://b70yfkuj10c2m"]
+
+[ext_resource type="Script" uid="uid://bxa78ceothq56" path="res://gameplay/obstacle/police.gd" id="1_sggxn"]
+[ext_resource type="Texture2D" uid="uid://dgkvgk5gwcv4o" path="res://assets/Road Racers Adrenaline Assets/Vehicles/police_cars_sprites.png" id="1_ueku3"]
+[ext_resource type="PackedScene" uid="uid://rlhigf5m3j14" path="res://ui/popup_location.tscn" id="3_t0ose"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyuf4"]
+atlas = ExtResource("1_ueku3")
+region = Rect2(320, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yraei"]
+atlas = ExtResource("1_ueku3")
+region = Rect2(352, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sggxn"]
+atlas = ExtResource("1_ueku3")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0ose"]
+atlas = ExtResource("1_ueku3")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qyuf4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyuf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yraei")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sggxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0ose")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t0ose"]
+radius = 7.0
+height = 27.0
+
+[node name="Police" type="CharacterBody2D" groups=["obstacle"]]
+rotation = -1.5707964
+script = ExtResource("1_sggxn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+rotation = 1.5707964
+sprite_frames = SubResource("SpriteFrames_qyuf4")
+animation = &"death"
+autoplay = "default"
+frame_progress = 0.6724262
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 2.1855694e-08)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_t0ose")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
+[node name="PopupLocation" parent="." instance=ExtResource("3_t0ose")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(6, 6)

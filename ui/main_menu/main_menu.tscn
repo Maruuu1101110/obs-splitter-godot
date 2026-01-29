@@ -1,22 +1,26 @@
 [gd_scene load_steps=8 format=3 uid="uid://3y85bprkxhm5"]
 
 [ext_resource type="Script" uid="uid://c0y55hhnbkv77" path="res://ui/main_menu/main_menu.gd" id="1_7vrkn"]
-[ext_resource type="Texture2D" uid="uid://dd2d5kmt2ldb6" path="res://assets/menu'/placeholder-background.png" id="2_fu7sn"]
-[ext_resource type="Texture2D" uid="uid://818kxioeocif" path="res://assets/menu'/placeholder-title.png" id="3_fu7sn"]
-[ext_resource type="Texture2D" uid="uid://bgtoauxhskc5r" path="res://assets/menu'/unpressed.png" id="4_glbon"]
-[ext_resource type="Texture2D" uid="uid://bpbigqer35t5s" path="res://assets/menu'/pressed.png" id="5_nlkkf"]
+[ext_resource type="Texture2D" uid="uid://dncg551c1w87f" path="res://assets/Menu/placeholder-background.png" id="2_u184e"]
+[ext_resource type="Texture2D" uid="uid://1h80etp6uynv" path="res://assets/Menu/placeholder-title.png" id="3_fu7sn"]
+[ext_resource type="Texture2D" uid="uid://dgi3rfiea36qg" path="res://assets/Menu/unpressed.png" id="4_glbon"]
+[ext_resource type="Texture2D" uid="uid://2ebonm8vd2e" path="res://assets/Menu/pressed.png" id="5_nlkkf"]
 [ext_resource type="FontFile" uid="uid://bkkwgywjc5xo" path="res://assets/fonts/born2bsporty-fs/Born2bSportyFS.otf" id="6_joh67"]
-[ext_resource type="Texture2D" uid="uid://d2f1wgxbpyj7x" path="res://assets/menu'/Lucid V1.2/SVG/Flat/Gear.svg" id="7_u184e"]
+[ext_resource type="Texture2D" uid="uid://bpj7stewdoxwp" path="res://assets/Menu/Lucid V1.2/SVG/Flat/Gear.svg" id="7_u184e"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.532
+anchor_right = 0.5
+anchor_bottom = 0.532
+offset_left = -960.0
+offset_top = -574.56
+offset_right = 960.0
+offset_bottom = 505.44
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7vrkn")
-metadata/_edit_lock_ = true
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -25,7 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_fu7sn")
+texture = ExtResource("2_u184e")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
@@ -44,9 +48,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 560.0
+offset_left = 528.0
 offset_top = 96.0
-offset_right = 800.0
+offset_right = 768.0
 offset_bottom = 37.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -58,9 +62,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 816.0
+offset_left = 784.0
 offset_top = 560.0
-offset_right = -896.0
+offset_right = -928.0
 offset_bottom = -464.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -92,6 +96,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_joh67")
 theme_override_font_sizes/font_size = 40
@@ -137,9 +142,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 816.0
+offset_left = 784.0
 offset_top = 816.0
-offset_right = -896.0
+offset_right = -928.0
 offset_bottom = -208.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -172,6 +177,8 @@ offset_right = -43.0
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_joh67")
 theme_override_font_sizes/font_size = 40
 text = "QUIT"
@@ -183,9 +190,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 816.0
+offset_left = 784.0
 offset_top = 688.0
-offset_right = -896.00006
+offset_right = -928.00006
 offset_bottom = -336.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -218,6 +225,7 @@ offset_right = -43.0
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("6_joh67")
 theme_override_font_sizes/font_size = 40
 text = "GARAGE"

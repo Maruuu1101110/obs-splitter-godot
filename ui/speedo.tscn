@@ -1,0 +1,168 @@
+[gd_scene load_steps=21 format=3 uid="uid://8a2ch64kjlwc"]
+
+[ext_resource type="Script" path="res://ui/speedo.gd" id="1_8mnr1"]
+[ext_resource type="Texture2D" uid="uid://bykiffm0fyadc" path="res://assets/AUS1/AUS1 Layers/3. MSBColor.png" id="1_glgdo"]
+[ext_resource type="Texture2D" uid="uid://dyk4754ylqtie" path="res://assets/AUS1/AUS1 Layers/4. MKPHSticks.png" id="2_8mnr1"]
+[ext_resource type="Texture2D" uid="uid://di5smwk5nsdqs" path="res://assets/AUS1/AUS1 Layers/2. SpeedoHolders.png" id="2_mnaia"]
+[ext_resource type="Texture2D" uid="uid://dw2ym6ac0cesm" path="res://assets/AUS1/AUS1 Layers/5. MMPHSticks.png" id="3_dgt3a"]
+[ext_resource type="Texture2D" uid="uid://diidgy4p2wjf8" path="res://assets/AUS1/AUS1 Layers/7. KPHText.png" id="4_73st3"]
+[ext_resource type="Texture2D" uid="uid://bfhx0ax0n20sr" path="res://assets/AUS1/AUS1 Layers/8. MPHText.png" id="5_omeo1"]
+[ext_resource type="Texture2D" uid="uid://cdye5ulrq4ev8" path="res://assets/AUS1/AUS1 Layers/9. ODColor.png" id="6_i3r1k"]
+[ext_resource type="Texture2D" uid="uid://cjyhcvkiwqp6g" path="res://assets/AUS1/AUS1 Layers/10. Odometer.png" id="7_rrvhv"]
+[ext_resource type="Texture2D" uid="uid://ckl8cm7gcwd2y" path="res://assets/AUS1/AUS1 Layers/12. MSpeedBase.png" id="8_m4uwn"]
+[ext_resource type="Texture2D" uid="uid://bemv8af6407pj" path="res://assets/AUS1/AUS1MPHKPH.png" id="9_hyhww"]
+[ext_resource type="Texture2D" uid="uid://cxcus1ej2rd3v" path="res://assets/AUS1/AUS1 Layers/13. MRPMBColor.png" id="12_6ue2l"]
+[ext_resource type="Texture2D" uid="uid://d0f46e7rlit5f" path="res://assets/AUS1/AUS1 Layers/18. MFTBColor.png" id="13_27ep0"]
+[ext_resource type="Texture2D" uid="uid://c51wunlrpdseu" path="res://assets/AUS1/AUS1 Layers/16. RPMText.png" id="14_bilum"]
+[ext_resource type="Texture2D" uid="uid://esse4wtrge5e" path="res://assets/AUS1/AUS1 Layers/14. SRPMSticks.png" id="15_ta5h1"]
+[ext_resource type="Texture2D" uid="uid://baog6ikekgl8j" path="res://assets/AUS1/AUS1 Layers/15. MRPMSticks.png" id="17_mq78p"]
+[ext_resource type="Texture2D" uid="uid://rti01hl2viem" path="res://assets/AUS1/AUS1 Layers/21. MFTText.png" id="18_e31dc"]
+[ext_resource type="Texture2D" uid="uid://crbw5kdnp1mqq" path="res://assets/AUS1/AUS1 Layers/19. MFTSticks.png" id="19_b7qll"]
+[ext_resource type="Texture2D" uid="uid://mgt5jy0dnynw" path="res://assets/AUS1/AUS1 Layers/20. MFTIcons.png" id="20_k18w2"]
+[ext_resource type="Texture2D" uid="uid://c2vr2uay0a0bm" path="res://assets/AUS1/AUS1GasTemp.png" id="21_80rv4"]
+
+[node name="Speedo" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = 642.0
+offset_right = -999.0
+offset_bottom = -18.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.95, 0.95)
+script = ExtResource("1_8mnr1")
+
+[node name="DEBUG" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -1.0
+offset_right = 3.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09803922, 0.09803922, 0.09803922, 0.34509805)
+metadata/_edit_lock_ = true
+
+[node name="2_SpeedoHolders" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(475, 297)
+texture = ExtResource("2_mnaia")
+
+[node name="Others" type="Node2D" parent="."]
+position = Vector2(625.2631, 73.68423)
+scale = Vector2(0.95, 0.95)
+
+[node name="13_MrpmbColor" type="Sprite2D" parent="Others"]
+position = Vector2(493, 289)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("12_6ue2l")
+
+[node name="16_RpmText" type="Sprite2D" parent="Others"]
+position = Vector2(499, 295)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("14_bilum")
+
+[node name="14_SrpmSticks" type="Sprite2D" parent="Others"]
+position = Vector2(497, 292)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("15_ta5h1")
+
+[node name="15_MrpmSticks" type="Sprite2D" parent="Others"]
+position = Vector2(496, 291)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("17_mq78p")
+
+[node name="RpmNeedle" type="Sprite2D" parent="Others"]
+position = Vector2(173.96124, 370.08316)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("9_hyhww")
+offset = Vector2(-70, 0)
+
+[node name="Others2" type="Node2D" parent="."]
+position = Vector2(541.0526, 73.68418)
+scale = Vector2(0.95, 0.95)
+
+[node name="18_MftbColor" type="Sprite2D" parent="Others2"]
+position = Vector2(457, 295)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("13_27ep0")
+
+[node name="21_MftText" type="Sprite2D" parent="Others2"]
+position = Vector2(435, 302)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("18_e31dc")
+
+[node name="19_MftSticks" type="Sprite2D" parent="Others2"]
+position = Vector2(451, 291)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("19_b7qll")
+
+[node name="20_MftIcons" type="Sprite2D" parent="Others2"]
+position = Vector2(451, 291)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("20_k18w2")
+
+[node name="Aus1GasTemp" type="Sprite2D" parent="Others2"]
+position = Vector2(827.70087, 362.32684)
+rotation = -1.3089969
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("21_80rv4")
+offset = Vector2(20, 0)
+
+[node name="Speed" type="Node2D" parent="."]
+position = Vector2(583.1579, 73.68419)
+scale = Vector2(0.95, 0.95)
+
+[node name="Sprite2D" type="Sprite2D" parent="Speed"]
+position = Vector2(479.00006, 294)
+texture = ExtResource("1_glgdo")
+metadata/_edit_lock_ = true
+
+[node name="4_MkphSticks" type="Sprite2D" parent="Speed"]
+position = Vector2(480, 300)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("2_8mnr1")
+
+[node name="5_MmphSticks" type="Sprite2D" parent="Speed"]
+position = Vector2(479, 298)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("3_dgt3a")
+
+[node name="7_KphText" type="Sprite2D" parent="Speed"]
+position = Vector2(480, 302)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("4_73st3")
+
+[node name="8_MphText" type="Sprite2D" parent="Speed"]
+position = Vector2(480, 302)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("5_omeo1")
+
+[node name="9_OdColor" type="Sprite2D" parent="Speed"]
+position = Vector2(472, 293)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("6_i3r1k")
+
+[node name="10_Odometer" type="Sprite2D" parent="Speed"]
+position = Vector2(471, 292)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("7_rrvhv")
+
+[node name="12_MSpeedBase" type="Sprite2D" parent="Speed"]
+position = Vector2(478, 296)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("8_m4uwn")
+
+[node name="SpeedNeedle" type="Sprite2D" parent="Speed"]
+position = Vector2(470, 341)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("9_hyhww")
+offset = Vector2(-70, 0)
