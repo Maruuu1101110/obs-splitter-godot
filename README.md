@@ -1,31 +1,31 @@
-# OBS Splitter Godot
 
-A powerful tool or game (expand this section with a concise and engaging description of what the repository is about).
+# Obstacle Splitter 🎮
+
+Obstacle Splitter is a fun and fast-paced game where players must react quickly, think ahead, and split obstacles to survive. Designed to be easy to pick up but challenging to master, the game focuses on smooth gameplay, responsive controls, and satisfying mechanics.
+
+---
 
 ## Features
-- List the features of your project here.
-  - Example Feature 1
-  - Example Feature 2
+
+* Simple and intuitive gameplay
+* Fast-paced obstacle mechanics
+* Increasing difficulty over time
+* Smooth controls and animations
+---
 
 ## Getting Started
+Follow the instructions below to get a local copy of the project up and running.
 
-### Prerequisites
-Mention any prerequisites (e.g., software, SDKs, or system requirements) needed to use or contribute to the repository.
+---
 
 ### Installation
-Step-by-step guide on how to install or set up the project locally.
 
-```
-# Example installation steps
-1. Clone the repository.
-2. Build or run using these steps.
-```
+1. Grab the packages under the `Release` page and install them on your device, simple.
 
-## Usage
-Explain how users can utilize the project. Provide examples or commands.
+---
 
-## Contribution
-Guidelines for contributing to the project.
+### How to Play
 
-## License
-Specify the license type if applicable.
+* Typical `w` `a` `s` `d` controlls.
+* Avoid obstacles.
+* Try to survive as long as possible
