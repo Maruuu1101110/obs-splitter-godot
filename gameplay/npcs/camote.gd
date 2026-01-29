@@ -7,7 +7,7 @@ extends Area2D
 var accelerating: bool
 
 const MAX_HP := 30
-const DAMAGE := 10
+const DAMAGE := 30
 
 var curr_hp = MAX_HP
 var is_dead = false

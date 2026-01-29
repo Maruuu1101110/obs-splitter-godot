@@ -7,8 +7,8 @@ extends CharacterBody2D
 @onready var engine_sound_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
 var accelerating: bool
 
-const MAX_HP := 500
-const DAMAGE := 2
+const MAX_HP := 5000
+const DAMAGE := 20
 
 var curr_hp = MAX_HP
 var is_dead = false

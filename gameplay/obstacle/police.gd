@@ -2,8 +2,8 @@ extends CharacterBody2D
 
 #const SPEED = 150.0
 var speed = 250.0
-const MAX_HP = 100.0
-const DAMAGE = 10.0
+const MAX_HP = 15000.0
+const DAMAGE = 50.0
 
 var curr_hp = MAX_HP
 var is_dead = false
