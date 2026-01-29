@@ -31,3 +31,31 @@ Follow the instructions below to get a local copy of the project up and running.
 * Avoid obstacles.
 * Follow the signages and real-life traffic rules.
 * Try to survive as long as possible.
+
+---
+
+## Credits
+---
+
+### Development Team
+
+#### Programmers
+
+* Elijah Mar Rosialda
+* Benjamin Ramos III
+
+#### Asset Designers
+
+* Deon Josef Pineda
+* Benjamin Ramos III
+
+#### External Assets
+
+* Road Racers Adrenaline (Alb Pixel)
+* Tiny Ski (Kenney)
+* Lucid V1.2
+* AUS1
+
+### Game Engine
+
+* [Godot Engine](https://godotengine.org/)
